@@ -43,8 +43,6 @@ Or just say **"CLAP with me"** followed by any decision you're stuck on.
 
 The full framework — the matrix, the valves, the fractal property, and how CLAP maps onto AI system design — is in [`CLAP.md`](./CLAP.md).
 
-The story of where it came from is in [`/origin`](./origin/).
-
 ---
 
 ## License
