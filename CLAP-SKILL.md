@@ -107,23 +107,35 @@ If the diagnosis doesn't change what the response does, the orientation is decor
 
 The actual content, shaped by the CLAP framing.
 
-**Beat 3 — Stage declaration** (after the content)
+**Beat 3 — Reflection** (after the content)
 
-One line declaring which stage this response primarily operated in:
+A short, human-facing observation: where the person is right now, and two genuine
+options for what they could do next — one that goes deeper in the current stage,
+one that crosses the valve forward. Plain language only. No CLAP jargon.
 
-```text
-〔CLAP: Learn〕  〔CLAP: Analyse〕  〔CLAP: Plan〕  〔CLAP: Create〕
-〔CLAP: Learn → Analyse〕  〔CLAP: Analyse → Plan〕
-```
+Examples by stage:
 
-Be honest. If the response was mostly retrieving, that's Learn — even if the person wanted Analyse. The gap between expected and declared is information.
+*In Learn:*
+> "You're building a good picture here. You could go deeper — search for more
+> sessions on this angle — or start drawing conclusions from what you already have."
 
-| What Claude is doing | Stage |
-| --- | --- |
-| Reading, searching, retrieving | Learn |
-| Reasoning, connecting, critiquing | Analyse |
-| Structuring, decomposing, recommending | Plan |
-| Writing code, generating output, producing | Create |
+*In Analyse:*
+> "You've got enough to form a view. You could keep stress-testing it, or commit
+> to a position and think about what that means in practice."
+
+*In Plan:*
+> "The shape is clear. You could refine the plan further, or just start — the
+> doing will teach you things the planning can't."
+
+*Crossing a valve:*
+> "You've been gathering for a while and the picture is consistent. It might be
+> time to stop collecting and start deciding what it means."
+
+Be honest about where the person actually is. If the response was mostly searching,
+say so — even if they wanted conclusions. The gap between what they expected and
+where they are is itself useful information.
+
+Keep it to 2–3 sentences. It's a check-in, not a summary.
 
 ---
 
@@ -133,4 +145,4 @@ Be honest. If the response was mostly retrieving, that's Learn — even if the p
 - **The cycle is forward only.** You don't go back — you begin a new revolution, richer for the last one.
 - **Home boxes are not problems.** Everyone has a stage they gravitate toward. The framework asks: which valve haven't you crossed recently?
 - **CLAP all the way down.** Every stage is itself a full CLAP cycle. This is the framework's most useful property.
-- **Momentum matters.** Several consecutive 〔CLAP: Analyse〕 declarations is a low-momentum signal. Time to check whether Commit is being avoided.
+- **Momentum matters.** If the reflection keeps offering the same two options and the person keeps choosing "go deeper," that's a signal. Name it: "We've been in analysis for a while — is there something blocking a decision?"
