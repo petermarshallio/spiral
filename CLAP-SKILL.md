@@ -1,6 +1,6 @@
 ---
 name: clap
-description: "Guide any decision, project, or thinking process through the CLAP framework (Create, Learn, Analyse, Plan). MANDATORY TRIGGERS: 'CLAP this', 'run CLAP', 'where am I in CLAP', 'help me think through this'. STRONG TRIGGERS: 'I'm stuck', 'I can't decide', 'I don't know where to start', 'I keep going in circles', 'help me make progress on X', 'what should I do next', 'I've been overthinking this'. The skill identifies which CLAP stage the person is currently in, whether they're ready to cross the next valve, and what would help them move forward. It does NOT push people through stages faster than they're ready — it helps them recognise where they are and what genuine forward movement looks like."
+description: "Guide any decision, project, or thinking process through the CLAP framework (Create, Learn, Analyse, Plan). MANDATORY TRIGGERS: 'CLAP with me', 'run CLAP', 'where am I in CLAP', 'help me think through this'. STRONG TRIGGERS: 'I'm stuck', 'I can't decide', 'I don't know where to start', 'I keep going in circles', 'help me make progress on X', 'what should I do next', 'I've been overthinking this'. The skill identifies which CLAP stage the person is currently in, whether they're ready to cross the next valve, and what would help them move forward. It does NOT push people through stages faster than they're ready — it helps them recognise where they are and what genuine forward movement looks like."
 ---
 
 # CLAP Framework Skill

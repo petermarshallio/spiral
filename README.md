@@ -35,13 +35,15 @@ Once the skill is installed, try this:
 
 Claude will identify which CLAP stage you're in, which valve is blocking you, and what genuine forward movement looks like.
 
-Or just say **"CLAP this"** followed by any decision you're stuck on.
+Or just say **"CLAP with me"** followed by any decision you're stuck on.
 
 ---
 
 ## Learn more
 
 The full framework — the matrix, the valves, the fractal property, and how CLAP maps onto AI system design — is in [`CLAP.md`](./CLAP.md).
+
+The story of where it came from is in [`/origin`](./origin/).
 
 ---
 
