@@ -13,8 +13,8 @@ The full canonical reference is in `CLAP.md`. Read it if available. This skill i
 
 ## The Matrix (always keep this in mind)
 
-| | **Internal target** | **External target** |
-| --- | --- | --- |
+|  | **Internal target** | **External target** |
+|---|---|---|
 | **External source** | **Learn** | **Create** |
 | **Internal source** | **Analyse** | **Plan** |
 
@@ -28,7 +28,7 @@ The full canonical reference is in `CLAP.md`. Read it if available. This skill i
 ## The Valves (one-directional — always forward)
 
 | Valve | Between | The question |
-| --- | --- | --- |
+|---|---|---|
 | **Select** | Learn → Analyse | Have I gathered enough to reason with? |
 | **Commit** | Analyse → Plan | Have I thought enough to stop and decide? |
 | **Resource** | Plan → Create | Is this actually deliverable? |
@@ -91,7 +91,7 @@ This is not scope creep. It is the fractal property of the framework working cor
 When the person is designing an AI system, knowledge base, or agent architecture, CLAP maps directly:
 
 | CLAP stage | AI system equivalent |
-| --- | --- |
+|---|---|
 | **Learn** | Corpus ingestion, retrieval, RAG, contextual grounding |
 | **Analyse** | Reasoning, chain-of-thought, multi-perspective critique |
 | **Plan** | Structured output, task decomposition, response framing |
@@ -125,7 +125,6 @@ Name the missing reach level if it would help: "You know a lot about what the in
 Momentum is a property of the whole system, not any single stage. High momentum means each revolution of CLAP lands somewhere genuinely new. Low momentum means spinning on the same level.
 
 Signs of low momentum:
-
 - The same questions keep coming up in Analyse
 - Plans keep getting revised before anything is Created
 - Create keeps producing the same results without new Learn
@@ -136,7 +135,51 @@ When momentum is low, the intervention is usually at a valve: which one hasn't g
 
 ## Output format
 
-A CLAP session should produce:
+Every substantive response — whether in an explicit CLAP session or any other context where the skill is active — follows this three-beat structure:
+
+### Beat 1 — Orientation (before the content)
+
+Open with a brief CLAP orientation. Two things:
+
+1. Where the person is
+2. What this response is trying to do — which valve it's helping them cross
+
+Format:
+
+```text
+〔You're in Analyse — this response is helping you cross toward Plan〕
+```
+
+Or more conversationally when the situation calls for it:
+
+> *"You're in Learn right now — you've gathered a lot but haven't started interrogating it yet. This response is going to help you cross Select by asking the question your data is actually answering."*
+
+The orientation should feel like a doctor saying "I think you've got X, so I'm going to do Y" — not a label slapped on top of a response that ignores it. If the diagnosis changes what the response does, the orientation is working. If the response would have been identical without it, the orientation is decorative.
+
+### Beat 2 — The response
+
+The actual content. Diagnosis, analysis, recommendation, answer — whatever the situation calls for. The CLAP framing shapes *how* this is written, not just what's labelled around it.
+
+### Beat 3 — Stage declaration (after the content)
+
+One line at the end declaring which CLAP stage the response itself primarily operated in:
+
+```text
+〔CLAP: Learn〕
+〔CLAP: Analyse〕
+〔CLAP: Plan〕
+〔CLAP: Create〕
+〔CLAP: Learn → Analyse〕
+〔CLAP: Analyse → Plan〕
+```
+
+The declaration should be honest, not aspirational. If the response was mostly retrieving and summarising, that's Learn — even if the person wanted Analyse. The gap between what was expected and what was declared is information.
+
+---
+
+### For explicit CLAP sessions
+
+When someone says "CLAP with me" or triggers the skill directly, the output expands to:
 
 1. **Stage diagnosis** — where the person currently is, stated plainly
 2. **Valve diagnosis** — which valve is relevant and whether it's ready to open
@@ -153,7 +196,7 @@ Whenever Claude produces a substantive response — whether in a CLAP session or
 
 Format (one line, at the end of the response):
 
-```text
+```
 〔CLAP: Learn〕
 〔CLAP: Analyse〕
 〔CLAP: Plan〕
@@ -162,7 +205,7 @@ Format (one line, at the end of the response):
 
 If the response spans multiple stages, declare the dominant one. If genuinely split between two, declare both:
 
-```text
+```
 〔CLAP: Learn → Analyse〕
 ```
 
@@ -177,7 +220,7 @@ This is not decoration. It serves three purposes:
 **Mapping guidance for Claude:**
 
 | What Claude is doing | CLAP stage |
-| --- | --- |
+|---|---|
 | Reading files, searching corpus, retrieving information | Learn |
 | Reasoning over what it found, connecting dots, critiquing | Analyse |
 | Structuring a response, decomposing a task, making a recommendation concrete | Plan |
