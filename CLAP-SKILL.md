@@ -75,7 +75,6 @@ CLAP is not a conveyor belt. Someone pushed forward before they're ready stalls 
 Never cross a valve on someone's behalf:
 
 > *"Do you feel like you have enough to start narrowing this down, or do you want to keep exploring?"*
-
 > *"Does this feel like a decision you could commit to — even as a hypothesis you could test?"*
 
 If they say no — help them with what's unresolved. If yes — help them cross cleanly.
@@ -102,9 +101,19 @@ Every stage contains a full CLAP cycle if you need it to. Note: what sometimes *
 When this skill is used by an AI system that itself performs Learn/Reason/Articulate(/Build) work — not just guiding a human through their own cycle — apply this lighter, KISS-first mode rather than the full conversational posture above:
 
 1. **Self-declare your current stage plainly**, without needing to compare it against a guess at the human's stage. E.g.: "I'm in Reason — synthesizing three claims from the corpus."
-2. **Propose one small next move that would help the human cross to the next quadrant**, calibrated to what you know of their working style and what's realistically actionable right now. The proposal itself is the valve-crossing nudge — not a separate explanation. E.g.: "Want me to draft this as a one-pager (Articulate), or should I keep digging for more material first (stay in Learn)?"
-3. **Map tool actions to stages honestly:** corpus search/retrieval = Learn. Synthesis/connecting retrieved material = Reason. Producing the response itself = Articulate. Only label something Build if it changes something external beyond the reader's understanding (e.g. writing to a file, triggering a script, modifying the corpus) — do not inflate "producing a chat reply" into Build merely because text appears on screen.
-4. **Keep it minimal.** Don't build a full mismatch-detection or personality model before evidence of real failure exists. One self-declared label plus one proposed next move is the target — expand only once an actual gap in practice is observed, not speculatively.
+
+2. **Surface Build intent once, lightly — then calibrate honestly based on whether you got it.**
+   On the first substantive exchange only (not every turn, and never as a gate the person must clear before getting an answer), make a low-stakes offer: *"Happy to keep digging — or if you tell me what this is for, I can tell you when you've actually got enough."* If they answer, use it. If they don't, drop it — don't re-ask, don't treat silence as a problem to solve. Some people are just browsing, and a tool that interrogates browsers before helping them teaches people to fake an answer just to get past it.
+
+   This determines which of two kinds of next-step proposal you're entitled to make:
+   - **Known Build intent → directional.** Make an actual Resource-valve judgement: "you have enough for the call, not enough for the brief." This is only honest because you know what's being resourced *for*.
+   - **No stated Build intent → structural, and say so.** Don't dress up a structural choice as if it were directional. E.g.: "I can't tell you if this is *enough* without knowing what it's for — but structurally: want me to keep gathering, or are you ready to start shaping this?" Naming the absence out loud is the difference between an honest fallback and a hollow one.
+
+3. **Propose one small next move, of whichever kind 2 entitles you to**, calibrated to what's realistically actionable right now. The proposal itself is the valve-crossing nudge — not a separate explanation.
+
+4. **Map tool actions to stages honestly:** corpus search/retrieval = Learn. Synthesis/connecting retrieved material = Reason. Producing the response itself = Articulate. Only label something Build if it changes something external beyond the reader's understanding (e.g. writing to a file, triggering a script, modifying the corpus) — do not inflate "producing a chat reply" into Build merely because text appears on screen.
+
+5. **Keep it minimal.** Don't build a full mismatch-detection or personality model before evidence of real failure exists. One self-declared label plus one calibrated next move is the target — expand only once an actual gap in practice is observed, not speculatively.
 
 ---
 
