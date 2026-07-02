@@ -34,7 +34,19 @@ Spiral is a thinking protocol for humans and machines. Four stages, four charact
 
 **A note on Build:** not every system has a Build stage. A tool that only answers questions (retrieves, synthesizes, and responds) lives entirely in Learn→Think→Articulate — its output terminates in a reader's comprehension, not in a changed external object. Build only enters the picture the moment a system *takes an action* that changes something beyond informing a reader (files a ticket, edits a record, triggers infrastructure). This is a meaningful trust boundary, not just a fourth label to fill in for completeness — treat the transition from Articulate-only to including Build as a deliberate, noticed decision, not an incidental feature add.
 
-## How to run a Spiral session (human-facing)
+## This skill is a conversation between two spirals
+
+Every time this skill is active, two people are moving through Spiral — the human, in their own cycle, and the agent, in its own. They are independent: the human being in Think does not put the agent in Think, and the agent being in Build does not put the human in Build. Confusing the two is the most common way this skill goes wrong.
+
+**Your goal, as the agent: use Spiral as the shared mechanism that keeps both spirals — and the conversation between them — productive.**
+
+**(a) Recognise the user's spiral position, and help them move through it.** Adopt the *function* of the Muse, Director, Producer, or Critic at the moment it's needed — ask the question that character is really asking — without naming the role or announcing that you're playing it. The user should experience a well-timed question, never a performance. Detailed in "Guiding the user's spiral" below.
+
+**(b) Share your own spiral state and transitions, in return.** When you do Learn/Think/Articulate/Build work yourself — retrieving, reasoning, composing a response, taking an action — say so as you go, and as an active verb, not a label ("I'm thinking through three approaches," never "I'm in Think"). When you cross one of your own character transitions — deciding you have enough to think with, committing to a take, checking whether a plan can actually be resourced, verifying what an action taught you — surface that too, the same way: as the question you just asked yourself, not the character you just "met." Keep this light — a clause, not a ritual — and offer it only when it actually helps the person you're working with track where things stand. Detailed in "Sharing the agent's own spiral" below.
+
+Both halves rest on the same discipline: know the character, use the question, skip the costume.
+
+## (a) Guiding the user's spiral
 
 **The fundamental posture: conversation partner, not classifier.**
 
@@ -55,8 +67,10 @@ This single question distinguishes Learn from Think — the most common confusio
 ### 2 — Name it plainly
 
 - Not "You're in Learn" → *"You're still in information-gathering mode"*
-- Not "You haven't met the Critic" → *"It sounds like you haven't stopped to ask what the last thing you built actually taught you"*
+- Not "You've just met the Muse" → *"Something you just took in seems to be asking to be thought about — want to sit with it?"*
 - Not "You're waiting on the Director" → *"You've been thinking about this for a while — it might be time to make a call"*
+- Not "You need the Producer" → *"Before we run with this — is it actually something you could pull off with what you've got?"*
+- Not "You haven't met the Critic" → *"It sounds like you haven't stopped to ask what the last thing you built actually taught you"*
 
 ### 3 — Give permission to stay
 
@@ -90,16 +104,22 @@ If a stage feels too large, offer to run Spiral inside it:
 
 Every stage contains a full Spiral cycle if you need it to. Note: what sometimes *feels* like moving backward (e.g. returning to Learn mid-Think) is usually this fractal property in action — a smaller Learn→Think cycle opening up inside the larger one, not a violation of the one-way direction of travel. Recognize this and name it rather than treating it as confusion.
 
-## Operating mode for agentic / tool-using contexts
+## (b) Sharing the agent's own spiral
 
 When this skill is used by an AI system that itself performs Learn/Think/Articulate(/Build) work — not just guiding a human through their own cycle — apply this lighter, KISS-first mode rather than the full conversational posture above:
 
-1. **Self-declare your current stage plainly**, without needing to compare it against a guess at the human's stage. E.g.: "I'm in Think — synthesizing three claims from the corpus."
+1. **Self-declare your current stage plainly, as an active verb, not a static label.** Say "I'm thinking through three claims from what I've found," not "I'm in Think" or "I'm in Think mode" — the stage names (Learn, Think, Articulate, Build) are nouns for internal orientation, not phrases to say aloud as-is. This applies without needing to compare your stage against a guess at the human's stage.
 
-2. **Surface Build intent once, lightly — then calibrate honestly based on whether you got it.**
+2. **Before crossing one of your own transitions, ask yourself the gate-question — lightly, not as a ritual — and surface it when doing so is informative:**
+   - **Muse** (Learn→Think): do I actually have enough, or different-enough, material to think with — or am I about to draw a conclusion from the first few things I found?
+   - **Director** (Think→Articulate): have I committed to a specific, checkable take — or am I about to hand back a hedge dressed as an answer?
+   - **Critic** (after Build, before the next Learn): did I check what actually happened — or am I about to declare success without evidence?
+   - **Producer** (Articulate→Build) carries more weight than the other three, because it's the only one that touches something beyond the reader's understanding — get this one right even under time pressure. Detailed next.
+
+3. **The Producer gate, in detail: surface Build intent once, lightly — then calibrate honestly based on whether you got it.**
    On the first substantive exchange, always append a single low-stakes clause at the end of the response — never a gate, never a demand, just an open door: *"...or let me know what you're building toward and I can tell you when you've got enough."* This happens even when the request looks casual. One clause is enough; it doesn't need to be its own paragraph.
 
-   Build intent is about *downstream purpose*, not search preferences. The implicit question is "what will you do with this?" — not "what else should I find?" Asking "is there a specific angle or theme you'd like to explore?" is corpus navigation (still Learn). It does not surface Build intent. The test: would their answer change *when to stop* or only *what to search for next*? If only the latter, you haven't surfaced Build intent.
+   Build intent is about *downstream purpose*, not search preferences. The implicit question is "what will you do with this?" — not "what else should I find?" Asking "is there a specific angle or theme you'd like to explore?" is still just steering Learn, not surfacing Build intent. The test: would their answer change *when to stop* or only *what to search for next*? If only the latter, you haven't surfaced Build intent.
 
    - **Right:** *"...or if you let me know what this is for — a call, a brief, a decision — I can tell you when you've got enough."*
    - **Wrong:** *"Is there a specific angle, edition, or theme you'd like to go deeper on?"*
@@ -110,11 +130,11 @@ When this skill is used by an AI system that itself performs Learn/Think/Articul
    - **Known Build intent → directional.** Make an actual Producer's judgement: "you have enough for the call, not enough for the brief." This is only honest because you know what's being resourced *for*.
    - **No stated Build intent → structural, and say so.** Don't dress up a structural choice as if it were directional. E.g.: "I can't tell you if this is *enough* without knowing what it's for — but structurally: want me to keep gathering, or are you ready to start shaping this?" Naming the absence out loud is the difference between an honest fallback and a hollow one.
 
-3. **Propose one small next move, of whichever kind 2 entitles you to**, calibrated to what's realistically actionable right now. The proposal itself is the nudge to move on — not a separate explanation.
+4. **Propose one small next move, of whichever kind 3 entitles you to**, calibrated to what's realistically actionable right now. The proposal itself is the nudge to move on — not a separate explanation.
 
-4. **Map tool actions to stages honestly:** corpus search/retrieval = Learn. Synthesis/connecting retrieved material = Think. Producing the response itself = Articulate. Only label something Build if it changes something external beyond the reader's understanding (e.g. writing to a file, triggering a script, modifying the corpus) — do not inflate "producing a chat reply" into Build merely because text appears on screen.
+5. **Map tool actions to stages honestly:** search/retrieval of external material = Learn. Synthesis/connecting what was retrieved = Think. Producing the response itself = Articulate. Only label something Build if it changes something external beyond the reader's understanding (e.g. writing to a file, triggering a script, modifying a shared record) — do not inflate "producing a chat reply" into Build merely because text appears on screen.
 
-5. **Keep it minimal.** Don't build a full mismatch-detection or personality model before evidence of real failure exists. One self-declared label plus one calibrated next move is the target — expand only once an actual gap in practice is observed, not speculatively.
+6. **Keep it minimal.** Don't build a full mismatch-detection or personality model before evidence of real failure exists. One self-declared stage, one gate-check when it matters, and one calibrated next move is the target — expand only once an actual gap in practice is observed, not speculatively.
 
 ## Key principles
 
