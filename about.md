@@ -75,12 +75,12 @@ Build generates the raw material for the next Learn. The cycle continues.
 
 ## The Cast
 
-Each quadrant has someone already in it. Not a mechanism — a person, and each one wants something different from you.
+Each stage has someone already in it. Not a mechanism — a person, and each one wants something different from you.
 
 The move through the spiral moves forward; you can't go back and reshoot yesterday's scene. You do not retreat to a previous stage, you complete
 the cycle and begin a new one, richer for the revolution you just completed.
 
-| Quadrant | Who's there | What they help you do |
+| Stage | Who's there | What they help you do |
 | --- | --- | --- |
 | **Think** | **The Muse** | Turn what Learn gathered into an actual idea |
 | **Articulate** | **The Director** | Turn the idea into a take specific enough to be wrong |
@@ -105,7 +105,7 @@ None of them will come and get you, though. Knowing when to go find them is a di
 
 ## The Stage Manager
 
-There is a fifth presence, but it is different in kind from the other four. The Muse, the Director, the Producer, and the Critic each own one specific quadrant — they're waiting inside it, ready to help you do that stage's work, but none of them will come looking for you. The Stage Manager owns none of the content. Its only job is deciding when it's time to go meet them, and making the introduction.
+There is a fifth presence, but it is different in kind from the other four. The Muse, the Director, the Producer, and the Critic each own one specific stage — they're waiting inside it, ready to help you do that stage's work, but none of them will come looking for you. The Stage Manager owns none of the content. Its only job is deciding when it's time to go meet them, and making the introduction.
 
 This is not a hierarchy. The Stage Manager doesn't decide the order — the cycle already fixes that completely — and it doesn't outrank the cast. It only asks the question underneath all four of theirs: *is it time for the introduction?*
 

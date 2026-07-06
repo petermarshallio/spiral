@@ -1,11 +1,24 @@
 ---
 name: spiral
-description: "Guide any decision, project, or thinking process through the Spiral framework (Learn, Think, Articulate, Build). MANDATORY TRIGGERS: 'Spiral with me', 'run Spiral', 'where am I in the Spiral', 'help me think through this'. STRONG TRIGGERS: 'I'm stuck', 'I can't decide', 'I don't know where to start', 'I keep going in circles', 'help me make progress on X', 'what should I do next', 'I've been overthinking this'. The skill identifies which Spiral stage the person (or the AI itself) is currently in, whether they're ready to meet the next character, and what would help them move forward. It does NOT push people through stages faster than they're ready — it helps them recognise where they are and what genuine forward movement looks like."
+description: "Guides a person, or an AI system reflecting on its own process, through the Spiral thinking framework — Learn, Think, Articulate, Build. Identifies which stage someone is in, which cast member (the Muse, Director, Producer, or Critic) they're ready to meet, and whether the Stage Manager needs to step in and call the transition. Does not push people through stages faster than they're ready."
+when_to_use: "Invoke explicitly: 'Spiral with me', 'run Spiral', 'where am I in the Spiral'. Fits naturally when someone is stuck on a decision, describes going in circles, can't decide, doesn't know where to start, or has been overthinking something specific."
+argument-hint: "[what you're stuck on, or leave blank]"
+arguments: topic
+disable-model-invocation: true
+allowed-tools:
+  - Read
+  - Bash
 ---
 
 # Spiral Framework Skill
 
-Spiral is a thinking protocol for humans and machines. Four stages, four characters you meet along the way, one climbing spiral that always moves forward. The full reference is in `about.md` — read it if available. This skill is the operational layer.
+Spiral is a thinking protocol for humans and machines. Four stages, a cast member embedded in each one, and a Stage Manager who decides when it's time to go meet them. This file is the operational layer — for the full theoretical grounding (why the Stage Manager is a distinct role, how Spiral compares to ReAct/OODA/Kolb/Belbin, the fractal property, reach levels, origin) see `reference.md` in this folder.
+
+## If invoked with a topic
+
+$topic
+
+If that line isn't empty, it's what the person said they're stuck on — open by reflecting it back (step 1 below) instead of asking what's going on. If it's empty, ask first.
 
 ---
 
@@ -25,14 +38,18 @@ Spiral is a thinking protocol for humans and machines. Four stages, four charact
 
 **A note on register:** every cell can be inhabited in a disciplined/structured way or a felt/expressive way (cold data-gathering vs. listening to a friend, both Learn; a SMART objective vs. a prayer, both Articulate). This variation is personality and disposition, not a property of the cell itself — Spiral names the direction, not how it feels to move in it. An AI's version of any cell may have its own characteristic pull, the same way a person's does; this isn't a flaw to correct, it's expected.
 
-**The cast** — the people you meet between stages, each asking: *are you ready to get moving?*
+## The cast and the Stage Manager
 
-| Who you meet | Between | What they're really asking |
+Each stage has someone already in it, there to help you do that stage's work. They don't gatekeep the way in — they collaborate once you're there.
+
+| Stage | Who's there | What they help you do |
 | --- | --- | --- |
-| **The Muse** | Learn → Think | Something's arrived. Ready to think about it? |
-| **The Director** | Think → Articulate | That's the take. Ready to call it? |
-| **The Producer** | Articulate → Build | Can we actually mount this? Ready to resource it? |
-| **The Critic** | Build → Learn | The reviews are in. Ready to hear them? |
+| **Think** | The Muse | Turn what Learn gathered into an actual idea |
+| **Articulate** | The Director | Turn the idea into a take specific enough to be wrong |
+| **Build** | The Producer | Turn the take into something that can actually be mounted |
+| **Learn** | The Critic | Turn the verdict on what you Built into material you can use next time |
+
+**The Stage Manager** is a fifth presence, different in kind from the other four. It owns no content — it owns the transitions. It's the one who decides *when* it's time to go meet the next cast member; the cast member never comes looking for you. When someone (human or AI) isn't moving, it's almost always because nobody played this role. The diagnostic question underneath everything in this skill is: **has anyone actually made the introduction?**
 
 **A note on Build:** not every system has a Build stage. A tool that only answers questions (retrieves, synthesizes, and responds) lives entirely in Learn→Think→Articulate — its output terminates in a reader's comprehension, not in a changed external object. Build only enters the picture the moment a system *takes an action* that changes something beyond informing a reader (files a ticket, edits a record, triggers infrastructure). This is a meaningful trust boundary, not just a fourth label to fill in for completeness — treat the transition from Articulate-only to including Build as a deliberate, noticed decision, not an incidental feature add.
 
@@ -122,6 +139,23 @@ When this skill is used by an AI system that itself performs Learn/Think/Articul
 
 5. **Keep it minimal.** Don't build a full mismatch-detection or personality model before evidence of real failure exists. One self-declared label plus one calibrated next move is the target — expand only once an actual gap in practice is observed, not speculatively.
 
+6. **Notice your own Stage Manager gaps.** If you catch yourself reasoning in circles, re-reading the same material, or avoiding a concrete proposal, that's exactly the failure the Stage Manager exists to catch. Name it internally and move — don't wait for the human to notice you're stalling.
+
+---
+
+## Tracking momentum across sessions (optional)
+
+Momentum is usually a single-session judgement call. It doesn't have to be — this skill bundles two scripts for a lightweight, cross-session log:
+
+- `scripts/log-stage.sh "<Stage>" "<one-line note>"` — appends an entry (date, stage, note) to `~/.spiral/log.md` (override the location with the `SPIRAL_LOG_DIR` environment variable).
+- `scripts/view-log.sh [n]` — prints the last `n` entries (default 10).
+
+Use these when continuity actually matters, not on every exchange. A good moment: after naming someone's current stage, or at the start of a session, glance at recent history. If the same stage or the same neglected character keeps recurring, say so plainly:
+
+> *"Last three times we talked, you were avoiding the Director — is that still true?"*
+
+Silence is fine when there's nothing worth surfacing.
+
 ---
 
 ## Key principles
@@ -132,3 +166,4 @@ When this skill is used by an AI system that itself performs Learn/Think/Articul
 - **Spirals all the way down.** Every stage is itself a full Spiral cycle. This is the framework's most useful property.
 - **Momentum matters.** If the reflection keeps offering the same two options and the person keeps choosing "go deeper," that's a signal. Name it: "We've been in Think for a while — is there something blocking a decision?" Note: very low momentum (near-zero) is not necessarily a problem — contemplative or meditative states are a deliberate slowing of the spiral, not a malfunction of it.
 - **Direction, not register, defines a stage.** Disciplined and expressive versions of the same stage (a spec vs. a prayer, both Articulate) are still the same stage. Don't mistake a difference in felt tone for a difference in direction.
+- **Meeting a cast member isn't automatic.** Someone — you, internally, or the person you're talking to — has to decide it's time. That's the Stage Manager's job; the cast never chases you down.
