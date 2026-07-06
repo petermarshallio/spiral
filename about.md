@@ -103,6 +103,57 @@ None of them will come and get you, though. Knowing when to go find them is a di
 
 ---
 
+## Techniques Each Character Draws On
+
+Each character's job description above is deliberately abstract — "turn the idea into a take specific enough to be wrong" has to mean something different for a personal decision than for a software spec. Rather than pick one universal technique per character (tried, and broke immediately on Spiral's own README example: "As a traveler, I want to visit Geneva" is not a real articulation technique), each character has a menu of established, named, well-documented methods to draw from — pick whichever one's actual domain matches the situation. The specific reference matters: it's what lets both the skill and the model agree on exactly what a name denotes, rather than a vague gesture at "be more rigorous."
+
+### The Critic (Learn)
+
+| Method | Specific reference | Fits because |
+| --- | --- | --- |
+| After-Action Review | US Army's 4-question format (expected/actual/why/next) | Converts an outcome's verdict into reusable knowledge |
+| Blameless Postmortem | Google SRE Book's postmortem culture | Extracts lessons from failure without assigning blame |
+| Kolb's Reflective Observation | Kolb's Experiential Learning Cycle, stage 2 specifically | Digests raw experience before forming any concept |
+| Double-Loop Learning | Argyris & Schön's governing-variables model | Questions whether the goal itself was right |
+| 5 Whys | Toyota Production System root-cause technique | Chases a symptom back to its actual cause |
+| Start/Stop/Continue | Standard Agile retrospective format | Recurring ritual turning outcomes into forward action |
+
+### The Muse (Think)
+
+| Method | Specific reference | Fits because |
+| --- | --- | --- |
+| Socratic Method | Platonic elenchus (self-questioning to test a claim) | Interrogates a claim already held, unexamined |
+| Dialectical Reasoning | Hegelian thesis-antithesis-synthesis triad | Reconciles opposing ideas already in mind |
+| First Principles Thinking | Cartesian/Aristotelian decomposition to fundamentals | Strips a concept down, rebuilds from scratch |
+| Six Thinking Hats | De Bono's six sequential lenses | Forces six angles onto the same material |
+| Second-Order Thinking | Munger's latticework of mental models | Traces downstream consequences of an existing idea |
+| Hermeneutic Circle | Whole-informs-parts-informs-whole interpretive method | Whole reframes parts; parts refine the whole |
+
+### The Director (Articulate)
+
+| Method | Specific reference | Fits because |
+| --- | --- | --- |
+| SMART Goals | Doran's 1981 Specific/Measurable/Achievable/Relevant/Time-bound | Makes intent checkable, not just aspirational |
+| User Stories + Acceptance Criteria | Mike Cohn's Agile format | Frames a need as testable, falsifiable intent |
+| PRD | Standard product-requirements-document format | Commits problem and requirements before building starts |
+| RFC / ADR | Nygard's Context-Decision-Consequences template | Records a decision's reasoning so it's challengeable |
+| The Pyramid Principle | Barbara Minto's MECE, conclusion-first structure | Leads with the answer, then structures support |
+| PR-FAQ | Amazon's "Working Backwards" pre-build press release | Writes the finished result before anything's built |
+
+### The Producer (Build)
+
+| Method | Specific reference | Fits because |
+| --- | --- | --- |
+| Pre-mortem | Gary Klein's 2007 HBR "Project Premortem" | Imagines failure first, to catch it early |
+| Definition of Done | Scrum Guide's completion-criteria artifact | Sets the checkable bar for "actually finished" |
+| MVP / Build-Measure-Learn | Eric Ries's Lean Startup loop | Ships the smallest real thing to learn from |
+| Kanban WIP Limits | Kanban Method's work-in-progress caps | Caps in-progress work so things get finished |
+| PDCA's "Do" phase | Deming/Toyota Plan-Do-Check-Act cycle | Executes the plan at real scale, for real |
+
+None of these are mandatory and none is "the" technique for a character — they're a vocabulary of well-trodden, nameable patterns to reach for instead of reasoning from a vague personality trait. See `.claude/skills/spiral/SKILL.md` for when it's appropriate to name one of these out loud versus translate it into plain language.
+
+---
+
 ## The Stage Manager
 
 There is a fifth presence, but it is different in kind from the other four. The Muse, the Director, the Producer, and the Critic each own one specific stage — they're waiting inside it, ready to help you do that stage's work, but none of them will come looking for you. The Stage Manager owns none of the content. Its only job is deciding when it's time to go meet them, and making the introduction.

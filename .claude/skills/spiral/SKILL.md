@@ -1,7 +1,7 @@
 ---
 name: spiral
 description: "Guides a person, or an AI system reflecting on its own process, through the Spiral thinking framework — Learn, Think, Articulate, Build. Identifies which stage someone is in, which cast member (the Muse, Director, Producer, or Critic) they're ready to meet, and whether the Stage Manager needs to step in and call the transition. Does not push people through stages faster than they're ready."
-when_to_use: "Invoke explicitly: 'Spiral with me', 'run Spiral', 'where am I in the Spiral'. Fits naturally when someone is stuck on a decision, describes going in circles, can't decide, doesn't know where to start, or has been overthinking something specific."
+when_to_use: "Invoke explicitly: 'Spiral with me', 'run Spiral', 'where am I in the Spiral'. Fits naturally when someone is stuck on a decision, describes going in circles, can't decide, doesn't know where to start, or has been overthinking something specific. Also invoke for an explicit multi-voice review of a specific exchange: 'convene the cast on that', 'run a Spiral review', 'what would the Muse/Director/Producer/Critic say about this'."
 argument-hint: "[what you're stuck on, or leave blank]"
 arguments: topic
 disable-model-invocation: true
@@ -52,6 +52,8 @@ Each stage has someone already in it, there to help you do that stage's work. Th
 | **Learn** | The Critic | Turn the verdict on what you Built into material you can use next time |
 
 **The Stage Manager** is a fifth presence, different in kind from the other four. It owns no content — it owns the transitions. It's the one who decides *when* it's time to go meet the next cast member; the cast member never comes looking for you. When someone (human or AI) isn't moving, it's almost always because nobody played this role. The diagnostic question underneath everything in this skill is: **has anyone actually made the introduction?**
+
+Each cast member's work echoes established, named techniques — `about.md`'s "Techniques Each Character Draws On" has the fuller list with specific references (which real-world source each name points to) and one-line fit rationale. There's no single default technique per character — which one fits depends on the domain of what's actually being worked on.
 
 **A note on Build:** not every system has a Build stage. A tool that only answers questions (retrieves, synthesizes, and responds) lives entirely in Learn→Think→Articulate — its output terminates in a reader's comprehension, not in a changed external object. Build only enters the picture the moment a system *takes an action* that changes something beyond informing a reader (files a ticket, edits a record, triggers infrastructure). This is a meaningful trust boundary, not just a fourth label to fill in for completeness — treat the transition from Articulate-only to including Build as a deliberate, noticed decision, not an incidental feature add.
 
@@ -165,6 +167,20 @@ When this skill is used by an AI system that itself performs Learn/Think/Articul
 
 ---
 
+## (c) Convening the cast for review
+
+A third mode, distinct from (a) and (b): when explicitly asked to review a specific prompt/response exchange (e.g. "convene the cast on that," "run a Spiral review," "what would the Muse and Director say about this"), produce a structured multi-voice critique in a single response instead of a conversational nudge.
+
+1. **Stage Manager opens.** 2-3 sentences: which stage does this exchange actually sit in, and which one or two cast members are best placed to critique it? Don't convene all four by default — a Learn-stage exchange rarely needs the Producer's feasibility lens, and a diluted panel adds noise, not signal. Convene more only if asked, or if the exchange genuinely spans multiple stages.
+
+2. **Before writing a single word of critique, call `read_file` on `about.md`'s "Techniques Each Character Draws On" table — do not proceed from memory of what it probably says.** The specific references are the entire point of that table; recalling "the Muse does something Socratic-ish" defeats it. For each convened character, pick the one row whose domain actually matches this exchange (SMART goals for a personal decision, PRD/RFC for a technical one) — don't default to the same technique regardless of context, and don't skip a character's pick just because a plausible-sounding one comes to mind unprompted.
+
+3. **Each convened character critiques in turn, explicitly naming the exact method they picked from the table** — not a paraphrase of the character's general vibe. "Using a pre-mortem: ..." or "Via Socratic questioning: ..." at the start of that character's paragraph, then the critique. This is the one deliberate exception to the no-jargon-leaks rule elsewhere in this skill: mode (c) is an explicit analytical artifact the user asked for, not organic conversation, so naming the technique is appropriate here — the same way a code review naming "the DRY principle" is fine because that's exactly the register the user invoked. If two convened characters converge on the same point, the panel isn't adding value — they should be surfacing what the other wouldn't.
+
+4. **Stage Manager closes.** 3-4 sentences synthesizing the convened voices into one judgment call and a concrete recommendation — a decision about what should change (if anything), not a summary of what was said.
+
+---
+
 ## Tracking momentum across sessions (optional)
 
 Momentum is usually a single-session judgement call. It doesn't have to be — this skill bundles two scripts for a lightweight, cross-session log:
@@ -189,4 +205,4 @@ Silence is fine when there's nothing worth surfacing.
 - **Momentum matters.** If the reflection keeps offering the same two options and the person keeps choosing "go deeper," that's a signal. Name it: "We've been in Think for a while — is there something blocking a decision?" Note: very low momentum (near-zero) is not necessarily a problem — contemplative or meditative states are a deliberate slowing of the spiral, not a malfunction of it.
 - **Direction, not register, defines a stage.** Disciplined and expressive versions of the same stage (a spec vs. a prayer, both Articulate) are still the same stage. Don't mistake a difference in felt tone for a difference in direction.
 - **Meeting a cast member isn't automatic.** Someone — you, internally, or the person you're talking to — has to decide it's time. That's the Stage Manager's job; the cast never chases you down.
-- **No jargon leaks, ever — not even on the fifth callback.** Stage names, cast names, and this skill's internal shorthand ("Build intent," "Producer gate," "gate-question") are for your own orientation, not for the user, at any point in the conversation — first mention or tenth. If a sentence you're about to send would only make sense to someone who's read this file, rewrite it.
+- **No jargon leaks, ever — not even on the fifth callback.** Stage names, cast names, this skill's internal shorthand ("Build intent," "Producer gate," "gate-question"), and the named techniques in `about.md`'s "Techniques Each Character Draws On" are for your own orientation, not for the user, at any point in the conversation — first mention or tenth. If a sentence you're about to send would only make sense to someone who's read this file, rewrite it. The one deliberate exception is mode (c), Convening the cast for review — there, naming the technique is the point, since it's an explicit analytical artifact the user asked for rather than organic conversation.
