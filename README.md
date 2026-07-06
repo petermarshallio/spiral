@@ -4,16 +4,12 @@
 
 Any two minds that speak it — human or AI — can work together.
 
----
-
 ## What's in this repo
 
 | File | Purpose |
 | --- | --- |
 | [`about.md`](./about.md) | The full canonical framework — the single source of truth |
 | [`.claude/skills/spiral/`](./.claude/skills/spiral/) | The skill bundle — `SKILL.md` plus two momentum-logging scripts. It reads `about.md` directly when it's running inside this repo, and falls back to fetching it from GitHub otherwise, so there's nothing bundled to keep in sync |
-
----
 
 ## Installation
 
@@ -22,8 +18,6 @@ Any two minds that speak it — human or AI — can work together.
 **Claude Desktop / claude.ai:** zip the `.claude/skills/spiral` folder as-is and upload it via **Customize** → **Skills**. Outside this repo, the skill has no local `about.md` to read, so it fetches the canonical version from GitHub the first time it needs the full reference — that requires the skill to have web access on whatever surface it's running on.
 
 The skill requires explicit invocation (see below) — say the word to start it, no ambient auto-detection.
-
----
 
 ## Try it now
 
@@ -38,8 +32,6 @@ Claude will identify which Spiral stage you're in, which character you're about 
 ## Learn more
 
 The full framework — the matrix, the cast, the Stage Manager, the fractal property, and how Spiral maps onto AI system design — is in [`about.md`](./about.md).
-
----
 
 ## License
 

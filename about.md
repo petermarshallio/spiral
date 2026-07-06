@@ -172,8 +172,6 @@ This is not a metaphor. It is structurally true. Spiral scales from a five-minut
 
 This fractal property means the framework is never the wrong size. If a stage feels too large to act on, run Spiral inside it. The cycle will break it into manageable revolutions.
 
----
-
 ## Non-Linearity and Entry Points
 
 Where you start on the Spiral is up to you.
@@ -190,8 +188,6 @@ People have a **home box** — the stage they gravitate toward, where they spend
 None of these is wrong. All of them are incomplete without the others.
 
 The framework does not judge your entry point. It asks: which character have you not met recently?
-
----
 
 ## Relation to Other Frameworks
 
@@ -230,8 +226,6 @@ The richest thinking happens when multiple reach levels are in play simultaneous
 
 **For AI systems:** this reach hierarchy maps directly to the system prompt (Enterprise/Division/Team knowledge) + corpus (World knowledge) + user input (Self knowledge). The most valuable outputs emerge from the collision of all three.
 
----
-
 ## Applying Spiral to AI System Design
 
 Spiral was developed for human cognition. It maps cleanly onto AI system design because good AI systems are trying to replicate good thinking.
@@ -247,8 +241,6 @@ Spiral was developed for human cognition. It maps cleanly onto AI system design 
 
 **The system prompt** is the Enterprise/Division/Team knowledge that sits above the World corpus. It is the difference between a system that knows what the industry thinks and a system that knows what *you* think about what the industry thinks.
 
----
-
 ## A Note on Origin
 
 This framework was first developed in approximately 1996 while building the first local government website in London as part of an early E-Government implementation. The original formulation was Learn, Think, Plan, Do — with a matrix identifying the source/target directionality of each stage.
@@ -260,3 +252,27 @@ It was rediscovered and formalised in a single conversation on 2026-06-29 — wh
 It was renamed a second time on 2026-07-02, from CLAP to Spiral, once the stage names it had grown into — Learn, Think, Articulate, Build — no longer spelled the old acronym. Spiral turned out to be the more precise word regardless: not a flat spiral that grows outward, but a climbing one that keeps its shape and simply gains height.
 
 The framework has survived thirty years not because it was written down carefully, but because it was *true enough to keep being useful.* This document is the first attempt to write it down carefully.
+
+## There's more to think about...
+
+**What happens when two musicians are in a spiral conversation?**
+
+Two people, each moving through their own spiral, might relate the way two voices in music do — and music may have sharper vocabulary for that relationship than "same" and "different" allow.
+
+**Same state = unison.** Two voices, same note, same time. It reinforces — but unison has no independent voices in it. Two people both in Think together can feel validating, and still be a shared home box: mutual rumination, with nobody there to sound the Director for the other.
+
+**Different state isn't automatically harmony.** Harmony, strictly, is consonance — different notes that are stable together (one person Learning while the other Thinks on what was just found: genuinely complementary, restful difference). But different states are just as often dissonance — unstable, not restful, wanting to move. Dissonance isn't a flaw in music; it's the engine. A suspended 4th, a leading tone a half-step below the tonic — these exist specifically to create a pull that only resolves by moving. That's a closer model for what a Spiral character actually is than harmony: the Director showing up isn't a pleasant consonant chord, it's the dissonant note that won't let you rest in Think any longer.
+
+**The "pull" has an exact name, twice over.** The gravitational tendency of an unstable tone toward its resolution is a leading-tone pull. And the specific move of stepping into a boundary character before the other person is ready to leave their stage — sounding the Director while someone is still Articulating — has an exact technical name too: a suspension. You deliberately carry a tone over into a harmony where it no longer belongs, so it reads as dissonant against the new chord — and that dissonance is what does the pulling. The other person's job isn't to resist it; it's to resolve, the way a suspended 4th falls to the 3rd.
+
+| Spiral situation | Musical term |
+| --- | --- |
+| Same stage, same time | Unison |
+| Different, complementary, stable together | Consonance |
+| Different, unresolved, wants to move | Dissonance |
+| One voices the next character early, creating that want | Suspension |
+| The gravitational tendency toward the next stage | Leading-tone pull |
+| The other person actually crossing | Resolution |
+| Two independent, self-coherent spirals sounding together over time | Counterpoint |
+
+This is a human-to-human proposition, not yet an agent-to-human one — a different claim than the operating modes in `.claude/skills/spiral/SKILL.md`. Undeveloped. Worth sitting with.
