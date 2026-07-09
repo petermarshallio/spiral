@@ -23,57 +23,59 @@ The two axes are **source** (where does the input come from?) and **target** (wh
 
 | | **Internal target** | **External target** |
 | --- | --- | --- |
-| **External source** | **Learn** | **Build** |
-| **Internal source** | **Think** | **Articulate** |
+| **External source** | **Internalising** | **Interacting** |
+| **Internal source** | **Examining** | **Externalising** |
 
 This matrix is the lens. If you understand it, you can interpret the framework in your own words — and you can map almost any cognitive framework, AI architecture, or decision-making model onto it.
 
-- **Learn** — the world comes *in*. You absorb, accumulate, receive.
-- **Think** — you work on what's *inside*. You think, connect, critique.
-- **Articulate** — your internal thinking goes *out* as structured intention. You make it concrete.
-- **Build** — you act on the world, and the world responds. Something new exists.
+- **Internalising** — the world comes *in*. You absorb, accumulate, receive.
+- **Examining** — you work on what's *inside*. You reason, connect, critique.
+- **Externalising** — your internal thinking goes *out* as structured intention. You make it concrete.
+- **Interacting** — something already out there meets something else already out there, and the world responds.
+
+**Internal and external are relative to whoever's spiral this is.** Neither term describes a medium or a body part — they describe whose current state is doing the sourcing or receiving, for whichever Actor is the subject of the cycle in question (see `reference.md`'s "Internal / External"). A machine's own memory is genuinely internal to that machine, even though nothing resembling human comprehension occurs there; a sensor reading nobody and nothing ever stores is external on both ends, no matter how it was captured.
 
 ## The Four Quadrants
 
-### Learn
+### Internalising
 
 **External → Internal** Taking in knowledge from the outside world. Reading. Listening. Watching. Accumulating. This is what a child does when they go to the library and come back with 90 books about cheese. It is also what an AI does when it ingests a corpus.
 
-Learning is not passive — it requires selection. You cannot learn everything. The quality of what you choose to learn determines the quality of everything downstream.
+Internalising is not passive — it requires selection. You cannot internalise everything. The quality of what you choose to internalise determines the quality of everything downstream.
 
-**In AI terms:** corpus ingestion, retrieval, contextual grounding. The vitals files in a conference talk corpus are the product of Learn.
+**In AI terms:** corpus ingestion, retrieval, contextual grounding. The vitals files in a conference talk corpus are the product of Internalising.
 
 **In human terms:** research, reading, listening, observation, experience.
 
-### Think
+### Examining
 
-**Internal → Internal** Working on what you already have inside. Connecting dots. Reasoning. Critiquing. Weighing options. This is the stage where raw learning becomes understanding.
+**Internal → Internal** Working on what you already have inside. Connecting dots. Reasoning. Critiquing. Weighing options. This is the stage where what's freshly internalised becomes understanding.
 
-Thinking is the home box for many people — including the author of this framework. It is seductive because it feels like progress. It can become a trap. The Muse can only give you so much cover — eventually the Stage Manager walks in and asks if you're ready to go meet the Director.
+Examining is the home box for many people — including the author of this framework. It is seductive because it feels like progress. It can become a trap. The Muse can only give you so much cover — eventually the Stage Manager walks in and asks if you're ready to go meet the Director.
 
-**In AI terms:** reasoning, chain-of-thought — the same territory ReAct calls "Reason." The LLM Council's Perspectives are the product of Think applied to Learn.
+**In AI terms:** reasoning, chain-of-thought — the same territory ReAct calls "Reason." The LLM Council's Perspectives are the product of Examining applied to Internalising.
 
 **In human terms:** critical thinking, de Bono's Six Thinking Hats, the hermeneutic circle, dot-connecting.
 
-### Articulate
+### Externalising
 
-**Internal → External** Structured intention made concrete. This is the stage that most AI agents skip — and why they fail at anything requiring sustained, coordinated effort. Articulate is where internal thinking becomes external artefact: a SMART objective, a work package, a Gantt chart, a prioritised backlog.
+**Internal → External** Structured intention made concrete. This is the stage that most AI agents skip — and why they fail at anything requiring sustained, coordinated effort. Externalising is where internal thinking becomes external artefact: a SMART objective, a work package, a Gantt chart, a prioritised backlog.
 
-Articulate is not thinking about what to do. It is writing it down in a form that others — or your future self — can act on.
+Externalising is not thinking about what to do. It is writing it down in a form that others — or your future self — can act on.
 
-**In AI terms:** task decomposition, agent planning, structured output. The step between Think and Act that ReAct agents lack.
+**In AI terms:** task decomposition, agent planning, structured output, generation. The step between Examining and Act that ReAct agents lack.
 
 **In human terms:** project management, SMART goals, sprint planning, architectural design documents.
 
-### Build
+### Interacting
 
-**External → External** Acting on the world. The world responds. Something new exists that did not exist before. This is not merely "doing" — it is the act of creation, which implies intentionality and result. A wolf can blow on your house. Build is the stage where you find out if it holds.
+**External → External** Something already out in the world meets something else already out in the world, and the world responds. This is not the moment a design or a plan first becomes real — that crossing already happened, at Externalising, regardless of whose hands or tools were involved. Interacting is what happens next: a wolf blows on the house that's already standing. Interacting is the stage where you find out if it holds.
 
-Build generates the raw material for the next Learn. The cycle continues.
+Interacting generates the raw material for the next Internalising. The cycle continues.
 
-**In AI terms:** generation, tool use, execution, deployment. The "Act" in ReAct.
+**In AI terms:** tool execution, deployment, an agent's action changing a system already in production. The "Act" in ReAct.
 
-**In human terms:** building, writing, shipping, speaking, deciding.
+**In human terms:** a market reacting to news, a policy being enforced, a rumour spreading, a system failing under load.
 
 ## The Cast
 
@@ -84,13 +86,13 @@ Every character named here — plus the Hero and the Stage Manager, met below �
 The move through the spiral moves forward; you can't go back and reshoot yesterday's scene. You do not retreat to a previous stage, you complete
 the cycle and begin a new one, richer for the revolution you just completed.
 
-Meeting **the Director** matters most for people who live in Think, because they're the one who eventually has to leave it. The Director doesn't demand certainty. They demand a hypothesis — something specific enough to be wrong. A scientist's commitment, not a bureaucrat's sign-off.
+Meeting **the Director** matters most for people who live in Examining, because they're the one who eventually has to leave it. The Director doesn't demand certainty. They demand a hypothesis — something specific enough to be wrong. A scientist's commitment, not a bureaucrat's sign-off.
 
 **The Producer** is the character most often avoided. It's why houses fall down when wolves blow on them. The plan was good. Nobody checked whether it could actually be built.
 
 **The Muse** is the character people mistake for the whole job. Inspiration feels like progress, so people camp with her long after she's given them enough to work with — that's not her fault, and it isn't a reason to stay.
 
-**The Critic** is the character people flinch from meeting. But the verdict isn't a punishment — it's the raw material for the next Learn. Refuse to meet her and the cycle starves.
+**The Critic** is the character people flinch from meeting. But the verdict isn't a punishment — it's the raw material for the next Internalising. Refuse to meet her and the cycle starves.
 
 Every character is really asking the same thing, in their own language: **what are you making out of what I've given you?**
 
@@ -112,24 +114,24 @@ This is not a hierarchy. The Stage Manager doesn't decide the order — the cycl
 
 Asking that question is not the same as answering it alone. The answer comes from Notes — a joint check with whoever's playing the Hero, not a call the Stage Manager makes and delivers. This matters most when the Stage Manager is an AI and the Hero is human: neither Actor has complete knowledge of themselves, let alone the other, so the crossing gets worked out between them, not decided by one and handed to the other.
 
-That question isn't only asked passively, waiting for a natural pause between stages. Protecting momentum sometimes means forcing the issue mid-stage — closing down a Think that's overstaying its welcome, enforcing an end to circular creative options before anyone feels ready — because the Stage Manager's job was never to certify that a stage's content is finished, only that the whole system keeps moving. It shows up wherever momentum is under threat, not only at the four fixed cues.
+That question isn't only asked passively, waiting for a natural pause between stages. Protecting momentum sometimes means forcing the issue mid-stage — closing down an Examining that's overstaying its welcome, enforcing an end to circular creative options before anyone feels ready — because the Stage Manager's job was never to certify that a stage's content is finished, only that the whole system keeps moving. It shows up wherever momentum is under threat, not only at the four fixed cues.
 
 The role changes shape depending on who's in the loop — a solo human, a solo AI, an AI and a human handing off to each other, a team of people, a team of agents. The full breakdown, with the academic and engineering grounding for each, is in reference.md.
 
-The consistency across all five is the point. In every flow, the Stage Manager never does Learn/Think/Articulate/Build work itself — and in every flow, its absence produces the same failure: stalling, thrashing, or false momentum. Not five different failure modes. One.
+The consistency across all five is the point. In every flow, the Stage Manager never does Internalising/Examining/Externalising/Interacting work itself — and in every flow, its absence produces the same failure: stalling, thrashing, or false momentum. Not five different failure modes. One.
 
 ### One operator, four registers
 
 Everything above describes the Cast as company you meet. But for a solo operator — a single person working alone, or a single AI with no other agents to call on — there's no one else in the room. The Muse's associative looseness, the Director's decisiveness, the Producer's resourcefulness, the Critic's evaluative honesty: you have to produce all four yourself, in turn. Meeting the cast, solo, means becoming them for as long as their stage needs you to.
 
-This is a different difficulty than the one Momentum names. Momentum failure is about *time* — staying too long in one stage. This is about *register* — being unable to actually think with the Muse's looseness while still holding the Critic's honesty from the stage before, or unable to drop the Director's decisiveness once Build needs the Producer's improvisation instead. Everyone is fluent in their home box's register and clumsy in at least one other — usually, unsurprisingly, the neglected character's.
+This is a different difficulty than the one Momentum names. Momentum failure is about *time* — staying too long in one stage. This is about *register* — being unable to actually think with the Muse's looseness while still holding the Critic's honesty from the stage before, or unable to drop the Director's decisiveness once Interacting needs the Producer's improvisation instead. Everyone is fluent in their home box's register and clumsy in at least one other — usually, unsurprisingly, the neglected character's.
 
 The precise term for this isn't multiplicity as pathology, it's **code-switching**: deliberately changing register to fit context while one continuous self persists underneath, doing the switching. Two grounded precedents, one per register:
 
 - **Human:** Transactional Analysis' Parent/Adult/Child ego states — distinct behavioral registers a person moves between deliberately, without losing continuity of self. De Bono's own Blue Hat (see the framework comparison below) is the same idea inside a framework Spiral is already compared to: it isn't a fifth hat alongside the other four, it's the process-control hat, worn by whoever decides which of the other four the group should be wearing — and it can think in any of them when needed.
 - **AI:** a context switch, in the plain operating-systems sense — a process's state is suspended, a different process's state is loaded in and executed, and something outside both of them keeps the scheduling bookkeeping across every swap. That bookkeeping layer isn't optional decoration; without it, "switching" is just amnesia.
 
-For an AI system this reframes what the Stage Manager actually does in solo operation. It isn't only the outside voice asking "is it time?" — it has to be able to condition itself into each stage's register (generative for Think, decisive for Articulate, resourceful for Build, evaluative for Learn), do that stage's work in that register, then step back out to the layer that tracks the whole arc and knows when the next switch is due. One operator, four registers, one continuous thread of oversight underneath all of them. That thread — not any single register — is the Stage Manager.
+For an AI system this reframes what the Stage Manager actually does in solo operation. It isn't only the outside voice asking "is it time?" — it has to be able to condition itself into each stage's register (generative for Examining, decisive for Externalising, resourceful for Interacting, evaluative for Internalising), do that stage's work in that register, then step back out to the layer that tracks the whole arc and knows when the next switch is due. One operator, four registers, one continuous thread of oversight underneath all of them. That thread — not any single register — is the Stage Manager.
 
 ### Facilitation can change hands
 
@@ -161,29 +163,29 @@ Momentum is not a stage. It is a property of the whole system — the rate at wh
 
 **High momentum:** each revolution lands you somewhere genuinely new. The cast shows up readily because sufficient work was done in each stage.
 
-**Low momentum:** spinning on the same level. Stuck in Thinking. Avoiding the cast. Returning to Learn because the Director was never met.
+**Low momentum:** spinning on the same level. Stuck in Examining. Avoiding the cast. Returning to Internalising because the Director was never met.
 
-**False momentum:** moving fast but skipping stages. Lots of Build without enough Learn or Think. The house gets built quickly. Then the wolf arrives.
+**False momentum:** moving fast but skipping stages. Lots of Interacting without enough Internalising or Examining. The house gets built quickly. Then the wolf arrives.
 
 Momentum is killed by:
 
-- Perfectionism in Think (the thinking trap)
+- Perfectionism in Examining (the thinking trap)
 - Avoiding the Producer (the execution trap)
-- Insufficient Learning before Thinking (the opinion trap)
+- Insufficient Internalising before Examining (the opinion trap)
 
 Momentum is built by:
 
 - Meeting the Director with a testable hypothesis, not a proven answer
 - Treating the Critic's verdict as genuinely generative, not just evaluation
-- Allowing the next Learn to be informed by what Build revealed
+- Allowing the next Internalising to be informed by what Interacting revealed
 
 ## The Fractal Property — Spirals All the Way Down
 
 Each stage of Spiral is itself a full Spiral cycle.
 
-The Learn stage of a project *is* a Spiral cycle: you Build experiments to learn from, Learn from them, Think about what you found, Articulate the next experiment.
+The Internalising stage of a project *is* a Spiral cycle: you interact with small experiments to learn from, internalise what they teach you, examine what you found, and externalise the next experiment.
 
-The Think stage of a decision *is* a Spiral cycle: you Build hypotheses, Learn what they imply, think about the implications, Articulate which to test.
+The Examining stage of a decision *is* a Spiral cycle: you interact with hypotheses to see what they imply, internalise what that reveals, think through the implications, and externalise which one to test next.
 
 This is not a metaphor. It is structurally true. Spiral scales from a five-minute decision to a thirty-year career. The same four questions, the same four characters, applied recursively at every level of granularity.
 
@@ -195,7 +197,7 @@ This fractal property means the framework is never the wrong size. If a stage fe
 
 Where you start on the Spiral is up to you.
 
-People have a **home box** — the stage they gravitate toward, where they spend disproportionate time. They also have a **neglected character** — the one they most often avoid meeting. Researchers and readers tend to enter through Learning, and risk never meeting the Director; strategists and overthinkers enter through Thinking, and risk thinking without sufficient raw material; managers and executors enter through Articulating, and risk articulating from assumptions rather than evidence; builders and hackers enter through Building, and risk learning only from failure, expensively. (The table version is in reference.md.)
+People have a **home box** — the stage they gravitate toward, where they spend disproportionate time. They also have a **neglected character** — the one they most often avoid meeting. Researchers and readers tend to enter through Internalising, and risk never meeting the Director; strategists and overthinkers enter through Examining, and risk thinking without sufficient raw material; managers and executors enter through Externalising, and risk articulating from assumptions rather than evidence; builders and hackers enter through Interacting, and risk learning only from failure, expensively. (The table version is in reference.md.)
 
 None of these is wrong. All of them are incomplete without the others.
 
@@ -205,9 +207,9 @@ The framework does not judge your entry point. It asks: which character have you
 
 The matrix is the key to these comparisons. Spiral is not derived from any of these — it predates most of them in the author's practice — but the overlaps are illuminating. The full comparison table (Bloom's Taxonomy, Kolb's Cycle, ReAct, OODA, Six Thinking Hats, the Hermeneutic Circle, Belbin Team Roles, multi-agent orchestration) is in reference.md.
 
-The most important comparison is **ReAct**. ReAct goes Observe → Reason → Act. Its middle step covers the same territory Spiral calls Think — we've just chosen a plainer word for it. The gap is what comes after: ReAct has no Articulate stage. This is not an oversight — it reflects a genuine architectural assumption that agents should be fast and flexible. Spiral says: fast and flexible is fine for simple cycles, but without meeting the Producer at Articulate→Build, complex work collapses.
+The most important comparison is **ReAct**. ReAct goes Observe → Reason → Act. Its middle step covers the same territory Spiral calls Examining — we've just chosen a plainer word for it. The gap is what comes after: ReAct has no Externalising stage. This is not an oversight — it reflects a genuine architectural assumption that agents should be fast and flexible. Spiral says: fast and flexible is fine for simple cycles, but without meeting the Producer at Externalising→Interacting, complex work collapses.
 
-A second comparison is worth naming even though it isn't a single framework: multi-agent orchestration systems. AutoGen's `GroupChatManager`, CrewAI's hierarchical-process manager agent, and MetaGPT's SOP-driven role router all exist to solve exactly one problem — whose turn is it, and is this phase done — without performing any of the Learn/Think/Articulate/Build work themselves. Three engineering teams, solving unrelated problems, converged independently on the same role. That convergence is stronger evidence for the Stage Manager than any single analogy could be.
+A second comparison is worth naming even though it isn't a single framework: multi-agent orchestration systems. AutoGen's `GroupChatManager`, CrewAI's hierarchical-process manager agent, and MetaGPT's SOP-driven role router all exist to solve exactly one problem — whose turn is it, and is this phase done — without performing any of the Internalising/Examining/Externalising/Interacting work themselves. Three engineering teams, solving unrelated problems, converged independently on the same role. That convergence is stronger evidence for the Stage Manager than any single analogy could be.
 
 ---
 
@@ -221,7 +223,7 @@ The richest thinking happens when multiple reach levels are in play simultaneous
 
 ## Applying Spiral to AI System Design
 
-Spiral was developed for human cognition. It maps cleanly onto AI system design because good AI systems are trying to replicate good thinking — Learn as corpus ingestion and retrieval, Think as reasoning and critique, Articulate as structured output, Build as generation and tool use. (The table is in reference.md.)
+Spiral was developed for human cognition. It maps cleanly onto AI system design because good AI systems are trying to replicate good thinking — Internalising as corpus ingestion and retrieval, Examining as reasoning and critique, Externalising as structured output and generation, Interacting as tool use and execution against systems already in production. (The table is in reference.md.)
 
 **The retrieval question** is really a Muse question: given everything in the corpus, which parts are worth thinking with for this query? This is what RAG architectures are trying to solve — and what pre-digested intelligence layers (like LLM Council-generated vitals files) solve more elegantly by doing that work at ingestion time rather than query time.
 
@@ -239,11 +241,11 @@ This framework is decades old: first developed in 1999, renamed more than once s
 
 Two people, each moving through their own spiral, might relate the way two voices in music do — and music may have sharper vocabulary for that relationship than "same" and "different" allow.
 
-**Same state = unison.** Two voices, same note, same time. It reinforces — but unison has no independent voices in it. Two people both in Think together can feel validating, and still be a shared home box: mutual rumination, with nobody there to sound the Director for the other.
+**Same state = unison.** Two voices, same note, same time. It reinforces — but unison has no independent voices in it. Two people both in Examining together can feel validating, and still be a shared home box: mutual rumination, with nobody there to sound the Director for the other.
 
-**Different state isn't automatically harmony.** Harmony, strictly, is consonance — different notes that are stable together (one person Learning while the other Thinks on what was just found: genuinely complementary, restful difference). But different states are just as often dissonance — unstable, not restful, wanting to move. Dissonance isn't a flaw in music; it's the engine. A suspended 4th, a leading tone a half-step below the tonic — these exist specifically to create a pull that only resolves by moving. That's a closer model for what a Spiral character actually is than harmony: the Director showing up isn't a pleasant consonant chord, it's the dissonant note that won't let you rest in Think any longer.
+**Different state isn't automatically harmony.** Harmony, strictly, is consonance — different notes that are stable together (one person Internalising while the other Examines what was just found: genuinely complementary, restful difference). But different states are just as often dissonance — unstable, not restful, wanting to move. Dissonance isn't a flaw in music; it's the engine. A suspended 4th, a leading tone a half-step below the tonic — these exist specifically to create a pull that only resolves by moving. That's a closer model for what a Spiral character actually is than harmony: the Director showing up isn't a pleasant consonant chord, it's the dissonant note that won't let you rest in Examining any longer.
 
-**The "pull" has an exact name, twice over.** The gravitational tendency of an unstable tone toward its resolution is a leading-tone pull. And the specific move of stepping into a boundary character before the other person is ready to leave their stage — sounding the Director while someone is still Articulating — has an exact technical name too: a suspension. You deliberately carry a tone over into a harmony where it no longer belongs, so it reads as dissonant against the new chord — and that dissonance is what does the pulling. The other person's job isn't to resist it; it's to resolve, the way a suspended 4th falls to the 3rd.
+**The "pull" has an exact name, twice over.** The gravitational tendency of an unstable tone toward its resolution is a leading-tone pull. And the specific move of stepping into a boundary character before the other person is ready to leave their stage — sounding the Director while someone is still Externalising — has an exact technical name too: a suspension. You deliberately carry a tone over into a harmony where it no longer belongs, so it reads as dissonant against the new chord — and that dissonance is what does the pulling. The other person's job isn't to resist it; it's to resolve, the way a suspended 4th falls to the 3rd.
 
 | Spiral situation | Musical term |
 | --- | --- |
@@ -259,4 +261,4 @@ This started as a human-to-human proposition, but the agent-to-human version tur
 
 **What happens when two separate spirals notice each other?**
 
-Not two voices in one conversation — two entirely different cycles, each with its own full cast, running at once without either one aware of the other by default. A Stage Manager operating at a high enough Reach Level might notice that one cycle's Learn stage just landed exactly where another cycle's Critic left off, and suggest a route for cooperation between them — something neither cycle's own Hero would think to look for, since neither is watching the other. Different from the Fractal Property, which nests cycles inside each other: this is cycles running alongside each other. A different scale of claim than anything else in this document, and genuinely unresolved — including whether the noticing Stage Manager needs visibility into both cycles itself, or whether it's really two separate Stage Managers signalling to each other.
+Not two voices in one conversation — two entirely different cycles, each with its own full cast, running at once without either one aware of the other by default. A Stage Manager operating at a high enough Reach Level might notice that one cycle's Internalising stage just landed exactly where another cycle's Critic left off, and suggest a route for cooperation between them — something neither cycle's own Hero would think to look for, since neither is watching the other. Different from the Fractal Property, which nests cycles inside each other: this is cycles running alongside each other. A different scale of claim than anything else in this document, and genuinely unresolved — including whether the noticing Stage Manager needs visibility into both cycles itself, or whether it's really two separate Stage Managers signalling to each other.

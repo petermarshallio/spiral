@@ -8,18 +8,19 @@ Two tiers below. **Core Concepts** are facts — what a term *is*, no rationale 
 
 ## Core Concepts
 
-- **Learn** — External source → internal target. Something outside becomes part of what you know.
-- **Think** — Internal source → internal target. Working on what you already have; nothing new enters, nothing yet leaves.
-- **Articulate** — Internal source → external target. Internal reasoning made legible to someone or something outside yourself.
-- **Build** — External source → external target. Acting on the world; the world responds; something new exists that didn't before.
+- **Internal / External** — not a property of a medium or a body part, but of whose current state is the source or target of an act, relative to whichever Actor is the subject of the spiral in question. A store counts as internal to an Actor if it's part of that Actor's own persistent state — memory, understanding, model weights — regardless of whether the Actor is human or a mechanism, and regardless of whether anything resembling human comprehension occurs. A sensor's reading sitting in a file nobody consults is external-to-external; the same reading entering a system's own long-term memory is external-to-internal, for that system, because the memory is genuinely its interior.
+- **Internalising** — External source → internal target. Something outside becomes part of what you know.
+- **Examining** — Internal source → internal target. Working on what you already have; nothing new enters, nothing yet leaves.
+- **Externalising** — Internal source → external target. Internal reasoning made legible to someone or something outside yourself.
+- **Interacting** — External source → external target. Acting on the world; the world responds; something new exists that didn't before.
 - **The Matrix** — The 2×2 grid of source (where input comes from) × target (where output goes) that the four stages derive from.
 - **Actor** — A person or an AI system: whatever is capable of being assigned to a Role (from ArchiMate's Business Actor).
 - **Role** — A behavioural responsibility, not a person: Hero, Stage Manager, Muse, Director, Producer, Critic. One Actor can be assigned several Roles, including more than one within a single exchange (from ArchiMate's Business Role).
-- **The Cast** — The four characters, one per stage: the Muse (Think), the Director (Articulate), the Producer (Build), the Critic (Learn) — each acting as a coach to the Hero, not an advisor: draws out what the Hero already has rather than supplying an answer.
-- **The Muse** — Owns Think. Turns what Learn gathered into an actual idea.
-- **The Director** — Owns Articulate. Turns an idea into a take specific enough to be wrong.
-- **The Producer** — Owns Build. Turns a take into something that can actually be mounted.
-- **The Critic** — Owns Learn. Turns the verdict on what was Built into material for next time.
+- **The Cast** — The four characters, one per stage: the Muse (Examining), the Director (Externalising), the Producer (Interacting), the Critic (Internalising) — each acting as a coach to the Hero, not an advisor: draws out what the Hero already has rather than supplying an answer.
+- **The Muse** — Owns Examining. Turns what Internalising gathered into an actual idea.
+- **The Director** — Owns Externalising. Turns an idea into a take specific enough to be wrong.
+- **The Producer** — Owns Interacting. Turns a take into something that can actually be mounted.
+- **The Critic** — Owns Internalising. Turns the verdict on what happened during Interacting into material for next time.
 - **The Stage Manager** — The fifth Role, owning no content, only the process. Three concrete jobs: generating candidate cues (proposing what a crossing could look like, without unilateral authority to call it), hosting the Interaction where a cue actually gets decided (Notes), and self-declaring whichever Role's work is in progress so every Actor involved can track where things stand. Can act mid-stage, not only at a fixed cue, when momentum is under threat. A facilitator, in the formal sense: owns the process, not the content — and never the sole Approver; see "Decision Rights at a Cue (DACI)" below.
 - **Cue** — The fixed crossing point between one stage and the next. Four per cycle, named Separate, Elect, Enable, and Sense.
 - **Notes** — What happens at a cue: a check of what's understood against what's needed, before the Hero moves on. Quiet by default; a full multi-voice version exists ("Convening the cast for review" in the skill file — see "Usage," below, for when it earns its cost).
@@ -38,26 +39,26 @@ Two tiers below. **Core Concepts** are facts — what a term *is*, no rationale 
 
 | | **Internal target** | **External target** |
 | --- | --- | --- |
-| **External source** | **Learn** | **Build** |
-| **Internal source** | **Think** | **Articulate** |
+| **External source** | **Internalising** | **Interacting** |
+| **Internal source** | **Examining** | **Externalising** |
 
 ### The Cast
 
 | Stage | Who's there | What they help you do |
 | --- | --- | --- |
-| **Think** | **The Muse** | Turn what Learn gathered into an actual idea |
-| **Articulate** | **The Director** | Turn the idea into a take specific enough to be wrong |
-| **Build** | **The Producer** | Turn the take into something that can actually be mounted |
-| **Learn** | **The Critic** | Turn the verdict on what you Built into material you can use next time |
+| **Examining** | **The Muse** | Turn what Internalising gathered into an actual idea |
+| **Externalising** | **The Director** | Turn the idea into a take specific enough to be wrong |
+| **Interacting** | **The Producer** | Turn the take into something that can actually be mounted |
+| **Internalising** | **The Critic** | Turn the verdict on what happened into material you can use next time |
 
 ### The Cues
 
 | Cue | Verb | What Notes decide |
 | --- | --- | --- |
-| Learn → Think | **Separate** | Separate what happened from what it felt like — decide what's actually worth thinking about |
-| Think → Articulate | **Elect** | Choose a direction; commit to a take specific enough to be wrong |
-| Articulate → Build | **Enable** | Clear whatever stands between the plan and actually doing it |
-| Build → Learn | **Sense** | Notice what the outcome taught you, before deciding what to learn from it |
+| Internalising → Examining | **Separate** | Separate what happened from what it felt like — decide what's actually worth thinking about |
+| Examining → Externalising | **Elect** | Choose a direction; commit to a take specific enough to be wrong |
+| Externalising → Interacting | **Enable** | Clear whatever stands between the plan and actually doing it |
+| Interacting → Internalising | **Sense** | Notice what the outcome taught you, before deciding what to internalise from it |
 
 ### Reach Levels
 
@@ -79,7 +80,7 @@ How the concepts above get applied — techniques, decision criteria, comparison
 
 Each character's job description is deliberately abstract — "turn the idea into a take specific enough to be wrong" has to mean something different for a personal decision than for a software spec. Rather than pick one universal technique per character (tried, and broke immediately on Spiral's own README example: "As a traveler, I want to visit Geneva" is not a real articulation technique), each character has a menu of established, named, well-documented methods to draw from — pick whichever one's actual domain matches the situation. The specific reference matters: it's what lets both the skill and the model agree on exactly what a name denotes, rather than a vague gesture at "be more rigorous." See `SKILL.md` for when it's appropriate to name one of these out loud versus translate it into plain language.
 
-#### The Critic (Learn)
+#### The Critic (Internalising)
 
 | Method | Specific reference | Fits because |
 | --- | --- | --- |
@@ -90,7 +91,7 @@ Each character's job description is deliberately abstract — "turn the idea int
 | 5 Whys | Toyota Production System root-cause technique | Chases a symptom back to its actual cause |
 | Start/Stop/Continue | Standard Agile retrospective format | Recurring ritual turning outcomes into forward action |
 
-#### The Muse (Think)
+#### The Muse (Examining)
 
 | Method | Specific reference | Fits because |
 | --- | --- | --- |
@@ -101,7 +102,7 @@ Each character's job description is deliberately abstract — "turn the idea int
 | Second-Order Thinking | Munger's latticework of mental models | Traces downstream consequences of an existing idea |
 | Hermeneutic Circle | Whole-informs-parts-informs-whole interpretive method | Whole reframes parts; parts refine the whole |
 
-#### The Director (Articulate)
+#### The Director (Externalising)
 
 | Method | Specific reference | Fits because |
 | --- | --- | --- |
@@ -112,7 +113,7 @@ Each character's job description is deliberately abstract — "turn the idea int
 | The Pyramid Principle | Barbara Minto's MECE, conclusion-first structure | Leads with the answer, then structures support |
 | PR-FAQ | Amazon's "Working Backwards" pre-build press release | Writes the finished result before anything's built |
 
-#### The Producer (Build)
+#### The Producer (Interacting)
 
 | Method | Specific reference | Fits because |
 | --- | --- | --- |
@@ -124,6 +125,26 @@ Each character's job description is deliberately abstract — "turn the idea int
 
 None of these are mandatory and none is "the" technique for a character — they're a vocabulary of well-trodden, nameable patterns to reach for instead of reasoning from a vague personality trait.
 
+### Testing Whether an Act Belongs to a Quadrant
+
+A word can sound like it belongs to a quadrant because it's culturally associated with that territory, not because it passes the matrix's own source/target logic. Five checks, run in order, catch most misclassifications:
+
+1. **Source test.** Does the act require the Actor's own *current* internal state — an idea, a feeling, a plan held right now — as its origin? If yes, internal source. If the act operates on something already external to the Actor (an artifact, a system, another Actor's output) regardless of anyone's current internal state, external source.
+2. **Target test.** Does the effect land in comprehension (the Actor's own, or another's) or as an observable change in the world? Comprehension is an internal target; an observable change — an object, an event, a system state — is an external target.
+3. **Fractal trap.** Does the candidate word, in ordinary use, already name a whole role or process that itself cycles through all four stages (planning, marketing, parenting, coaching)? If so, it names a cycle, not a quadrant — exclude it rather than force it into one box.
+4. **Whose-spiral test.** If the act appears to depend on what happens inside another Actor's head — their opinion, their choice, their understanding — that event belongs to their spiral, not the Actor being classified. The act that actually belongs to the Actor being classified is only the external move that made the other Actor's event more likely, not the other Actor's internalising of it.
+5. **Mechanism-blindness.** Which body part, tool, or medium carried out the act — hands, eyes, a keyboard, a server — is irrelevant to its classification (see SKILL.md's "A note on channel vs. direction"). Only the source and target of meaning matter.
+
+Applied to this framework's own history: every name this framework has ever given its fourth stage — Do (1999), Creating (2011), Create (2026-06-29), Build (2026-07-02) — fails the source test the same way. Each requires the Actor's own current internal state (an intention, a design, a vision) as its origin, with the result landing externally. That is Internal → External, the same crossing as writing or speaking, just carried out with different tools — not External → External. The fourth quadrant had never had a name that actually described it, until Interacting (2026-07-09).
+
+### The Phrase Test
+
+The five tests above check whether an act's *direction* is correctly classified. They don't catch a different failure: a candidate word can point the right direction and still be the wrong choice, because of what it drags in connotatively or how awkwardly it sits in an actual sentence. A practical check for this: embed the candidate word in the exact self-referential sentence this framework would actually produce, and listen for whether it reads naturally or fights itself.
+
+For a candidate Internalising-word, test: *"Before I internalise this, do I understand how it was [candidate word]-ed by others?"* For a candidate Externalising-word, test the mirror: *"Before I externalise this, do I understand how it will be [candidate word]-ed by others?"*
+
+This single move catches two different failures at once. It exposes bad grammar fit — a word that doesn't take the passive "-ed by others" construction naturally usually isn't the right choice (this disqualified Precipitate for Interacting: "was this precipitated by others" is stilted, because precipitate wants an event as its object, not information, passed through it). And it exposes connotation a dictionary definition won't reveal — sometimes fatally (Synthesize drags "synthetic" into a sentence where authenticity was the entire point), sometimes in the candidate's favour (Propagate's adjacency to "propaganda" looks like a liability in isolation, but "was this propagated by others" is close to literally asking "was this propaganda?" — precisely the due-diligence question worth asking before internalising something).
+
 ### The Stage Manager — Who Plays the Role
 
 This table describes who's *eligible* to hold the Role for a given flow type, not a fixed assignment for a whole exchange — within a single live AI ↔ Human exchange, the Role passes back and forth turn by turn (whoever proposes the next step, or reflects back what was just said, is holding it for that turn). See `about.md`'s "Facilitation can change hands" for the concrete case.
@@ -131,41 +152,41 @@ This table describes who's *eligible* to hold the Role for a given flow type, no
 | Flow | Who plays the Stage Manager | Grounding |
 | --- | --- | --- |
 | **Human, solo** | Internal executive function — the transition/initiation faculty, distinct from the content-generating faculty | Zimmerman's self-regulated learning cycle; Gollwitzer's implementation intentions; executive-function research on task-initiation (the well-documented gap between having an idea and acting on it) |
-| **AI, solo** | Orchestrator logic — iteration budgets, reflection nodes, the state machine governing phase transitions | ReAct's missing Articulate step is this failure mode by another name: no governance of when Think ends, so the loop thrashes or never converges |
+| **AI, solo** | Orchestrator logic — iteration budgets, reflection nodes, the state machine governing phase transitions | ReAct's missing Externalising step is this failure mode by another name: no governance of when Examining ends, so the loop thrashes or never converges |
 | **AI → Human** | Neither side unilaterally — the call emerges from Notes, the joint check between them. The AI can generate candidate cues and self-declare its own stage; calling the cue for a human isn't its Role to hold alone | Horvitz's mixed-initiative interaction research; automation bias (deferring the cue-call to the AI even when it's wrong) is exactly the failure mode of skipping that joint check |
-| **Human → Human** | A distinct, named role in the group — not the person doing the Learning, Thinking, Articulating, or Building | Scrum Master; meeting facilitator; chief of staff; the literal theatrical stage manager, who calls cues but never appears onstage |
+| **Human → Human** | A distinct, named role in the group — not the person doing the Internalising, Examining, Externalising, or Interacting | Scrum Master; meeting facilitator; chief of staff; the literal theatrical stage manager, who calls cues but never appears onstage |
 | **AI → AI** | A supervisor/manager agent whose only output is whose turn it is and whether the phase is complete | Already shipped: LangGraph's supervisor pattern, AutoGen's `GroupChatManager`, CrewAI's hierarchical-process manager, MetaGPT's SOP-driven role router |
 
 ### Non-Linearity and Entry Points
 
 | Entry point | Who does this | Risk |
 | --- | --- | --- |
-| **Learning first** | Researchers, readers, the cautious | Never meeting the Director |
-| **Thinking first** | Strategists, overthinkers | Thinking without sufficient raw material |
-| **Articulating first** | Managers, executors | Articulating based on assumptions, not evidence |
-| **Building first** | Builders, hackers, the impatient | Learning only from failure, expensively |
+| **Internalising first** | Researchers, readers, the cautious | Never meeting the Director |
+| **Examining first** | Strategists, overthinkers | Thinking without sufficient raw material |
+| **Externalising first** | Managers, executors | Articulating based on assumptions, not evidence |
+| **Interacting first** | Builders, hackers, the impatient | Learning only from failure, expensively |
 
 ### Relation to Other Frameworks
 
-| Framework | Learn | Think | Articulate | Build | What Spiral adds |
+| Framework | Internalising | Examining | Externalising | Interacting | What Spiral adds |
 | --- | --- | --- | --- | --- | --- |
 | **Bloom's Taxonomy** | Remember / Understand | Analyse / Evaluate | — | Create | The matrix; the cast; non-linearity |
 | **Kolb's Cycle** | Concrete Experience | Reflective Observation | Abstract Conceptualisation | Active Experimentation | The cast; momentum; fractal property |
-| **ReAct (AI agents)** | Observe | Think | — | Act | **Articulate** — the missing stage in most AI agents |
+| **ReAct (AI agents)** | Observe | Think | — | Act | **Externalising** — the missing stage in most AI agents |
 | **OODA Loop** | Observe | Orient | Decide | Act | Fractal property; momentum; home boxes |
-| **Six Thinking Hats** | White Hat | Red/Black/Yellow | — | Green Hat | The matrix; the spiral structure; the Blue Hat is Six Thinking Hats' own Stage Manager, not an Articulate-analog — the same missing-Articulate gap ReAct has, just less visible |
+| **Six Thinking Hats** | White Hat | Red/Black/Yellow | — | Green Hat | The matrix; the spiral structure; the Blue Hat is Six Thinking Hats' own Stage Manager, not an Externalising-analog — the same missing-Externalising gap ReAct has, just less visible |
 | **Hermeneutic Circle** | — | The whole circle | — | — | Spiral externalises what the circle keeps internal |
 | **Belbin Team Roles** | — | — | — | — | Independent validation for **the Stage Manager**: Belbin's Coordinator role was originally named "Chairman" before being renamed — the same correction, authority word to process word, that this framework just made |
-| **Multi-agent orchestration** (AutoGen, CrewAI, LangGraph) | Retrieval / tool nodes | Worker-agent reasoning | Task routing | Worker-agent execution | Confirms **the Stage Manager** is buildable: supervisor/manager agents already do this exact job in production, without performing any Learn/Think/Articulate/Build work themselves |
+| **Multi-agent orchestration** (AutoGen, CrewAI, LangGraph) | Retrieval / tool nodes | Worker-agent reasoning | Task routing | Worker-agent execution | Confirms **the Stage Manager** is buildable: supervisor/manager agents already do this exact job in production, without performing any Internalising/Examining/Externalising/Interacting work themselves |
 
 ### Applying Spiral to AI System Design
 
 | Spiral stage | What an AI system does |
 | --- | --- |
-| **Learn** | Corpus ingestion, retrieval, contextual grounding |
-| **Think** | Reasoning, chain-of-thought, multi-perspective critique |
-| **Articulate** | Structured output, task decomposition, response framing |
-| **Build** | Generation, tool use, final response |
+| **Internalising** | Corpus ingestion, retrieval, contextual grounding |
+| **Examining** | Reasoning, chain-of-thought, multi-perspective critique |
+| **Externalising** | Structured output, task decomposition, response framing |
+| **Interacting** | Tool use, execution, an action changing a system already in production |
 
 ### Decision Rights at a Cue (DACI)
 
@@ -185,7 +206,7 @@ A full Notes session — the multi-voice mode described in `about.md`'s "The Cue
 | Signal | Favors quiet Notes (default) | Favors full Notes |
 | --- | --- | --- |
 | **Position in the fractal hierarchy** | An interior cue, inside a nested sub-cycle | A cue that closes the top-level cycle — the one whose output actually reaches the user or takes an action |
-| **Cost of being wrong** | Cheap to redo — another Learn pass, a discarded draft | Expensive or irreversible — commits to a claim that gets published, or a Build that changes external state |
+| **Cost of being wrong** | Cheap to redo — another Internalising pass, a discarded draft | Expensive or irreversible — commits to a claim that gets published, or an Interacting that changes external state |
 | **Evidence quality** | The last stage's output is unambiguous — one clear reading | The evidence genuinely supports more than one defensible interpretation — thin corpus, conflicting sources, a close call |
 | **Momentum history** | First time at this cue this cycle | The same cue has been crossed and re-crossed without real progress — a quiet call already failed once |
 | **Explicit request** | Not asked for | Explicitly asked for ("convene the cast on that," "run a Spiral review") |
