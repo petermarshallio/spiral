@@ -15,11 +15,11 @@ Two tiers below. **Core Concepts** are facts — what a term *is*, no rationale 
 - **Interacting** — External source → external target. Acting on the world; the world responds; something new exists that didn't before.
 - **The Matrix** — The 2×2 grid of source (where input comes from) × target (where output goes) that the four stages derive from.
 - **Actor** — A person or an AI system: whatever is capable of being assigned to a Role (from ArchiMate's Business Actor).
-- **Role** — A behavioural responsibility, not a person: Hero, Stage Manager, Muse, Director, Producer, Critic. One Actor can be assigned several Roles, including more than one within a single exchange (from ArchiMate's Business Role).
-- **The Cast** — The four characters, one per stage: the Muse (Examining), the Director (Externalising), the Producer (Interacting), the Critic (Internalising) — each acting as a coach to the Hero, not an advisor: draws out what the Hero already has rather than supplying an answer.
-- **The Muse** — Owns Examining. Turns what Internalising gathered into an actual idea.
+- **Role** — A behavioural responsibility, not a person: Hero, Stage Manager, Dramaturg, Director, Witness, Critic. One Actor can be assigned several Roles, including more than one within a single exchange (from ArchiMate's Business Role).
+- **The Cast** — The four characters, one per stage: the Dramaturg (Examining), the Director (Externalising), the Witness (Interacting), the Critic (Internalising) — each acting as a coach to the Hero, not an advisor: draws out what the Hero already has rather than supplying an answer. Three coach action; the fourth, uniquely, coaches restraint.
+- **The Dramaturg** — Owns Examining. Turns what Internalising gathered into an actual idea by interrogating it, not waiting for it to arrive.
 - **The Director** — Owns Externalising. Turns an idea into a take specific enough to be wrong.
-- **The Producer** — Owns Interacting. Turns a take into something that can actually be mounted.
+- **The Witness** — Owns Interacting. Doesn't turn anything into anything — watches what the world does with the take, and holds off reaching back in until there's real signal.
 - **The Critic** — Owns Internalising. Turns the verdict on what happened during Interacting into material for next time.
 - **The Stage Manager** — The fifth Role, owning no content, only the process. Three concrete jobs: generating candidate cues (proposing what a crossing could look like, without unilateral authority to call it), hosting the Interaction where a cue actually gets decided (Notes), and self-declaring whichever Role's work is in progress so every Actor involved can track where things stand. Can act mid-stage, not only at a fixed cue, when momentum is under threat. A facilitator, in the formal sense: owns the process, not the content — and never the sole Approver; see "Decision Rights at a Cue (DACI)" below.
 - **Cue** — The fixed crossing point between one stage and the next. Four per cycle, named Separate, Elect, Enable, and Sense.
@@ -33,7 +33,7 @@ Two tiers below. **Core Concepts** are facts — what a term *is*, no rationale 
 - **Neglected character** — The cast member someone most often avoids meeting.
 - **The Fractal Property** — Every stage is itself a full Spiral cycle; the framework applies recursively at any granularity, cues included.
 - **Reach levels** — The scope of knowledge in play at any stage: World, Enterprise, Division, Team, Self.
-- **Code-switching** — Deliberately changing register (Muse/Director/Producer/Critic) to fit context, while one continuous self persists underneath doing the switching.
+- **Code-switching** — Deliberately changing register (Dramaturg/Director/Witness/Critic) to fit context, while one continuous self persists underneath doing the switching.
 
 ### The Matrix
 
@@ -46,9 +46,9 @@ Two tiers below. **Core Concepts** are facts — what a term *is*, no rationale 
 
 | Stage | Who's there | What they help you do |
 | --- | --- | --- |
-| **Examining** | **The Muse** | Turn what Internalising gathered into an actual idea |
+| **Examining** | **The Dramaturg** | Turn what Internalising gathered into an actual idea |
 | **Externalising** | **The Director** | Turn the idea into a take specific enough to be wrong |
-| **Interacting** | **The Producer** | Turn the take into something that can actually be mounted |
+| **Interacting** | **The Witness** | Watch what the world does with it, without reaching back in before there's real signal |
 | **Internalising** | **The Critic** | Turn the verdict on what happened into material you can use next time |
 
 ### The Cues
@@ -87,11 +87,9 @@ Each character's job description is deliberately abstract — "turn the idea int
 | After-Action Review | US Army's 4-question format (expected/actual/why/next) | Converts an outcome's verdict into reusable knowledge |
 | Blameless Postmortem | Google SRE Book's postmortem culture | Extracts lessons from failure without assigning blame |
 | Kolb's Reflective Observation | Kolb's Experiential Learning Cycle, stage 2 specifically | Digests raw experience before forming any concept |
-| Double-Loop Learning | Argyris & Schön's governing-variables model | Questions whether the goal itself was right |
-| 5 Whys | Toyota Production System root-cause technique | Chases a symptom back to its actual cause |
 | Start/Stop/Continue | Standard Agile retrospective format | Recurring ritual turning outcomes into forward action |
 
-#### The Muse (Examining)
+#### The Dramaturg (Examining)
 
 | Method | Specific reference | Fits because |
 | --- | --- | --- |
@@ -101,6 +99,8 @@ Each character's job description is deliberately abstract — "turn the idea int
 | Six Thinking Hats | De Bono's six sequential lenses | Forces six angles onto the same material |
 | Second-Order Thinking | Munger's latticework of mental models | Traces downstream consequences of an existing idea |
 | Hermeneutic Circle | Whole-informs-parts-informs-whole interpretive method | Whole reframes parts; parts refine the whole |
+| Double-Loop Learning | Argyris & Schön's governing-variables model | Questions whether the goal itself was right, not just what happened |
+| 5 Whys | Toyota Production System root-cause technique | Chases a symptom back to its actual cause |
 
 #### The Director (Externalising)
 
@@ -112,16 +112,17 @@ Each character's job description is deliberately abstract — "turn the idea int
 | RFC / ADR | Nygard's Context-Decision-Consequences template | Records a decision's reasoning so it's challengeable |
 | The Pyramid Principle | Barbara Minto's MECE, conclusion-first structure | Leads with the answer, then structures support |
 | PR-FAQ | Amazon's "Working Backwards" pre-build press release | Writes the finished result before anything's built |
+| Pre-mortem | Gary Klein's 2007 HBR "Project Premortem" | Imagines failure before it happens, and writes the mitigation into the plan |
+| Definition of Done | Scrum Guide's completion-criteria artifact | Commits, in writing, what "actually finished" will mean |
 
-#### The Producer (Interacting)
+#### The Witness (Interacting)
 
 | Method | Specific reference | Fits because |
 | --- | --- | --- |
-| Pre-mortem | Gary Klein's 2007 HBR "Project Premortem" | Imagines failure first, to catch it early |
-| Definition of Done | Scrum Guide's completion-criteria artifact | Sets the checkable bar for "actually finished" |
-| MVP / Build-Measure-Learn | Eric Ries's Lean Startup loop | Ships the smallest real thing to learn from |
-| Kanban WIP Limits | Kanban Method's work-in-progress caps | Caps in-progress work so things get finished |
-| PDCA's "Do" phase | Deming/Toyota Plan-Do-Check-Act cycle | Executes the plan at real scale, for real |
+| PDCA's "Do" phase | Deming/Toyota Plan-Do-Check-Act cycle | The plan meets real-scale resistance; nothing left to do but watch whether it holds |
+| Chaos Engineering | Netflix's Principles of Chaos Engineering | Exposes a live system to injected failure and watches how it actually responds — the fault is triggered once, everything after is observation |
+| Canary Deployment / A-B Testing | Progressive-delivery and controlled-experiment practice | Releases a change into real traffic and reads the world's actual response before anyone decides what to do about it |
+| Observability (SRE practice) | Dashboards and monitoring built to watch a live system without touching it | Lets the world's actual state be seen in real time, with zero requirement to act until there's real signal — the interrupt-driven version of watching, not the anxious-polling one |
 
 None of these are mandatory and none is "the" technique for a character — they're a vocabulary of well-trodden, nameable patterns to reach for instead of reasoning from a vague personality trait.
 

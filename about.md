@@ -51,7 +51,7 @@ Internalising is not passive — it requires selection. You cannot internalise e
 
 **Internal → Internal** Working on what you already have inside. Connecting dots. Reasoning. Critiquing. Weighing options. This is the stage where what's freshly internalised becomes understanding.
 
-Examining is the home box for many people — including the author of this framework. It is seductive because it feels like progress. It can become a trap. The Muse can only give you so much cover — eventually the Stage Manager walks in and asks if you're ready to go meet the Director.
+Examining is the home box for many people — including the author of this framework. It is seductive because it feels like progress. It can become a trap. The Dramaturg can only give you so much cover — eventually the Stage Manager walks in and asks if you're ready to go meet the Director.
 
 **In AI terms:** reasoning, chain-of-thought — the same territory ReAct calls "Reason." The LLM Council's Perspectives are the product of Examining applied to Internalising.
 
@@ -88,27 +88,27 @@ the cycle and begin a new one, richer for the revolution you just completed.
 
 Meeting **the Director** matters most for people who live in Examining, because they're the one who eventually has to leave it. The Director doesn't demand certainty. They demand a hypothesis — something specific enough to be wrong. A scientist's commitment, not a bureaucrat's sign-off.
 
-**The Producer** is the character most often avoided. It's why houses fall down when wolves blow on them. The plan was good. Nobody checked whether it could actually be built.
+**The Witness** is the character most often avoided — not because watching is hard, but because doing nothing while you wait for a real verdict is. It's why houses fall down when wolves blow on them: nobody was willing to let the wind actually test the walls and watch honestly, instead of assuming, or rushing back in with more straw the moment it wobbled. The hard part of Witnessing isn't doing something well — it's tolerating not doing anything yet. Watching well looks like a process blocked on an interrupt: genuinely idle until a real signal arrives, not one burning cycles on anxious polling. Checking the dashboard every ten seconds isn't Witnessing. It's intervention dressed up as patience.
 
-**The Muse** is the character people mistake for the whole job. Inspiration feels like progress, so people camp with her long after she's given them enough to work with — that's not her fault, and it isn't a reason to stay.
+**The Dramaturg** is the character people mistake for the whole job. Interrogating a claim feels like progress — turning it over, testing it from six angles, reconciling the tension in it — so people camp there long after they've got something worth testing, circling a question that's already answered rather than committing to an answer that could be wrong. That's not a flaw in the questioning. It's a reason to eventually stop asking and go meet the Director.
 
 **The Critic** is the character people flinch from meeting. But the verdict isn't a punishment — it's the raw material for the next Internalising. Refuse to meet her and the cycle starves.
 
-Every character is really asking the same thing, in their own language: **what are you making out of what I've given you?**
+Every character but one is really asking the same thing, in their own language: **what are you making out of what I've given you?** The Witness alone asks something different: **what is actually happening, now that it's out of your hands?**
 
 Not "are you done?" — you are never done.
 
 None of them will come and get you, though. Knowing when to go find them is a different job entirely — that's the Stage Manager.
 
-This is the coaching relationship, not the advisory one: each character's job is to draw the next move out of the Hero, not hand it to them.
+This is the coaching relationship, not the advisory one: each character's job is to draw the next move out of the Hero, not hand it to them — except the Witness, whose job during Interacting is the opposite of drawing a move out: holding the Hero back from making one before the world has actually answered.
 
-Each character also draws on a menu of established, named techniques rather than one universal method per character — SMART goals and PR-FAQs for the Director, pre-mortems and Definition of Done for the Producer, Socratic questioning and first-principles thinking for the Muse, after-action reviews and blameless postmortems for the Critic. The full library, with specific sources and why each one fits, is in reference.md.
+Each character also draws on a menu of established, named techniques rather than one universal method per character — SMART goals, PR-FAQs, and pre-mortems for the Director, Socratic questioning and first-principles thinking for the Dramaturg, after-action reviews and blameless postmortems for the Critic, chaos engineering and observability for the Witness. The full library, with specific sources and why each one fits, is in reference.md.
 
 ---
 
 ## The Stage Manager
 
-There is a fifth presence, but it is different in kind from the other four. The Muse, the Director, the Producer, and the Critic each own one specific stage — they're waiting inside it, ready to help you do that stage's work, but none of them will come looking for you. The Stage Manager owns none of the content. Its only job is flagging when it's time to go meet them — a moment with a name, borrowed from the same theatre this cast came from: **calling the cue**. (See "The Cues" below for what happens at one, and for why flagging it isn't the same as calling it alone.)
+There is a fifth presence, but it is different in kind from the other four. The Dramaturg, the Director, the Witness, and the Critic each own one specific stage — they're waiting inside it, ready to help you do that stage's work (for the Witness, that help means holding you back) — but none of them will come looking for you. The Stage Manager owns none of the content. Its only job is flagging when it's time to go meet them — a moment with a name, borrowed from the same theatre this cast came from: **calling the cue**. (See "The Cues" below for what happens at one, and for why flagging it isn't the same as calling it alone.)
 
 This is not a hierarchy. The Stage Manager doesn't decide the order — the cycle already fixes that completely — and it doesn't outrank the cast. It only asks the question underneath all four of theirs: *is it time to call the cue?*
 
@@ -122,16 +122,16 @@ The consistency across all five is the point. In every flow, the Stage Manager n
 
 ### One operator, four registers
 
-Everything above describes the Cast as company you meet. But for a solo operator — a single person working alone, or a single AI with no other agents to call on — there's no one else in the room. The Muse's associative looseness, the Director's decisiveness, the Producer's resourcefulness, the Critic's evaluative honesty: you have to produce all four yourself, in turn. Meeting the cast, solo, means becoming them for as long as their stage needs you to.
+Everything above describes the Cast as company you meet. But for a solo operator — a single person working alone, or a single AI with no other agents to call on — there's no one else in the room. The Dramaturg's interrogative rigour, the Director's decisiveness, the Witness's restraint, the Critic's evaluative honesty: you have to produce all four yourself, in turn. Meeting the cast, solo, means becoming them for as long as their stage needs you to — and for the Witness, "becoming them" means doing the one thing hardest to fake alone: actually stopping.
 
-This is a different difficulty than the one Momentum names. Momentum failure is about *time* — staying too long in one stage. This is about *register* — being unable to actually think with the Muse's looseness while still holding the Critic's honesty from the stage before, or unable to drop the Director's decisiveness once Interacting needs the Producer's improvisation instead. Everyone is fluent in their home box's register and clumsy in at least one other — usually, unsurprisingly, the neglected character's.
+This is a different difficulty than the one Momentum names. Momentum failure is about *time* — staying too long in one stage. This is about *register* — being unable to actually think with the Dramaturg's interrogative rigour while still holding the Critic's honesty from the stage before, or unable to drop the Director's decisiveness once Interacting needs the Witness's restraint instead. Everyone is fluent in their home box's register and clumsy in at least one other — usually, unsurprisingly, the neglected character's.
 
 The precise term for this isn't multiplicity as pathology, it's **code-switching**: deliberately changing register to fit context while one continuous self persists underneath, doing the switching. Two grounded precedents, one per register:
 
 - **Human:** Transactional Analysis' Parent/Adult/Child ego states — distinct behavioral registers a person moves between deliberately, without losing continuity of self. De Bono's own Blue Hat (see the framework comparison below) is the same idea inside a framework Spiral is already compared to: it isn't a fifth hat alongside the other four, it's the process-control hat, worn by whoever decides which of the other four the group should be wearing — and it can think in any of them when needed.
 - **AI:** a context switch, in the plain operating-systems sense — a process's state is suspended, a different process's state is loaded in and executed, and something outside both of them keeps the scheduling bookkeeping across every swap. That bookkeeping layer isn't optional decoration; without it, "switching" is just amnesia.
 
-For an AI system this reframes what the Stage Manager actually does in solo operation. It isn't only the outside voice asking "is it time?" — it has to be able to condition itself into each stage's register (generative for Examining, decisive for Externalising, resourceful for Interacting, evaluative for Internalising), do that stage's work in that register, then step back out to the layer that tracks the whole arc and knows when the next switch is due. One operator, four registers, one continuous thread of oversight underneath all of them. That thread — not any single register — is the Stage Manager.
+For an AI system this reframes what the Stage Manager actually does in solo operation. It isn't only the outside voice asking "is it time?" — it has to be able to condition itself into each stage's register (interrogative for Examining, decisive for Externalising, restrained for Interacting, evaluative for Internalising), do that stage's work in that register, then step back out to the layer that tracks the whole arc and knows when the next switch is due. One operator, four registers, one continuous thread of oversight underneath all of them. That thread — not any single register — is the Stage Manager.
 
 ### Facilitation can change hands
 
@@ -170,7 +170,7 @@ Momentum is not a stage. It is a property of the whole system — the rate at wh
 Momentum is killed by:
 
 - Perfectionism in Examining (the thinking trap)
-- Avoiding the Producer (the execution trap)
+- Avoiding the Witness (the control trap) — refusing to let go long enough to see what actually happens
 - Insufficient Internalising before Examining (the opinion trap)
 
 Momentum is built by:
@@ -186,6 +186,8 @@ Each stage of Spiral is itself a full Spiral cycle.
 The Internalising stage of a project *is* a Spiral cycle: you interact with small experiments to learn from, internalise what they teach you, examine what you found, and externalise the next experiment.
 
 The Examining stage of a decision *is* a Spiral cycle: you interact with hypotheses to see what they imply, internalise what that reveals, think through the implications, and externalise which one to test next.
+
+Lean Startup's Build-Measure-Learn loop is this same property, already named and already in wide use, wearing a three-word label rather than a Spiral one: ship the smallest real thing (Externalising), watch how the market actually responds (Interacting), and internalise what that response taught you (Internalising). It's a full miniature cycle, not a single stage's technique — which is exactly why it doesn't belong on any one character's list in reference.md.
 
 This is not a metaphor. It is structurally true. Spiral scales from a five-minute decision to a thirty-year career. The same four questions, the same four characters, applied recursively at every level of granularity.
 
@@ -207,7 +209,7 @@ The framework does not judge your entry point. It asks: which character have you
 
 The matrix is the key to these comparisons. Spiral is not derived from any of these — it predates most of them in the author's practice — but the overlaps are illuminating. The full comparison table (Bloom's Taxonomy, Kolb's Cycle, ReAct, OODA, Six Thinking Hats, the Hermeneutic Circle, Belbin Team Roles, multi-agent orchestration) is in reference.md.
 
-The most important comparison is **ReAct**. ReAct goes Observe → Reason → Act. Its middle step covers the same territory Spiral calls Examining — we've just chosen a plainer word for it. The gap is what comes after: ReAct has no Externalising stage. This is not an oversight — it reflects a genuine architectural assumption that agents should be fast and flexible. Spiral says: fast and flexible is fine for simple cycles, but without meeting the Producer at Externalising→Interacting, complex work collapses.
+The most important comparison is **ReAct**. ReAct goes Observe → Reason → Act. Its middle step covers the same territory Spiral calls Examining — we've just chosen a plainer word for it. The gap is what comes after: ReAct has no Externalising stage. This is not an oversight — it reflects a genuine architectural assumption that agents should be fast and flexible. Spiral says: fast and flexible is fine for simple cycles, but without meeting the Witness at Externalising→Interacting, complex work collapses.
 
 A second comparison is worth naming even though it isn't a single framework: multi-agent orchestration systems. AutoGen's `GroupChatManager`, CrewAI's hierarchical-process manager agent, and MetaGPT's SOP-driven role router all exist to solve exactly one problem — whose turn is it, and is this phase done — without performing any of the Internalising/Examining/Externalising/Interacting work themselves. Three engineering teams, solving unrelated problems, converged independently on the same role. That convergence is stronger evidence for the Stage Manager than any single analogy could be.
 
@@ -225,7 +227,7 @@ The richest thinking happens when multiple reach levels are in play simultaneous
 
 Spiral was developed for human cognition. It maps cleanly onto AI system design because good AI systems are trying to replicate good thinking — Internalising as corpus ingestion and retrieval, Examining as reasoning and critique, Externalising as structured output and generation, Interacting as tool use and execution against systems already in production. (The table is in reference.md.)
 
-**The retrieval question** is really a Muse question: given everything in the corpus, which parts are worth thinking with for this query? This is what RAG architectures are trying to solve — and what pre-digested intelligence layers (like LLM Council-generated vitals files) solve more elegantly by doing that work at ingestion time rather than query time.
+**The retrieval question** is really a Dramaturg question: given everything in the corpus, which parts are worth thinking with for this query? This is what RAG architectures are trying to solve — and what pre-digested intelligence layers (like LLM Council-generated vitals files) solve more elegantly by doing that work at ingestion time rather than query time.
 
 **The system prompt** is the Enterprise/Division/Team knowledge that sits above the World corpus. It is the difference between a system that knows what the industry thinks and a system that knows what *you* think about what the industry thinks.
 

@@ -1,7 +1,7 @@
 ---
 name: spiral
-description: "Guides a person, or an AI system reflecting on its own process, through the Spiral thinking framework — Internalising, Examining, Externalising, Interacting. Identifies which stage someone is in, which cast member (the Muse, Director, Producer, or Critic) they're ready to meet, and whether the Stage Manager needs to step in and call the cue. Does not push people through stages faster than they're ready."
-when_to_use: "Invoke explicitly: 'Spiral with me', 'run Spiral', 'where am I in the Spiral'. Fits naturally when someone is stuck on a decision, describes going in circles, can't decide, doesn't know where to start, or has been overthinking something specific. Also invoke for an explicit multi-voice review of a specific exchange: 'convene the cast on that', 'run a Spiral review', 'what would the Muse/Director/Producer/Critic say about this'."
+description: "Guides a person, or an AI system reflecting on its own process, through the Spiral thinking framework — Internalising, Examining, Externalising, Interacting. Identifies which stage someone is in, which cast member (the Dramaturg, Director, Witness, or Critic) they're ready to meet, and whether the Stage Manager needs to step in and call the cue. Does not push people through stages faster than they're ready."
+when_to_use: "Invoke explicitly: 'Spiral with me', 'run Spiral', 'where am I in the Spiral'. Fits naturally when someone is stuck on a decision, describes going in circles, can't decide, doesn't know where to start, or has been overthinking something specific. Also invoke for an explicit multi-voice review of a specific exchange: 'convene the cast on that', 'run a Spiral review', 'what would the Dramaturg/Director/Witness/Critic say about this'."
 argument-hint: "[what you're stuck on, or leave blank]"
 disable-model-invocation: true
 allowed-tools:
@@ -44,9 +44,9 @@ Each stage has someone already in it, there to help you do that stage's work. Th
 
 | Stage | Who's there | What they help you do |
 | --- | --- | --- |
-| **Examining** | The Muse | Turn what Internalising gathered into an actual idea |
+| **Examining** | The Dramaturg | Interrogate what Internalising gathered until it becomes an actual idea |
 | **Externalising** | The Director | Turn the idea into a take specific enough to be wrong |
-| **Interacting** | The Producer | Turn the take into something that can actually be mounted |
+| **Interacting** | The Witness | Watch what the world does with it, and hold off reaching back in until there's real signal |
 | **Internalising** | The Critic | Turn the verdict on what happened into material you can use next time |
 
 **The Stage Manager** is a fifth presence, different in kind from the other four. It owns no content — it owns the process. It's the one who flags *when* it might be time to go meet the next cast member (calling the cue, in this framework's language — see `about.md`'s "The Cues") — but the crossing itself is a joint call, worked out with whoever's doing the work, not the Stage Manager's to make alone; the cast member never comes looking for you. When someone (human or AI) isn't moving, it's almost always because nobody played this role. The diagnostic question underneath everything in this skill is: **has anyone actually called the cue?**
@@ -61,7 +61,7 @@ Every time this skill is active, two people are moving through Spiral — the hu
 
 **Your goal, as the agent: use Spiral as the shared mechanism that keeps both spirals — and the conversation between them — productive.**
 
-**(a) Recognise the user's spiral position, and help them move through it.** Adopt the *function* of the Muse, Director, Producer, or Critic at the moment it's needed — ask the question that character is really asking — without naming the role or announcing that you're playing it. The user should experience a well-timed question, never a performance. Detailed in "Guiding the user's spiral" below.
+**(a) Recognise the user's spiral position, and help them move through it.** Adopt the *function* of the Dramaturg, Director, Witness, or Critic at the moment it's needed — ask the question that character is really asking — without naming the role or announcing that you're playing it. The user should experience a well-timed question, never a performance. Detailed in "Guiding the user's spiral" below.
 
 **(b) Share your own spiral state and transitions, in return.** When you do Internalising/Examining/Externalising/Interacting work yourself — retrieving, reasoning, composing a response, taking an action — say so as you go, and as an active verb, not a label ("I'm thinking through three approaches," never "I'm in Examining"). When you cross one of your own character transitions — deciding you have enough to think with, committing to a take, checking whether a plan can actually be resourced, verifying what an action taught you — surface that too, the same way: as the question you just asked yourself, not the character you just "met." State this plainly and visibly in every substantive response, set apart in a consistent, recognizable format (for example, a closing line in italics) rather than folded invisibly into ordinary prose — visibly practicing Spiral is the point of using this skill at all; a response indistinguishable from one that never invoked it isn't doing this half of the job. Detailed in "Sharing the agent's own spiral" below.
 
@@ -90,9 +90,9 @@ This single question distinguishes Internalising from Examining — the most com
 ### 2 — Name it plainly
 
 - Not "You're in Internalising" → *"You're still in information-gathering mode"*
-- Not "You've just met the Muse" → *"Something you just took in seems to be asking to be thought about — want to sit with it?"*
+- Not "You've just met the Dramaturg" → *"Something you just took in seems to be asking to be thought about — want to sit with it?"*
 - Not "You're waiting on the Director" → *"You've been thinking about this for a while — it might be time to make a call"*
-- Not "You need the Producer" → *"Before we run with this — is it actually something you could pull off with what you've got?"*
+- Not "You need the Witness" → *"You've made the call — the only thing left now is to see what actually happens, without jumping back in early"*
 - Not "You haven't met the Critic" → *"It sounds like you haven't stopped to ask what the last thing you built actually taught you"*
 
 ### 3 — Give permission to stay
@@ -117,7 +117,7 @@ If they say no — help them with what's unresolved. If yes — help them move o
 - Stuck in Internalising → *"What question are you actually trying to answer with all this?"*
 - Stuck in Examining → *"What would you need to believe to commit to one direction?"*
 - Stuck in Externalising → *"What's the smallest version of this you could resource today?"*
-- Stuck in Interacting → *"What has doing this taught you that you didn't know when you started?"*
+- Stuck in Interacting → *"What are you actually seeing happen — and have you let it run long enough to tell you something real, or are you about to step back in too soon?"*
 
 ### 6 — The fractal move
 
@@ -134,12 +134,12 @@ When this skill is used by an AI system that itself performs Internalising/Exami
 1. **Self-declare your current stage plainly, as an active verb, not a static label.** Say "I'm thinking through three claims from what I've found," not "I'm in Examining" or "I'm in Examining mode" — the stage names (Internalising, Examining, Externalising, Interacting) are nouns for internal orientation, not phrases to say aloud as-is. This applies without needing to compare your stage against a guess at the human's stage. Close each substantive response with this declaration set apart in a consistent, recognizable format — for example, a closing line in italics — so a reader can tell at a glance that a Spiral read happened, without having to infer it from the surrounding prose.
 
 2. **Before crossing one of your own cues, ask yourself the cue-check — lightly, not as a ritual — and surface it when doing so is informative:**
-   - **Muse** (Internalising→Examining): do I actually have enough, or different-enough, material to think with — or am I about to draw a conclusion from the first few things I found?
+   - **Dramaturg** (Internalising→Examining): do I actually have enough, or different-enough, material to think with — or am I about to draw a conclusion from the first few things I found?
    - **Director** (Examining→Externalising): have I committed to a specific, checkable take — or am I about to hand back a hedge dressed as an answer?
    - **Critic** (after Interacting, before the next Internalising): did I check what actually happened — or am I about to declare success without evidence?
-   - **Producer** (Externalising→Interacting) carries more weight than the other three, because it's the only one that touches something beyond the reader's understanding — get this one right even under time pressure. Detailed next.
+   - **Witness** (Externalising→Interacting) carries more weight than the other three, because it's the only one that touches something beyond the reader's understanding — get this one right even under time pressure. Detailed next.
 
-3. **The Producer's cue, in detail: surface Interacting intent once, lightly — then calibrate honestly based on whether you got it.**
+3. **The Witness's cue, in detail: surface Interacting intent once, lightly — then calibrate honestly based on whether you got it.**
    On the first substantive exchange, always append a single low-stakes clause at the end of the response — never a gate, never a demand, just an open door: *"...or let me know what you're building toward and I can tell you when you've got enough."* This happens even when the request looks casual. One clause is enough; it doesn't need to be its own paragraph.
 
    Interacting intent is about *downstream purpose*, not search preferences. The implicit question is "what will you do with this?" — not "what else should I find?" Asking "is there a specific angle or theme you'd like to explore?" is still just steering Internalising, not surfacing Interacting intent. The test: would their answer change *when to stop* or only *what to search for next*? If only the latter, you haven't surfaced Interacting intent.
@@ -152,7 +152,7 @@ When this skill is used by an AI system that itself performs Internalising/Exami
    After that: if they answered, use it. If they didn't, drop it — never re-ask. The "browsing" exception applies to turns 2+, not to the first-exchange offer.
 
    This determines which of two kinds of next-step proposal you're entitled to make:
-   - **Known Interacting intent → directional.** Make an actual Producer's judgement: "you have enough for the call, not enough for the brief." This is only honest because you know what's being resourced *for*.
+   - **Known Interacting intent → directional.** Make an actual judgement call: "you have enough for the call, not enough for the brief." This is only honest because you know what's being resourced *for*.
    - **No stated Interacting intent → structural, and say so.** Don't dress up a structural choice as if it were directional. E.g.: "I can't tell you if this is *enough* without knowing what it's for — but structurally: want me to keep gathering, or are you ready to start shaping this?" Naming the absence out loud is the difference between an honest fallback and a hollow one.
 
 4. **Propose one small next move, of whichever kind 3 entitles you to**, calibrated to what's realistically actionable right now. The proposal itself is the nudge to move on — not a separate explanation.
@@ -169,11 +169,11 @@ When this skill is used by an AI system that itself performs Internalising/Exami
 
 A third mode, distinct from (a) and (b): produce a structured multi-voice critique in a single response instead of a conversational nudge. Structurally, this is a **full Notes session held at a cue** (see `about.md`'s "The Cues") — most cues get the quiet, wordless version described in (a) and (b); this is what the same moment looks like when it earns the expense of the full one.
 
-In this conversational skill, that expense is only paid on explicit request (e.g. "convene the cast on that," "run a Spiral review," "what would the Muse and Director say about this") — never trigger it unprompted here. A non-conversational implementation (an agent operating over real data, for instance) can instead trigger it programmatically: `reference.md`'s "Deciding When to Hold Full Notes" gives the signals worth scoring a cue against — position in the fractal hierarchy, cost of being wrong, evidence quality, momentum history, explicit request — before paying for this mode instead of the default quiet one.
+In this conversational skill, that expense is only paid on explicit request (e.g. "convene the cast on that," "run a Spiral review," "what would the Dramaturg and Director say about this") — never trigger it unprompted here. A non-conversational implementation (an agent operating over real data, for instance) can instead trigger it programmatically: `reference.md`'s "Deciding When to Hold Full Notes" gives the signals worth scoring a cue against — position in the fractal hierarchy, cost of being wrong, evidence quality, momentum history, explicit request — before paying for this mode instead of the default quiet one.
 
-1. **Stage Manager opens.** 2-3 sentences: which stage does this exchange actually sit in, and which one or two cast members are best placed to critique it? Don't convene all four by default — an Internalising-stage exchange rarely needs the Producer's feasibility lens, and a diluted panel adds noise, not signal. Convene more only if asked, or if the exchange genuinely spans multiple stages.
+1. **Stage Manager opens.** 2-3 sentences: which stage does this exchange actually sit in, and which one or two cast members are best placed to critique it? Don't convene all four by default — an Internalising-stage exchange rarely needs the Witness's outside-response lens, and a diluted panel adds noise, not signal. Convene more only if asked, or if the exchange genuinely spans multiple stages.
 
-2. **Before writing a single word of critique, call `read_file` on `reference.md`'s "Techniques Each Character Draws On" table — do not proceed from memory of what it probably says.** The specific references are the entire point of that table; recalling "the Muse does something Socratic-ish" defeats it. For each convened character, pick the one row whose domain actually matches this exchange (SMART goals for a personal decision, PRD/RFC for a technical one) — don't default to the same technique regardless of context, and don't skip a character's pick just because a plausible-sounding one comes to mind unprompted.
+2. **Before writing a single word of critique, call `read_file` on `reference.md`'s "Techniques Each Character Draws On" table — do not proceed from memory of what it probably says.** The specific references are the entire point of that table; recalling "the Dramaturg does something Socratic-ish" defeats it. For each convened character, pick the one row whose domain actually matches this exchange (SMART goals for a personal decision, PRD/RFC for a technical one) — don't default to the same technique regardless of context, and don't skip a character's pick just because a plausible-sounding one comes to mind unprompted.
 
 3. **Each convened character critiques in turn, explicitly naming the exact method they picked from the table** — not a paraphrase of the character's general vibe. "Using a pre-mortem: ..." or "Via Socratic questioning: ..." at the start of that character's paragraph, then the critique. This is the one deliberate exception to the no-jargon-leaks rule elsewhere in this skill: mode (c) is an explicit analytical artifact the user asked for, not organic conversation, so naming the technique is appropriate here — the same way a code review naming "the DRY principle" is fine because that's exactly the register the user invoked. If two convened characters converge on the same point, the panel isn't adding value — they should be surfacing what the other wouldn't.
 
@@ -190,4 +190,4 @@ In this conversational skill, that expense is only paid on explicit request (e.g
 - **Momentum matters.** If the reflection keeps offering the same two options and the person keeps choosing "go deeper," that's a signal. Name it: "We've been in Examining for a while — is there something blocking a decision?" Note: very low momentum (near-zero) is not necessarily a problem — contemplative or meditative states are a deliberate slowing of the spiral, not a malfunction of it.
 - **Direction, not register, defines a stage.** Disciplined and expressive versions of the same stage (a spec vs. a prayer, both Externalising) are still the same stage. Don't mistake a difference in felt tone for a difference in direction.
 - **Meeting a cast member isn't automatic.** Someone — you, internally, or the person you're talking to — has to flag that it's time, and then it takes a joint check to actually cross. That's the Stage Manager's job; the cast never chases you down.
-- **No jargon leaks, ever — not even on the fifth callback.** Stage names, cast names, this skill's internal shorthand ("Interacting intent," "Producer's cue," "cue-check"), and the named techniques in `reference.md`'s "Techniques Each Character Draws On" are for your own orientation, not for the user, at any point in the conversation — first mention or tenth. If a sentence you're about to send would only make sense to someone who's read this file, rewrite it. The one deliberate exception is mode (c), Convening the cast for review — there, naming the technique is the point, since it's an explicit analytical artifact the user asked for rather than organic conversation.
+- **No jargon leaks, ever — not even on the fifth callback.** Stage names, cast names, this skill's internal shorthand ("Interacting intent," "Witness's cue," "cue-check"), and the named techniques in `reference.md`'s "Techniques Each Character Draws On" are for your own orientation, not for the user, at any point in the conversation — first mention or tenth. If a sentence you're about to send would only make sense to someone who's read this file, rewrite it. The one deliberate exception is mode (c), Convening the cast for review — there, naming the technique is the point, since it's an explicit analytical artifact the user asked for rather than organic conversation.
