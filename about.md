@@ -47,6 +47,17 @@ Internalising is not passive — it requires selection. You cannot internalise e
 
 **In human terms:** research, reading, listening, observation, experience.
 
+**Prior art:** this stage isn't uncharted territory — library and information
+science studied it directly, long before AI. Ranganathan's fourth law of
+library science ("save the time of the reader," 1931) names the same
+discipline as not over-fetching. Taylor's four levels of information need
+(1968) name the gap between what someone actually needs and what they end
+up asking for. Marchionini's lookup/learn/investigate split (2006)
+distinguishes a known-item fetch from an open-ended topic browse — different
+Internalising strategies for different needs. Bates' berrypicking model
+(1989) echoes the Fractal Property: real Internalising happens bit-at-a-time
+across an evolving query, not in one pass.
+
 ### Examining
 
 **Internal → Internal** Working on what you already have inside. Connecting dots. Reasoning. Critiquing. Weighing options. This is the stage where what's freshly internalised becomes understanding.
