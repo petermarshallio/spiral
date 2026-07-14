@@ -73,6 +73,122 @@ Two tiers below. **Core Concepts** are facts — what a term *is*, no rationale 
 | **Team** | Immediate colleagues | Slack conversations, shared decisions |
 | **Self** | Personal knowledge and experience | Your own expertise, intuition, history |
 
+### Movement
+
+Every stage has a source type (Internal or External) and a target type (Internal or External) — see "The Matrix," above. A transition from one stage to the next is only one of sixteen theoretically possible pairings (four stages × four stages); these diagrams show which pairings each Movement concept actually refers to.
+
+**Velocity** counts every transition, regardless of type — the full space of possible movement:
+
+```mermaid
+graph LR
+    A["Internalising"]
+    B["Examining"]
+    C["Externalising"]
+    D["Interacting"]
+
+    A --> A
+    A --> D
+    A --> B
+    A --> C
+    B --> A
+    B --> D
+    B --> B
+    B --> C
+    C --> B
+    C --> C
+    C --> A
+    C --> D
+    D --> B
+    D --> C
+    D --> A
+    D --> D
+```
+
+**Continuity** — green transitions preserve type across the handoff (the completing stage's target matches the next stage's source); red transitions don't, and can't represent a genuine continuation of the same thread:
+
+```mermaid
+graph LR
+    A["Internalising"]
+    B["Examining"]
+    C["Externalising"]
+    D["Interacting"]
+
+    A --> A
+    A --> D
+    A --> B
+    A --> C
+    B --> A
+    B --> D
+    B --> B
+    B --> C
+    C --> B
+    C --> C
+    C --> A
+    C --> D
+    D --> B
+    D --> C
+    D --> A
+    D --> D
+
+    linkStyle 0 stroke:#e63946,stroke-width:2px
+    linkStyle 1 stroke:#e63946,stroke-width:2px
+    linkStyle 2 stroke:#2a9d8f,stroke-width:2px
+    linkStyle 3 stroke:#2a9d8f,stroke-width:2px
+    linkStyle 4 stroke:#e63946,stroke-width:2px
+    linkStyle 5 stroke:#e63946,stroke-width:2px
+    linkStyle 6 stroke:#2a9d8f,stroke-width:2px
+    linkStyle 7 stroke:#2a9d8f,stroke-width:2px
+    linkStyle 8 stroke:#e63946,stroke-width:2px
+    linkStyle 9 stroke:#e63946,stroke-width:2px
+    linkStyle 10 stroke:#2a9d8f,stroke-width:2px
+    linkStyle 11 stroke:#2a9d8f,stroke-width:2px
+    linkStyle 12 stroke:#e63946,stroke-width:2px
+    linkStyle 13 stroke:#e63946,stroke-width:2px
+    linkStyle 14 stroke:#2a9d8f,stroke-width:2px
+    linkStyle 15 stroke:#2a9d8f,stroke-width:2px
+```
+
+**Momentum** — only the Continuity-preserving transitions that also advance to a different stage: the one fixed cycle, Directed, in its actual order:
+
+```mermaid
+graph LR
+    A["Internalising"] --> B["Examining"]
+    B --> C["Externalising"]
+    C --> D["Interacting"]
+    D --> A
+```
+
+**Stagnation** — the four transitions that return to the same stage, shown disconnected from each other since none of them advances the cycle:
+
+```mermaid
+graph LR
+    A["Internalising"] --> A
+    B["Examining"] --> B
+    C["Externalising"] --> C
+    D["Interacting"] --> D
+```
+
+**The Fractal Property** — every stage is itself a full copy of the same cycle:
+
+```mermaid
+graph LR
+    subgraph Outer["One cycle"]
+        A["Internalising"] --> B["Examining"]
+        B --> C["Externalising"]
+        C --> D["Interacting"]
+        D --> A
+    end
+
+    subgraph Inner["Examining, zoomed in: the same shape again"]
+        A2["Internalising"] --> B2["Examining"]
+        B2 --> C2["Externalising"]
+        C2 --> D2["Interacting"]
+        D2 --> A2
+    end
+
+    B -.zoom into.-> Inner
+```
+
 ---
 
 ## Usage
