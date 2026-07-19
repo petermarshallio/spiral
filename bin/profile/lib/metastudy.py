@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from collections import defaultdict
 from pathlib import Path
 from typing import NamedTuple
 
@@ -75,25 +74,17 @@ def build_metastudy(
     reference_path: Path,
     synthesis_model: str,
 ) -> MetastudyResult:
-    transcripts_dir = run_dir / "transcripts"
-
-    # Each model's conversation is now split into one file per section
-    # (<provider>__<label>__<NN>-<slug>.md, or <provider>__<label>__ERROR.md
-    # if the run failed). Group by the provider__label prefix and reassemble
-    # in section order so the synthesis model sees one coherent conversation
-    # per model, same as before the split.
-    files_by_model: dict[str, list[Path]] = defaultdict(list)
-    for f in sorted(transcripts_dir.glob("*.md")):
-        parts = f.stem.split("__")
-        if len(parts) < 3:
-            continue  # not one of our <provider>__<label>__<suffix>.md files
-        model_key = "__".join(parts[:2])
-        files_by_model[model_key].append(f)
-
-    transcript_sections = [
-        f"## Transcript: {model_key}\n\n" + "\n\n".join(f.read_text() for f in sorted(files))
-        for model_key, files in sorted(files_by_model.items())
-    ]
+    # Each model has its own folder (run_dir/<provider>__<label>/) containing
+    # one file per section (<NN>-<slug>.md, or ERROR.md if the run failed).
+    # Reassemble each model's files in order so the synthesis model sees one
+    # coherent conversation per model, same as before the per-model split.
+    transcript_sections = []
+    for model_dir in sorted(p for p in run_dir.iterdir() if p.is_dir()):
+        md_files = sorted(model_dir.glob("*.md"))
+        if not md_files:
+            continue
+        combined = "\n\n".join(f.read_text() for f in md_files)
+        transcript_sections.append(f"## Transcript: {model_dir.name}\n\n{combined}")
 
     prompt = PROMPT_TEMPLATE.format(
         primitives=primitives_path.read_text(),

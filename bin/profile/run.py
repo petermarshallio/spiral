@@ -4,8 +4,10 @@ default, synthesizes a cross-model metastudy from the results.
 
 Each `##` section in instructions.md becomes one conversation turn -- all of
 that section's numbered questions are sent together in a single message, and
-the reply is written to its own file (one file per section per model), so a
-model's output is never one giant transcript.
+the reply is written to its own file. Each model gets its own self-contained
+folder (YYYYMMDD/<provider>__<label>/), with its own manifest.json alongside
+its section files -- no shared file that every model run has to coordinate
+writes to.
 
 No selection flags + a real terminal -> interactive menu (pick a model,
 run it, repeat; 'a' for all, 'm' for metastudy-only, 'x' to quit).
@@ -106,21 +108,13 @@ def git_sha_for(path: Path) -> str | None:
     return sha or None
 
 
-def load_manifest(run_dir: Path) -> dict:
-    path = run_dir / "manifest.json"
-    if path.exists():
-        return json.loads(path.read_text())
-    return {
-        "date": run_dir.name,
-        "primitives_sha": git_sha_for(PRIMITIVES_PATH),
-        "instructions_sha": git_sha_for(INSTRUCTIONS_PATH),
-        "models": {},
-    }
+def model_dir_for(run_dir: Path, provider: str, label: str) -> Path:
+    return run_dir / f"{provider}__{label}"
 
 
-def save_manifest(run_dir: Path, manifest: dict) -> None:
+def save_model_manifest(model_dir: Path, manifest: dict) -> None:
     manifest["updated_at"] = datetime.now(timezone.utc).isoformat()
-    (run_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
+    (model_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
 
 
 def run_model(
@@ -129,19 +123,19 @@ def run_model(
     model: str,
     system: str,
     sections: list[tuple[str, list[str]]],
-    transcripts_dir: Path,
-) -> tuple[list[Path], int, int]:
+    model_dir: Path,
+) -> tuple[list[str], int, int]:
     """Runs one turn per section (that section's questions batched together),
     writing each section's transcript to its own file as soon as it
     completes -- so a later section failing doesn't lose earlier progress.
 
-    Returns (written file paths, total_input_tokens, total_output_tokens).
+    Returns (written file names, total_input_tokens, total_output_tokens).
     """
     client = get_provider(provider, model)
     messages: list[dict] = []
     total_input_tokens = 0
     total_output_tokens = 0
-    written: list[Path] = []
+    written: list[str] = []
 
     with Progress(
         SpinnerColumn(),
@@ -183,9 +177,9 @@ def run_model(
                 reply.text,
                 "",
             ])
-            section_path = transcripts_dir / f"{provider}__{label}__{index:02d}-{slugify(section)}.md"
-            section_path.write_text(file_content)
-            written.append(section_path)
+            filename = f"{index:02d}-{slugify(section)}.md"
+            (model_dir / filename).write_text(file_content)
+            written.append(filename)
             progress.advance(task)
 
     return written, total_input_tokens, total_output_tokens
@@ -196,49 +190,56 @@ def run_one(
     run_dir: Path,
     system_prompt: str,
     sections: list[tuple[str, list[str]]],
-    manifest: dict,
+    shas: tuple[str | None, str | None],
     ollama_service: OllamaService,
 ) -> None:
     label, provider, model = spec["label"], spec["provider"], spec["model"]
-    transcripts_dir = run_dir / "transcripts"
-    transcripts_dir.mkdir(parents=True, exist_ok=True)
+    primitives_sha, instructions_sha = shas
+    model_dir = model_dir_for(run_dir, provider, label)
 
-    # Clear any files from a previous run of this model today, so a rerun
-    # never leaves stale/mismatched section files sitting alongside fresh ones.
-    for stale in transcripts_dir.glob(f"{provider}__{label}__*.md"):
+    # Wipe any previous run of this model today so a rerun never leaves
+    # stale/mismatched files (e.g. from an older instructions.md shape)
+    # sitting alongside fresh ones.
+    for stale in model_dir.glob("*"):
         stale.unlink()
+    model_dir.mkdir(parents=True, exist_ok=True)
+
+    manifest = {
+        "date": run_dir.name,
+        "provider": provider,
+        "model": model,
+        "label": label,
+        "primitives_sha": primitives_sha,
+        "instructions_sha": instructions_sha,
+    }
 
     log.info(f"[bold]{label}[/] ({provider}/{model}) starting")
     try:
         if provider == "ollama":
             ollama_service.ensure_running()
 
-        written, input_tokens, output_tokens = run_model(label, provider, model, system_prompt, sections, transcripts_dir)
+        written, input_tokens, output_tokens = run_model(label, provider, model, system_prompt, sections, model_dir)
         cost = estimate_cost(input_tokens, output_tokens, spec.get("price_in"), spec.get("price_out"))
         cost_line = format_usd(cost, free=(provider == "ollama"))
 
-        manifest["models"][label] = {
-            "provider": provider,
-            "model": model,
+        manifest.update({
             "status": "ok",
             "input_tokens": input_tokens,
             "output_tokens": output_tokens,
             "cost_usd": cost,
-            "files": [p.name for p in written],
-        }
+            "files": written,
+        })
         log.info(f"[green]{label}[/] done -> {len(written)} section files ({cost_line})")
     except Exception as exc:  # noqa: BLE001 -- one model's failure shouldn't kill the session
-        error_path = transcripts_dir / f"{provider}__{label}__ERROR.md"
-        error_path.write_text(f"# {label} ({provider} / {model})\n\nFAILED: {exc}\n")
-        manifest["models"][label] = {"provider": provider, "model": model, "status": "error", "error": str(exc)}
+        (model_dir / "ERROR.md").write_text(f"# {label} ({provider} / {model})\n\nFAILED: {exc}\n")
+        manifest.update({"status": "error", "error": str(exc)})
         log.error(f"[red]{label}[/] FAILED: {exc}")
 
-    save_manifest(run_dir, manifest)
+    save_model_manifest(model_dir, manifest)
 
 
 def run_metastudy_step(run_dir: Path, synthesis_model: str, synthesis_price: tuple[float | None, float | None]) -> None:
-    transcripts_dir = run_dir / "transcripts"
-    if not any(transcripts_dir.glob("*.md")):
+    if not any(run_dir.glob("*/*.md")):
         log.warning("No transcripts yet -- run at least one model first.")
         return
 
@@ -251,29 +252,14 @@ def run_metastudy_step(run_dir: Path, synthesis_model: str, synthesis_price: tup
     log.info(f"[green]Metastudy written[/] -> {run_dir / 'metastudy.md'} ({format_usd(cost)})")
 
 
-def build_status_table(config: dict, manifest: dict) -> Table:
+def build_menu_table(config: dict) -> Table:
     table = Table(title="Uriam Model Profiler")
     table.add_column("#", justify="right", style="bold")
     table.add_column("Label")
     table.add_column("Provider")
     table.add_column("Model")
-    table.add_column("Status")
-    table.add_column("Cost", justify="right")
-
-    total_cost = 0.0
     for i, spec in enumerate(config["models"], start=1):
-        entry = manifest["models"].get(spec["label"])
-        if entry is None:
-            status, cost_cell = "[dim]pending[/]", "[dim]--[/]"
-        elif entry["status"] == "ok":
-            status = "[green]done[/]"
-            cost_cell = format_usd(entry["cost_usd"], free=(entry["provider"] == "ollama"))
-            total_cost += entry["cost_usd"]
-        else:
-            status, cost_cell = "[red]failed[/]", "[dim]--[/]"
-        table.add_row(str(i), spec["label"], spec["provider"], spec["model"], status, cost_cell)
-
-    table.caption = f"Total spend this run: {format_usd(total_cost)}"
+        table.add_row(str(i), spec["label"], spec["provider"], spec["model"])
     return table
 
 
@@ -282,7 +268,7 @@ def interactive_menu(
     run_dir: Path,
     system_prompt: str,
     sections: list[tuple[str, list[str]]],
-    manifest: dict,
+    shas: tuple[str | None, str | None],
     synthesis_model: str,
     synthesis_price: tuple[float | None, float | None],
     ollama_service: OllamaService,
@@ -290,7 +276,7 @@ def interactive_menu(
     model_specs = config["models"]
     choices = [str(i) for i in range(1, len(model_specs) + 1)] + ["a", "m", "x"]
     while True:
-        console.print(build_status_table(config, manifest))
+        console.print(build_menu_table(config))
         console.print("[bold]a[/] run ALL   [bold]m[/] metastudy only   [bold]x[/] quit")
         choice = Prompt.ask("Pick a model number, a, m, or x", choices=choices, show_choices=False)
 
@@ -301,9 +287,9 @@ def interactive_menu(
             continue
         if choice == "a":
             for spec in model_specs:
-                run_one(spec, run_dir, system_prompt, sections, manifest, ollama_service)
+                run_one(spec, run_dir, system_prompt, sections, shas, ollama_service)
             continue
-        run_one(model_specs[int(choice) - 1], run_dir, system_prompt, sections, manifest, ollama_service)
+        run_one(model_specs[int(choice) - 1], run_dir, system_prompt, sections, shas, ollama_service)
 
 
 def main() -> None:
@@ -329,8 +315,8 @@ def main() -> None:
             log.warning(f"No models.yaml entry for labels: {', '.join(sorted(missing))}")
 
     run_dir = PROFILE_DIR / args.date
-    (run_dir / "transcripts").mkdir(parents=True, exist_ok=True)
-    manifest = load_manifest(run_dir)
+    run_dir.mkdir(parents=True, exist_ok=True)
+    shas = (git_sha_for(PRIMITIVES_PATH), git_sha_for(INSTRUCTIONS_PATH))
 
     system_prompt = PRIMITIVES_PATH.read_text()
     sections = parse_sections(INSTRUCTIONS_PATH)
@@ -349,10 +335,10 @@ def main() -> None:
     ollama_service = OllamaService()
     try:
         if interactive:
-            interactive_menu(config, run_dir, system_prompt, sections, manifest, synthesis_model, synthesis_price, ollama_service)
+            interactive_menu(config, run_dir, system_prompt, sections, shas, synthesis_model, synthesis_price, ollama_service)
         else:
             for spec in model_specs:
-                run_one(spec, run_dir, system_prompt, sections, manifest, ollama_service)
+                run_one(spec, run_dir, system_prompt, sections, shas, ollama_service)
             if not args.skip_metastudy:
                 run_metastudy_step(run_dir, synthesis_model, synthesis_price)
     except KeyboardInterrupt:
