@@ -4,9 +4,12 @@
 Each `##` section in instructions.md becomes one conversation turn -- all of
 that section's numbered questions are sent together in a single message, and
 the reply is written to its own file. Each model gets its own self-contained
-folder (YYYYMMDD/<provider>__<label>/), with its own manifest.json alongside
-its section files -- no shared file that every model run has to coordinate
-writes to.
+folder (YYYYMMDDHHMM/<provider>__<label>/), with its own manifest.json
+alongside its section files -- no shared file that every model run has to
+coordinate writes to. The YYYYMMDDHHMM stamp is taken once, when run.py
+starts, not per model -- so every model in the same run.py invocation lands
+in the same run folder, and separate invocations never collide or overwrite
+each other, which keeps runs comparable over time.
 
 No selection flags + a real terminal -> interactive menu (pick a model,
 run it, repeat; 'a' for all, 'q' to quit).
@@ -14,7 +17,6 @@ run it, repeat; 'a' for all, 'q' to quit).
 Usage:
     python run.py                       # interactive menu
     python run.py --all                 # every configured model, no menu
-    python run.py --date 20260719
     python run.py --only anthropic      # skip Ollama
     python run.py --models haiku-4-5    # just one, by its models.yaml label
 """
@@ -224,15 +226,15 @@ def run_one(
     primitives_sha, instructions_sha = shas
     model_dir = model_dir_for(run_dir, provider, label)
 
-    # Wipe any previous run of this model today so a rerun never leaves
-    # stale/mismatched files (e.g. from an older instructions.md shape)
-    # sitting alongside fresh ones.
+    # Wipe any previous run of this model in this run folder so re-picking
+    # it from the interactive menu never leaves stale/mismatched files (e.g.
+    # from an older instructions.md shape) sitting alongside fresh ones.
     for stale in model_dir.glob("*"):
         stale.unlink()
     model_dir.mkdir(parents=True, exist_ok=True)
 
     manifest = {
-        "date": run_dir.name,
+        "run_id": run_dir.name,
         "provider": provider,
         "model": model,
         "label": label,
@@ -340,7 +342,6 @@ def main() -> None:
     load_dotenv(PROFILE_DIR / ".env")
 
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--date", default=datetime.now().strftime("%Y%m%d"))
     parser.add_argument("--only", choices=["anthropic", "ollama"], default=None)
     parser.add_argument("--models", default=None, help="Comma-separated labels from models.yaml to run, e.g. --models haiku-4-5")
     parser.add_argument("--all", action="store_true", help="Run every configured model, non-interactively")
@@ -357,7 +358,7 @@ def main() -> None:
         if missing:
             log.warning(f"No models.yaml entry for labels: {', '.join(sorted(missing))}")
 
-    run_dir = PROFILE_DIR / args.date
+    run_dir = PROFILE_DIR / datetime.now().strftime("%Y%m%d%H%M")
     run_dir.mkdir(parents=True, exist_ok=True)
     shas = (git_sha_for(PRIMITIVES_PATH), git_sha_for(INSTRUCTIONS_PATH))
 

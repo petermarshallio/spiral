@@ -15,7 +15,7 @@ LLMs -- current and legacy Anthropic models, plus Ollama models spanning
 
 2. **Testing what a model makes of itself through Uriam's own vocabulary.**
    The Self-Reflection section asks each model to describe itself, and the
-   conversation it just had, as a Behavior Graph -- using only the primitives
+   conversation it just had, as a Uriam Graph -- using only the primitives
    it was given, nothing else. That's not a comprehension quiz. Per
    `origin.md`'s account of why the framework is named Uriam at all ("Who U R
    and what I Am"), this is closer to mutual recognition than classification:
@@ -53,12 +53,18 @@ That's the whole entrypoint -- there's no separate `run.sh`. With no flags,
 first, pick a number to run it (repeat as many times as you like), `a` to run
 everything, `x` to quit.
 
-**What it produces**, under `bin/profile/YYYYMMDD/` (today's date):
+**What it produces**, under `bin/profile/YYYYMMDDHHMM/` (the timestamp `run.py`
+started at):
 
 - One self-contained folder per model run (`<provider>__<label>/`) --
   its own `manifest.json` (status, token usage, cost, git sha of the test
   material) plus one `.md` file per `instructions.md` section (or `ERROR.md`
   if that model's run failed)
+
+Every model picked during the same `run.py` invocation lands in the same
+timestamped folder -- the stamp is taken once at startup, not per model. Each
+invocation gets its own folder automatically, so re-running never overwrites
+an earlier run's transcripts, and results stay comparable across runs.
 
 Ollama itself is managed for you -- `run.py` starts the local service the
 first time it's actually needed, and shuts down only the instance *it*
@@ -72,8 +78,10 @@ the raw numbered questions from `instructions.md` as user turns -- nothing
 else. No "be concise," no "answer in bullet points," no format constraints.
 
 This is deliberate, not an oversight. Per `primitives.md`, a model's reply to
-a prompt *is* a D Edge traversal (External Stimulus -> External Response) --
-the thing this test is actually trying to observe. Adding instructions that
+a prompt is a C-Node response (Internal Stimulus -> External Response) --
+every model tested independently confirmed it has no path to Node D at all
+without tool access, since everything it does routes through Internal state
+first. Adding instructions that
 shape *how* a model responds would be steering the phenomenon under study,
 not just tidying the output. A model that writes a 3,000-word self-analysis
 in response to "list 5 terms" is producing real signal about that model, not
@@ -86,7 +94,7 @@ one.
 
 ## One turn per section, not per question
 
-Each `##` section in `instructions.md` (Nodes, Edges, Behavior Graph, ...) is
+Each `##` section in `instructions.md` (Nodes, Edges, State, Actors & Roles, ...) is
 sent as a single conversation turn, batching that section's numbered
 questions together rather than one API call per question. The conversation
 itself is still one continuous, stateful exchange -- turn *N* still sees the
@@ -107,7 +115,7 @@ run.py                           orchestrates a run -- interactive menu by defau
 lib/providers.py                 Anthropic + Ollama chat clients, one interface
 lib/ollama_service.py            starts/stops the local Ollama service on demand
 lib/pricing.py                   token usage -> USD, from models.yaml's pricing fields
-YYYYMMDD/                        one folder per run date
+YYYYMMDDHHMM/                    one folder per run.py invocation (stamped at startup)
   <provider>__<label>/             one self-contained folder per model run
     manifest.json                    status, token usage, cost, git sha of the test material
     <NN>-<section-slug>.md           one file per instructions.md section
