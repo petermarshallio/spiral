@@ -1,0 +1,23 @@
+{
+  "date": "20260719",
+  "provider": "anthropic",
+  "model": "claude-opus-4-5",
+  "label": "opus-4-5",
+  "primitives_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
+  "instructions_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
+  "status": "ok",
+  "input_tokens": 25398,
+  "output_tokens": 6577,
+  "cost_usd": 0.291415,
+  "files": [
+    "01-nodes.md",
+    "02-edges.md",
+    "03-behavior-graph.md",
+    "04-terms.md",
+    "05-graph-metrics.md",
+    "06-graph-collaborations.md",
+    "07-self-reflection.md",
+    "08-ai-self-model.md"
+  ],
+  "updated_at": "2026-07-19T12:49:17.986403+00:00"
+}
