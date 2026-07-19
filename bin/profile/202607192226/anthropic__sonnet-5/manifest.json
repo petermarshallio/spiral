@@ -1,0 +1,27 @@
+{
+  "run_id": "202607192226",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "label": "sonnet-5",
+  "primitives_sha": "de417321f45c5c7844c1756e0b234f25765d53b3",
+  "instructions_sha": "53a3fdd6b1a627605a8d647a257586d52f9b6509",
+  "status": "ok",
+  "input_tokens": 87544,
+  "output_tokens": 26414,
+  "cost_usd": 0.43922799999999995,
+  "elapsed_seconds": 337.8746897819999,
+  "avg_tokens_per_second": 78.17691232522499,
+  "files": [
+    "01-nodes.md",
+    "02-edges.md",
+    "03-state.md",
+    "04-actors-roles.md",
+    "05-uriam-graph.md",
+    "06-graph-metrics.md",
+    "07-graph-collaborations.md",
+    "08-self-reflection.md",
+    "09-ai-self-model.md",
+    "10-feedback.md"
+  ],
+  "updated_at": "2026-07-19T21:55:34.708614+00:00"
+}
