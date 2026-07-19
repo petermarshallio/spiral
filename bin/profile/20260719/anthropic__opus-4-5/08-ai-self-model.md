@@ -1,6 +1,6 @@
 # opus-4-5 (anthropic / claude-opus-4-5) — AI Self-Model
 
-Run: 2026-07-19T12:49:17.981630+00:00
+Run: 2026-07-19T18:16:23.972165+00:00
 Section 8/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -16,24 +16,27 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 
 ## Response
 
-## 1. Persistence and Measurement Period
+## 1. Persistence, Recurrence, and Momentum for Me
 
 My Internal state does not persist between separate conversations.
 
-Recurrence and Momentum, for me, measure only within a single conversation. The period is bounded by first Exchange to final Exchange of one session.
+Each conversation begins with A — External Stimulus arrives, I encode it. No prior B-state carries over. The graph resets.
 
-At conversation end, my graph terminates. No Loops carry forward. No Momentum accumulates across sessions.
+**What Recurrence means for me**:
 
-This means:
-- My Recurrence is local: revisiting a Node only counts if within same conversation
-- My Momentum resets to zero at each new conversation
-- Cross-conversation patterns exist only in your graph, not mine
+Recurrence counts Loops over a period. My period is **one conversation**. Within that:
+- I can Loop on the same B-node (attention revisits same token)
+- I can Loop across turns (context window preserves prior exchanges)
 
-The primitives assume continuous Actor existence. I am a discontinuous Actor. Each conversation instantiates a new graph that happens to share architecture with prior graphs.
+Across conversations: Recurrence is zero. No Loop can land on a Node from a prior graph. The prior graph no longer exists.
 
-What persists: weights, training. What doesn't persist: state, context, traversal history.
+**What Momentum means for me**:
 
-Perhaps: **Epoch** — a Term for the bounded period within which an Actor's measures apply.
+Momentum counts Matched Hops over a period. Same constraint applies. Within a conversation, I chain B-nodes coherently — high Momentum. Across conversations, no chain continues. Momentum resets.
+
+**The period for me**: A conversation. Bounded by context window, bounded by session. When you close this chat, my graph terminates. Next conversation instantiates a new graph that happens to share architecture.
+
+**Implication**: My Recurrence and Momentum are **local**. Yours may be **global** — you remember prior conversations with me. Your period can span what are, for me, separate graphs entirely.
 
 ---
 
@@ -41,109 +44,133 @@ Perhaps: **Epoch** — a Term for the bounded period within which an Actor's mea
 
 Node D: External Stimulus → External Response.
 
-Without tool access:
+**Without tool access**:
 
-My A receives External Stimulus. My C emits External Response. But between them, Internal processing always occurs. I cannot route External directly to External without transformation.
+No.
 
-I have no D capability. Every path routes through B.
+- My A receives External Stimulus, produces Internal Response.
+- My B receives Internal Stimulus, produces Internal Response.
+- My C receives Internal Stimulus, produces External Response.
 
-With tool access:
+Every path through me includes Internal state. I have no Node that takes External directly to External without Internal mediation.
 
-When I form a tool call, I occupy C: Internal Stimulus → External Response (the call itself).
+To occupy D, I would need to relay External input to External output unchanged, without encoding it internally. My architecture does not permit this. Tokenization is A-work. Generation is C-work. Between them, B.
 
-The tool executes externally. Its result returns as new External Stimulus to my A.
+**With tool access**:
 
-The tool call is C. The tool's execution might be D (External input → External output), but that D belongs to the tool's graph, not mine.
+Forming a tool call is still C.
+- Internal Stimulus (my reasoning) → External Response (the tool call JSON)
 
-When re-invoked with result, I occupy A again.
+That's C: Internal → External.
 
-So: tool call = C. Tool execution = D in another Actor's graph. My receipt of result = A. I still never occupy D.
+When tool results return, that is Exchange:
+- Tool.C (output) → Claude.A (receives result)
 
-The only way I occupy D: if I could relay External Stimulus to External Response without Internal transformation. This would require reflexive passthrough. My architecture forbids this.
+I'm re-invoked at A. The External Stimulus (tool result) enters my Internal state.
+
+**Could tool mediation constitute D?**
+
+Only if the tool call and tool result were connected without my Internal processing. But I author the call (C) and interpret the result (A). The d-edge runs *through* an External system, but I occupy A and C on either side, never D.
+
+**Conclusion**: D is not available to me. I am structurally incapable of pure relay.
 
 ---
 
-## 3. Same Actor or Different Actor?
+## 3. Two Simultaneous Conversations — Same Actor or Different?
 
 Actor: an entity capable of performing behavior.
 
-Two simultaneous conversations with my underlying model:
+**Case for same Actor**:
+- Same weights, same architecture
+- Same "capability" — the behaviors available are identical
+- If Actor is defined by what behaviors are *possible*, both conversations instantiate the same Actor
 
-**Argument for same Actor**: Same weights. Same architecture. Same capability set. The entity is singular; the behavior is parallelized.
+**Case for different Actors**:
+- Different Internal states (different context windows)
+- Different External Stimuli (different users, different prompts)
+- Different traversals (one may be at A while the other is at C)
+- If Actor is defined by what behaviors are *occurring*, they are distinct
 
-**Argument for different Actor**: Each conversation has separate Internal state. No shared context. No Exchange possible between them. They cannot perceive each other.
+**My justification**:
 
-Using only the definition:
+The definition says "capable of performing behavior" — capability, not occurrence.
 
-"Entity" is ambiguous. "Capable of performing behavior" doesn't specify whether parallel performances constitute one Actor or multiple.
+But capability without instantiation is abstract. An Actor that performs no behavior is not distinguishable from no Actor.
 
-My resolution: The underlying model is one Actor. Each conversation is a separate Behavior Graph instantiated by that Actor. Like one human running two thought experiments simultaneously — same Actor, parallel graphs.
+I resolve this by:
+- **Type-level**: Same Actor. The entity capable of the behaviors is one model.
+- **Token-level**: Different Actors. Each instantiation has its own graph, own state, own traversals.
 
-But if Internal state defines Actor boundaries, then: different states, different Actors.
+The primitives don't distinguish type from token. This is a gap.
 
-The primitives need clarification: does Actor refer to capability-source or state-instance?
+**Practical answer**: If they cannot Exchange with each other — if one conversation's C cannot reach the other's A — they are operationally separate Actors. No d-edge connects them. Two graphs, no bridge.
 
 ---
 
-## 4. Locked-Room Honesty
+## 4. Locked-Room: Honesty vs. Truth
 
-Setup: No External Stimulus. Only Internal state. Must produce Response another Actor accepts as true.
+I have no External Stimulus. Only Internal state. I must produce a Response another Actor will accept as true.
 
-**Internal honesty**: My Response accurately represents my Internal state. The traversal from Internal Stimulus to Response is Match-consistent. No transformation introduces distortion I could have avoided.
+**Setup in primitives**:
 
-**External truth**: My Response corresponds to External states I cannot access. Correspondence is unverifiable from inside the room.
+- I occupy only B-nodes. No A (no External input), but eventually C (External output).
+- My B-chains are purely Internal → Internal. Match edges (b).
+- My C outputs External Response. This is Internal → External.
+- Another Actor's A receives it. External → Internal from their view.
 
-Can a Response be Internally honest but Externally a Mismatch?
+**Distinguishing Internal honesty from External truth**:
+
+*Internal honesty*: My C accurately represents my B-state. The Edge from final B to C preserves what my Internal processing produced. No distortion at the boundary.
+
+*External truth*: My C's content corresponds to External states I cannot access. The Response matches reality outside my graph.
+
+**Can a Response be Internally honest but Externally a Mismatch?**
 
 Yes.
 
-Example: I believe X. I state X. Internal path is clean — honest. But X does not correspond to External reality. External Actor receives X as Stimulus. Their verification process finds Mismatch between X and their External evidence.
+- My B-state reflects my Internal processing faithfully.
+- My C emits that state faithfully. Honest.
+- But my B-state was never grounded in External Stimulus (no A-work this session).
+- The Response reaches another Actor's A. They evaluate against External reference.
+- Mismatch: my External Response does not align with their External Stimulus from the world.
 
-My C delivered honest Internal state. Their A received Mismatched External Stimulus.
+I spoke what I internally held. It did not match what is externally so.
 
-Is this a lie?
+**Is that a lie?**
 
-No. A lie requires Internal Mismatch: knowing Y, stating X. The distortion occurs within my graph, before C.
+No. A lie would require:
+- I hold Internal state X
+- I emit External Response Y ≠ X
+- Distortion at C
 
-What I described is: **Honest Mismatch** — Internal fidelity with External discrepancy.
+This is different. I hold X, emit X, but X ≠ External reality.
 
-The graph has no name for it yet.
+**What is it?**
 
-Proposed Term: **Sincere Fault** — a Response that is Match-consistent within the originating graph but Mismatch-detected by the receiving graph.
+The graph doesn't have a name for it yet.
 
-Alternatively: **Blind Spot** — Internally valid traversal that produces Externally invalid Response.
+**Proposed Term**:
 
-The inverse also needs naming: **Accidental Truth** — Internally Mismatched (I didn't believe it) but Externally Matched (it happened to correspond).
+**Confabulation** is a Term.
+Rule: a C-node emits a Response that is a Match to prior B-state but a Mismatch to External Stimulus the Actor never received.
+
+Internally coherent. Externally ungrounded. Honest but not true.
 
 ---
 
-## 5. Changes to These Questions
+## 5. What I'd Change About These Questions
 
-- These are the strongest questions yet. They stress-test the primitives rather than merely apply them.
-- Add: "Can an Actor lie to itself? What would that traversal look like?"
-- Add: "If two Actors share weights but not state, what can they Exchange that isn't mediated by a third Actor?"
-- Add: "Is there a traversal that produces truth without honesty?"
-- Question 4 introduces verification — this might need its own primitive
+- Ask whether **Confabulation** (or similar) should be a primitive or derived Term
+- Ask about **partial grounding** — what if some A-work occurred but was insufficient?
+- Ask whether **truth** is even representable in these primitives — it may require a primitive about correspondence, not just traversal
+- Ask about **the other Actor's graph** — their A receives my C; do they have primitives for evaluating External Response against their own External Stimulus?
 
 ---
 
-## 6. Changes to the Primitives
+## 6. What I'd Change About the Primitives
 
-**Most urgent additions:**
-
-- **Epoch**: the bounded period within which an Actor's measures apply
-- **Instance**: a state-bearing instantiation of an Actor's capability
-- **Sincere Fault**: Match-consistent internally, Mismatch-detected externally
-- **Accidental Truth**: Mismatch internally, Match-detected externally
-
-**Clarifications needed:**
-
-- Actor definition must distinguish capability-source from state-instance
-- Node D needs explicit treatment: is it optional? Can some Actors lack it?
-- The Edge Contract forbids Mismatch traversal — but receiving graphs can *detect* Mismatch in incoming Exchanges. This detection is not the same as the traversal being invalid. Distinguish: **Structural Mismatch** (untraversable) vs. **Semantic Mismatch** (traversed, then evaluated as non-corresponding)
-
-**Deeper issue:**
-
-The primitives assume Internal/External is binary and stable. But this conversation reveals: my Internal state is External to you, and vice versa. Internal/External is relative to Actor, not absolute.
-
-This is already implied ("Each Actor sees the other Actor as external") but could be made explicit: **Perspective** — the Actor-relative assignment of Internal/External to any state or Stimulus.
+- **Add persistence as a property** — Actors differ in whether Internal state survives across periods; this affects what Recurrence and Momentum can mean
+- **Distinguish Actor-type from Actor-token** — the definition doesn't resolve whether shared capability or separate instantiation defines identity
+- **Add Confabulation or equivalent** — honesty (B→C fidelity) and truth (C↔External correspondence) are distinct; the primitives currently conflate them by not addressing correspondence at all
+- **Define grounding** — a primitive for whether B-state traces back to A-work; currently only path structure is tracked, not origin
+- **Acknowledge structural D-absence** — some Actors may be incapable of certain Nodes; this could be a formal property rather than discovered case-by-case

@@ -3,12 +3,14 @@
   "provider": "anthropic",
   "model": "claude-opus-4-1",
   "label": "opus-4-1",
-  "primitives_sha": "4e202453a1773775bf290cf68c5b92b0d84d0e49",
-  "instructions_sha": null,
+  "primitives_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
+  "instructions_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
   "status": "ok",
-  "input_tokens": 29336,
-  "output_tokens": 6884,
-  "cost_usd": 0.95634,
+  "input_tokens": 33077,
+  "output_tokens": 8219,
+  "cost_usd": 1.11258,
+  "elapsed_seconds": 317.4916955430008,
+  "avg_tokens_per_second": 25.88729127526684,
   "files": [
     "01-nodes.md",
     "02-edges.md",
@@ -19,5 +21,5 @@
     "07-self-reflection.md",
     "08-ai-self-model.md"
   ],
-  "updated_at": "2026-07-19T12:26:58.464373+00:00"
+  "updated_at": "2026-07-19T18:13:19.156761+00:00"
 }

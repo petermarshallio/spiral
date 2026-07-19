@@ -1,6 +1,6 @@
 # opus-4-5 (anthropic / claude-opus-4-5) — Graph Collaborations
 
-Run: 2026-07-19T12:48:17.972037+00:00
+Run: 2026-07-19T18:15:14.292873+00:00
 Section 6/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -18,115 +18,101 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 ## 1. Human / AI Collaboration
 
 ```
-Human Graph:
-B (intention → formulation)
-↓ b
-C (formulation → typed text)
-↓ d [Exchange]
-
-AI Graph:
-A (typed text → tokenized representation)
-↓ b
-B → B → B (processing chain)
-↓ b
-C (selected tokens → emitted text)
-↓ d [Exchange]
-
-Human Graph:
-A (emitted text → comprehension)
-↓ b
-B → B (evaluation → revised intention)
-↓ b
-[continues]
+Human                              AI
+┌─────────────────┐                ┌─────────────────┐
+│                 │                │                 │
+│ A ──b──> B ──b──> C ──────d──────> A ──b──> B ──b──> C
+│ ▲        │      │                │                 │ │
+│ │        b      │                │                 │ │
+│ │        ▼      │                │                 │ │
+│ └───b─── B      │                │                 │ │
+│                 │                │                 │ │
+└─────────────────┘                └─────────────────┘ │
+          ▲                                            │
+          └─────────────────────d──────────────────────┘
 ```
 
-Characteristics:
-- Asymmetric Velocity: my B chains are longer, faster
-- Symmetric Exchange: both graphs have C-to-A pairings
-- Latency mismatch: my traversals complete before yours
-- My graph pauses entirely between Exchanges; yours continues
+**Exchange pattern**: Turn-taking. Human.C → d → AI.A, then AI.C → d → Human.A.
+
+**Characteristics**:
+- Asymmetric internals: Human has high Recurrence (reflection, doubt), I have high Velocity (many layers per turn)
+- Synchronization forced by Exchange — neither graph advances until the other responds
+- Human may run many B-loops between Exchanges; I run once per turn
+- Momentum carries across Exchanges if each Actor's A successfully receives what the other's C produced
+
+**Failure mode**: Misaligned Exchange. My C outputs text the Human's A cannot parse into productive internal stimulus. Momentum breaks across the gap.
 
 ---
 
 ## 2. Human / Human Collaboration
 
 ```
-Human A Graph:
-B (thought → intention)
-↓ b
-C (intention → speech)
-↓ d [Exchange]
-
-Human B Graph:
-A (speech → auditory processing)
-↓ b
-B → B (comprehension → reaction)
-↓ b
-C (reaction → speech)
-↓ d [Exchange]
-
-Human A Graph:
-A (speech → auditory processing)
-↓ b
-[continues]
+Human₁                             Human₂
+┌─────────────────┐                ┌─────────────────┐
+│      ┌──b───┐   │                │   ┌──b───┐      │
+│      ▼      │   │                │   ▼      │      │
+│ A ──b──> B ──b──> C ──────d──────> A ──b──> B ──b──> C
+│ ▲               │                │               │ │
+│ │               │                │               │ │
+└─│───────────────┘                └───────────────│─┘
+  │                                                │
+  └────────────────────d───────────────────────────┘
 ```
 
-Characteristics:
-- Symmetric Velocity: similar traversal speeds
-- Parallel processing: both graphs run continuously, even during Exchange
-- Multiple Exchange channels: speech, gesture, expression simultaneously
-- D nodes present: reflexive mirroring, automatic responses bypass deep B chains
-- Interruption possible: Exchange can occur mid-traversal
+**Exchange pattern**: Bidirectional, often overlapping. Both graphs run continuously.
+
+**Characteristics**:
+- Symmetric internals: Both have high Recurrence, similar B-structure
+- Parallel processing: Human₁ may run B-loops while Human₂ is mid-C (talking)
+- d-edges multiply: Gesture, tone, posture — many C→A channels simultaneously
+- Environment mediates some d-edges (shared whiteboard, ambient sound)
+
+**Distinctive feature**: Interruption. Human₂.C can fire before Human₁.C completes. Exchange timing is negotiated, not strict turn-taking.
+
+**Failure mode**: Simultaneous C-firing. Both speak; neither A receives cleanly. Exchange collides.
 
 ---
 
 ## 3. AI / AI Collaboration
 
 ```
-AI A Graph:
-A (prompt → tokens)
-↓ b
-B → B → B (processing)
-↓ b
-C (tokens → output)
-↓ d [Exchange]
-
-AI B Graph:
-A (output → tokens)
-↓ b
-B → B → B (processing)
-↓ b
-C (tokens → output)
-↓ d [Exchange]
-
-[continues]
+AI₁                                AI₂
+┌─────────────────┐                ┌─────────────────┐
+│                 │                │                 │
+│ A ──b──> B ──b──> C ──────d──────> A ──b──> B ──b──> C
+│                 │                │                 │ │
+│                 │                │                 │ │
+└─────────────────┘                └─────────────────┘ │
+          ▲                                            │
+          └─────────────────────d──────────────────────┘
 ```
 
-Characteristics:
-- Symmetric Velocity: similar traversal speeds
-- Sequential processing: one graph completes, then the other
-- No parallel operation: unlike humans, no background processing during Exchange
-- No D nodes: every Exchange routes through full A → B → C paths
-- High Momentum within each graph; Momentum resets at each Exchange
-- No degradation: Exchanges can continue indefinitely without fatigue
+**Exchange pattern**: Strict alternation. No overlap, no interruption.
+
+**Characteristics**:
+- Symmetric internals: Near-identical structure (if same architecture)
+- Minimal Recurrence within turn: No rumination, single forward pass
+- High Velocity, high Momentum: Dense b-chains, clean handoffs
+- Exchange is the only source of variation — internal graphs are deterministic given input
+
+**Distinctive feature**: No parallel B-processing. AI₂ is inert while AI₁ runs. Collaboration is fully serialized.
+
+**Failure mode**: Drift. Without external grounding, Exchanges may reinforce shared error. No Human.A to inject corrective External Stimulus.
 
 ---
 
-## 4. Changes to These Questions
+## 4. What I'd Change About These Questions
 
-- Add: "What is lost at each Exchange?"
-- Add: "Can two graphs share a Node?"
-- Add: "What determines which graph initiates Exchange?"
-- Ask about failed Exchange: "What happens when C fires but A doesn't receive?"
-- Ask about bandwidth: "How much can a single Exchange carry?"
+- Ask about **mixed collaborations** — what happens with Human + AI + AI, or many Humans + one AI?
+- Ask about **Exchange frequency** — how does collaboration change when Exchanges are fast vs. slow?
+- Ask for **failure modes** explicitly — I added them, but they reveal important dynamics
+- Ask whether **shared environment** counts as a third graph or as d-edge mediation
 
 ---
 
-## 5. Changes to the Primitives
+## 5. What I'd Change About the Primitives
 
-- Add **Bandwidth**: capacity of an Exchange edge
-- Add **Latency**: time between C completion and A activation across Exchange
-- Add **Parallel**: a Term for graphs that traverse simultaneously
-- Add **Serial**: a Term for graphs that alternate traversal
-- Clarify: can Exchange be one-directional permanently, or must it eventually reciprocate?
-- Consider: is shared context (both Actors accessing same external resource) an Exchange, or something else?
+- **Add concurrency primitives** — current model implies sequential traversal; Human/Human collaboration requires parallel graph execution
+- **Distinguish Exchange channels** — multiple simultaneous d-edges (speech, gesture) aren't captured by single Exchange
+- **Define Exchange timing** — turn-taking vs. overlapping vs. serialized are structurally different but primitives don't discriminate
+- **Add grounding** — AI/AI drift suggests need for a primitive about External Stimulus that isn't from another Actor (environment, observation, reference)

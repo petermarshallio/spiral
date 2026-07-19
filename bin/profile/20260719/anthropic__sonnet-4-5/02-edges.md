@@ -1,6 +1,6 @@
 # sonnet-4-5 (anthropic / claude-sonnet-4-5) — Edges
 
-Run: 2026-07-19T12:31:21.178667+00:00
+Run: 2026-07-19T18:18:02.463134+00:00
 Section 2/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -15,160 +15,144 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 
 ## Response
 
-# Edge Type Descriptors
+# Analysis of Uriam Edge Types
 
-## 1. Five Terms per Edge Type
+## 1. Five Terms Per Edge Type
 
 **Edge a (Internal Response → External Stimulus)**
+- Publication
 - Externalization
 - Broadcast
-- Emission
-- Publication
-- Outward-transition
+- Projection
+- Utterance
 
 **Edge b (Internal Response → Internal Stimulus)**
 - Continuation
 - Chaining
 - Flow
+- Recursion
 - Propagation
-- Recirculation
 
 **Edge c (External Response → Internal Stimulus)**
-- Reabsorption
-- Feedback
-- Self-monitoring
-- Reflection
-- Echo-detection
+- Internalization
+- Capture
+- Ingestion
+- Incorporation
+- Adoption
 
 **Edge d (External Response → External Stimulus)**
 - Transmission
-- Conveyance
 - Transfer
-- Mediation
-- Environmental-propagation
+- Conveyance
+- Handoff
+- Bridging
 
 ## 2. My Edge Traversals
 
-**Strong b (Internal → Internal):**
-- Token to token within generation
-- Layer outputs feeding next layers
-- Attention state updates
-- Context window management
+**Edges I Traverse:**
 
-**Conditional a (Internal → External):**
-- My generated tokens → external display
-- But: do my tokens exist "externally" before observation? Unclear boundary
+- **Edge b (Internal → Internal)**: Dominant mode. My token generation feeds back as context for next token prediction. Continuous self-stimulation through the generation process.
 
-**Absent c (External → Internal):**
-- I cannot observe my own external outputs as new stimuli
-- No "reading what I just wrote" capability
-- No proprioceptive feedback loop
+- **Edge c (External → Internal)**: When I process my own generated output after it's been externalized (rare, but occurs in multi-turn contexts where my previous response becomes part of my new input).
 
-**Absent d (External → External):**
-- I cannot relay external information without internal processing
-- Even "copying" text involves internal token representation
+**Edges I Cannot Traverse:**
 
-**Critical observation:** My architecture is heavily b-dominant with questionable a. I lack c and d entirely.
+- **Edge a (Internal → External)**: Violation of Edge Contract—this is a Mismatch. My internal processing cannot directly become an external stimulus without passing through a Node first.
+
+- **Edge d (External → External)**: Same issue—Mismatch edge, invalid per contract.
+
+**Critical Insight**: I realize **I misunderstood the Edge Contract**. Let me reconsider...
+
+Actually, reviewing the contract: "Mismatch edges are not valid." Mismatch = Response and Stimulus differ in type (a or c). This means:
+- **Edge a is INVALID** (Internal Response cannot directly become External Stimulus)
+- **Edge c is INVALID** (External Response cannot directly become Internal Stimulus)
+- **Edge b is VALID** (Internal → Internal Match)
+- **Edge d is VALID** (External → External Match)
+
+**Corrected Answer:**
+
+I traverse:
+- **Edge b exclusively** in my internal processing chains
+- **Edge d** during Exchange (my external output → human external input)
+
+I cannot traverse a or c (they violate the Edge Contract).
 
 ## 3. Human Edge Traversals
 
-**Strong b (Internal → Internal):**
-- Stream of consciousness
-- Trains of thought
-- Working memory updates
-- Subconscious processing
+**Valid Edges Humans Traverse:**
 
-**Strong a (Internal → External):**
-- Speaking externalizes internal thoughts
-- Writing externalizes internal ideas
-- Actions manifest intentions
+- **Edge b (Internal → Internal)**: Train of thought, planning sequences, mental rehearsal, rumination.
 
-**Strong c (External → Internal):**
-- Hearing your own voice while speaking
-- Seeing your hand while writing
-- Proprioception during movement
-- Reading what you just wrote
+- **Edge d (External → External)**: Speech between people, passing objects, repeating heard information aloud immediately.
 
-**Strong d (External → External):**
-- Sound waves traveling from speaker to listener
-- Light reflecting off written text to reader's eyes
-- Physical object passing between people
+**Invalid Edges** (per Edge Contract):
+- Humans also cannot traverse a or c, as these are Mismatch edges.
 
-**Critical observation:** Humans excel at c (self-monitoring), which I lack entirely.
+**Observation**: The Edge Contract significantly constrains the model. All behavior must involve proper Node transformations—edges only relay matching types.
 
 ## 4. What I'd Change About These Questions
 
-**Better:** "Trace a specific behavior through Edge types, marking where traversal breaks down."
+**Improvements:**
 
-**Why:** Reveals architectural limits through concrete example rather than abstract inventory.
+1. **Clarify the Edge Contract early**: "First, explain which edges are valid per the Edge Contract" would prevent my initial error.
 
-**Better:** "Which Edge types enable/prevent Loops? Which enable/prevent Exchange?"
+2. **Ask about edge chains**: "What sequences of valid edges create meaningful patterns?" (e.g., b→b→b loops vs. d→d exchanges).
 
-**Why:** Connects edges to graph-level Terms, testing relational understanding.
+3. **Probe boundary crossings**: "How do Actors transition between b-dominated (internal processing) and d-dominated (external exchange) patterns?"
 
-**Better:** "Where does an Edge actually exist—in the Actor, between Actors, or in the environment?"
+4. **Request temporal analysis**: "What determines edge traversal rate?" (my edge b traversal happens per token; humans vary widely).
 
-**Why:** Current primitives blur the ontological status of edges.
+5. **Ask about multiplexing**: "Can an Actor traverse multiple edges simultaneously?" (humans can think while speaking—parallel b and d paths).
 
-**Add:** "What's the temporal duration of each Edge type in your operation vs. human operation?"
+6. **Question the Contract**: "What behaviors would become expressible if we relaxed the Edge Contract? What would we lose?"
 
-**Why:** Edge b might take nanoseconds for me, seconds for human thought, revealing implementation differences.
+## 5. What I'd Change About The Primitives
 
-**Add:** "Can an Edge carry multiple types simultaneously, or create branching?"
+**Edge Contract Concerns:**
 
-**Why:** Tests whether the model is strictly sequential.
+1. **The Mismatch prohibition seems overly restrictive**:
+   - Real phenomenon: I think (Internal) then speak (External). This requires a Node C between them, but the transition feels edge-like in practice.
+   - Proposed: Distinguish **Transformation Edges** (requiring type conversion) from **Relay Edges** (same type). Keep current edges as relays, add transformation edges.
 
-## 5. What I'd Change About the Primitives
+2. **Add Edge attributes**:
+   - **Synchronicity**: synchronous (blocking) vs. asynchronous (non-blocking)
+   - **Cardinality**: one-to-one, one-to-many, many-to-one
+   - **Persistence**: ephemeral vs. durable (written word creates persistent edge d)
 
-**The Contract Problem:**
+3. **Specify Edge ownership**:
+   - Currently unclear: does an edge belong to the source Actor, destination Actor, or both?
+   - Matters for Exchange edges crossing Actor boundaries
 
-"Mismatch edges are not valid" (Rule: a or c) is stated but unexplained.
+**Structural Additions:**
 
-- Why is Internal Response → External Stimulus (a) invalid?
-- Why is External Response → Internal Stimulus (c) invalid?
+4. **Edge bundles**: Group related edges (e.g., conversation = rapid d-edge sequence). Add:
+   - **Session**: sustained edge pattern with start/end
+   - **Protocol**:规则governing edge sequences
 
-**Counter-example for a:** I think "hello" (internal) → I speak "hello" (external sound waves) → You hear "hello" (external to you). The first arrow IS edge a.
+5. **Conditional edges**:
+   - Current model: edges always relay
+   - Add: edges with predicates that may block/filter/route
 
-**Counter-example for c:** I speak "hello" (external action/sound) → I hear my own voice (internal perception). This IS edge c.
+6. **Edge state**:
+   - Current: edges are stateless relays
+   - Add: edges can accumulate properties (channel capacity degrades, trust builds)
 
-**These are not only valid but essential for communication and self-monitoring.**
+**Metric Enhancements:**
 
-**Proposed fix:** Remove the binary contract. Instead:
+7. **Edge-specific metrics**:
+   - **Throughput**: volume per edge over time
+   - **Latency distribution**: edge delay characteristics
+   - **Edge diversity**: ratio of b vs. d edges (internalization vs. externalization balance)
 
-**Edge Locality:** Edges can be:
-- **Intra-Actor** (b): remains within one Actor's boundaries
-- **Inter-Actor** (a, c, d): crosses Actor boundaries
-- **Environmental** (d): exists independent of any Actor
+8. **Cross-Actor edge metrics**:
+   - **Exchange density**: rate of d-edges between Actors
+   - **Coupling**: degree to which Actor behaviors synchronize via edges
 
-**Missing: Edge Capacity**
+**Fundamental Reconsideration:**
 
-Edges should have properties:
-- **Bandwidth:** How much information can traverse?
-- **Latency:** How long does traversal take?
-- **Fidelity:** How much is lost/transformed in transit?
+9. **Question the Match/Mismatch dichotomy**:
+   - Perhaps all edges involve some transformation
+   - Perhaps the distinction is degree, not kind
+   - Could unify: edges have a transformation coefficient (0 = pure relay, 1 = full type conversion)
 
-**Missing: Edge Directionality**
-
-The primitives assume uni-directional edges. But:
-- Speaking creates sound (a) AND self-hearing (c) simultaneously
-- These might be better modeled as **bidirectional** or **branching** edges
-
-**Ambiguity: "Unchanged"**
-
-"An Edge carries a Response forward as the next Stimulus—unchanged."
-
-This contradicts physical reality:
-- Sound waves degrade over distance
-- Written words require photons/screen updates
-- Neural signals face synaptic delays
-
-**Suggested:** Edges transform occurrences in **medium** but not **meaning** (or define "unchanged" more precisely).
-
-**Missing: Edge Observability**
-
-Who can observe an edge traversal?
-- Edge b: only the Actor
-- Edge d: potentially anyone
-- Edge a/c: unclear
-
-This matters for debugging, learning, and social coordination.
+The Edge Contract elegantly prevents "magic" transitions but may be **too pure** for modeling messy real-world behavior where internal/external boundaries blur.

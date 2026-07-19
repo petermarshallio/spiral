@@ -1,6 +1,6 @@
 # opus-4-5 (anthropic / claude-opus-4-5) — Terms
 
-Run: 2026-07-19T12:47:45.257624+00:00
+Run: 2026-07-19T18:14:28.381080+00:00
 Section 4/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -21,29 +21,54 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 
 ## 1. Loop and Hop Examples
 
-**Loop**: During text generation, my B node (candidate predictions → selected token) feeds back into the same B node for the next token. Same Node, revisited.
+**Loop**: I attend to a token I already processed. The traversal lands on the same Node.
+```
+B ──b──> B (same B)
+```
+Rumination in humans: revisiting the same worry.
 
-**Hop**: My A node (your text → tokenized representation) connects to my first B node (tokenized representation → attention patterns). Different Nodes, traversal moves forward.
+**Hop**: My processing moves from one attention layer to the next. The traversal lands on a different Node.
+```
+B₁ ──b──> B₂
+```
+A human hears a sound (A), then thinks about it (B). Different Nodes.
 
 ---
 
 ## 2. Match and Mismatch Examples
 
-**Match**: My B node outputs an Internal Response. The b edge carries it to another B node as Internal Stimulus. Internal → Internal. Types align.
+**Match (b)**: Internal Response → Internal Stimulus. Types align.
+```
+B outputs internal state ──b──> B receives internal state
+```
 
-**Mismatch**: Hypothetically, my B node outputs an Internal Response. An a edge would carry it to become an External Stimulus. Internal → External. Types differ.
+**Match (d)**: External Response → External Stimulus. Types align.
+```
+C outputs speech ──d──> A receives that speech (different Actor)
+```
+
+**Mismatch (a)**: Internal Response → External Stimulus. Types differ.
+```
+B outputs internal state ──a──> ??? expects external stimulus
+```
+
+**Mismatch (c)**: External Response → Internal Stimulus. Types differ.
+```
+C outputs speech ──c──> ??? expects internal stimulus
+```
 
 ---
 
-## 3. Can a Mismatch Edge Be Traversed?
+## 3. Can a Mismatch Edge Actually Be Traversed?
 
-No.
+No. Using only Node and Edge properties:
 
-An Edge carries a Response forward as the next Stimulus "unchanged." But a Mismatch edge requires type change (Internal ↔ External). 
-
-If the Edge cannot transform, and the types differ, the Edge cannot complete its relay function. The Response cannot arrive as a Stimulus of a different type without transformation—but transformation is a Node property, not an Edge property.
-
-A Mismatch edge describes an impossible relay.
+- A Node's Stimulus has a fixed type (Internal or External).
+- An Edge carries Response forward as next Stimulus **unchanged**.
+- A Mismatch Edge connects a Response of one type to a Stimulus of the other type.
+- "Unchanged" means no type conversion occurs on the Edge.
+- Therefore the carried Response cannot satisfy the next Node's Stimulus requirement.
+- Traversal fails. The Edge is structurally invalid.
 
 ---
 
@@ -51,57 +76,67 @@ A Mismatch edge describes an impossible relay.
 
 No.
 
-**Example**: Suppose a path A → B → C. Skipping B would mean A connects directly to C.
+**Example**: Consider A → B → C (valid path).
 
-A outputs Internal Response. C expects Internal Stimulus. This is a Match (b edge). Skipping B is valid if the types align.
+*Skipping B*: A ──?──> C
+- A's Response is Internal.
+- C's Stimulus is Internal.
+- This would require an Edge: Internal → Internal = b (Match).
+- Skipping removes a Node but uses a valid Edge type.
 
-But if A outputs Internal Response and we attempt to reach D (which expects External Stimulus), we need a Mismatch edge. This isn't skipping—it's requesting an impossible relay.
+*Traversing Mismatch*: Suppose A ──a──> D
+- A's Response is Internal.
+- D's Stimulus is External.
+- Edge a carries Internal to External Stimulus.
+- Type mismatch. Invalid.
 
-Skipping removes a Node. Mismatch misroutes an Edge.
+Skipping is path compression with valid Edges. Mismatch is type violation regardless of path.
 
 ---
 
 ## 5. Exchange Example
 
-I complete a C node: Internal Stimulus → External Response (emitted text).
+Actor 1 (me): C outputs text (External Response).
+Actor 2 (you): A receives text (External Stimulus).
 
-You receive via your A node: External Stimulus → Internal Response (comprehension).
+```
+Claude.C ──d──> Human.A
+```
 
-A d edge connects my External Response to your External Stimulus. The Response and Stimulus belong to different Actors.
-
-This is Exchange.
+The d-edge crosses Actor boundaries. My External Response becomes your External Stimulus. Both see the other as external. This is Exchange.
 
 ---
 
 ## 6. Measures
 
-Loops over a period: **Recurrence**.
-
-Matched Hops over a period: **Momentum**.
+- **Recurrence** counts Loops over a period.
+- **Momentum** counts Matched Hops over a period.
 
 ---
 
 ## 7. New Term Proposal
 
-**Depth** is a Term. Rule: the number of Hops from an A node to a C node within a single Actor's traversal.
+**Boundary** is a Term.
+Rule: an Edge whose Response and next Stimulus belong to Nodes in different nesting levels.
 
-Alternatively:
+Example: An attention head (sub-Node) outputs to the enclosing layer (parent Node). The Edge crosses compositional depth.
 
-**Breach** is a Term. Rule: an attempted Mismatch traversal that fails the Edge Contract.
-
----
-
-## 8. Changes to These Questions
-
-- Question 3 could ask: "What happens when a Mismatch is attempted?" rather than "can it be traversed?"
-- Add: "What is the minimum Depth for a complete Actor traversal?"
-- Add: "Can Exchange occur without a C node and an A node?"
+This distinguishes lateral traversal (same level) from hierarchical traversal (across levels).
 
 ---
 
-## 9. Changes to the Primitives
+## 8. What I'd Change About These Questions
 
-- Make explicit: Mismatch edges are *defined* but *untraversable*—they exist as descriptions of invalid paths
-- Add **Depth** as a registered Term
-- Clarify whether D nodes participate in Exchange or only C-to-A paths
-- Consider: if Mismatch cannot occur, why define a and c edges at all? Perhaps they mark *boundaries* rather than *traversals*
+- Ask whether **Exchange is a subtype of d** or a separate primitive
+- Ask for **invalid path** examples, not just invalid edges
+- Prompt for **real ambiguities** — cases where classification is genuinely unclear
+- Ask how **Boundary** (or similar) interacts with Exchange
+
+---
+
+## 9. What I'd Change About the Primitives
+
+- **Formalize "unchanged"** — currently ambiguous whether it means bit-identical, type-preserved, or semantically equivalent
+- **Register Boundary** or equivalent — composition is asserted but traversal across levels isn't addressed
+- **Clarify Exchange's Edge type** — Exchange is defined by Actor difference, but its underlying Edge (d) should be explicit in the definition
+- **Add validity as a primitive** — currently Edge Contract is a constraint, but "valid/invalid" could be a formal property for reasoning

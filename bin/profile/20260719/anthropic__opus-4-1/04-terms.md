@@ -1,6 +1,6 @@
 # opus-4-1 (anthropic / claude-opus-4-1) — Terms
 
-Run: 2026-07-19T12:24:30.491048+00:00
+Run: 2026-07-19T18:10:15.198441+00:00
 Section 4/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -19,94 +19,101 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 
 ## Response
 
-## 1. Loop and Hop Examples
+## 1. Loop and Hop examples
 
-**Loop:** Node B (internal processing) →b→ Node B (same node)
-- Example: Iterative refinement of a thought
+**Loop:** A person thinking "I should exercise" (Node B) → deciding to check fitness apps (Node B) → researching routines (Node B) → thinking "I should exercise" (same Node B again).
 
-**Hop:** Node A (perception) →b→ Node B (processing)  
-- Example: Seeing text then understanding it
+**Hop:** Hearing a question (Node A) → understanding it (Node B, different from A).
 
-## 2. Match and Mismatch Examples
+## 2. Match and Mismatch examples
 
-**Match (b):** Internal Response →b→ Internal Stimulus
-- Example: One thought leading to another thought
+**Match (Edge b):** Internal thought "I'm hungry" (Internal Response) → Internal recognition "I should eat" (Internal Stimulus). Both Internal.
 
-**Mismatch (c):** External Response →c→ Internal Stimulus
-- Example: Another's speech entering my processing (if it were valid)
+**Mismatch (Edge a):** Internal decision "I'll speak" (Internal Response) → External vocalization beginning (External Stimulus). Type changes from Internal to External.
 
-## 3. Can Mismatch Edges Be Traversed?
+## 3. Can a Mismatch edge actually be traversed?
 
-No. The Edge contract states "Mismatch edges are not valid." 
+**No, it cannot be traversed as specified.**
 
-Using only properties: An Edge "carries a Response forward as the next Stimulus — unchanged." A Mismatch edge would need to carry an Internal Response to become an External Stimulus (or vice versa). Since edges cannot transform (only Nodes transform), and the types don't match, the Edge cannot fulfill its role of relaying unchanged. The traversal fails.
+The Edge contract states it carries a Response forward "unchanged." But a Mismatch by definition changes the type (Internal↔External). This is a contradiction:
+- Edge property: carries unchanged
+- Mismatch property: type changes
+- These are mutually exclusive
 
-## 4. Skipping vs Mismatch
+Either the Response arrives with wrong type (violating the next Node's input requirement) or the Edge transforms it (violating the "unchanged" rule).
 
-No, they're different.
+## 4. Is skipping a Node the same as traversing a Mismatch?
 
-**Skipping:** A →(some valid path)→ C, bypassing B entirely
-- Example: Perception directly to Expression, bypassing deliberation
-- Uses valid edges, just omits a Node from the path
+**No, they're different.**
 
-**Mismatch attempt:** B (Internal Response) →a→ [External Stimulus required]
-- Cannot proceed because the edge itself is invalid
-- Not about path choice but about type incompatibility
+**Skipping example:** 
+- Normal: See food (A) → Evaluate if hungry (B) → Reach for food (C)
+- Skipping: See food (A) → Reach for food (C), bypassing B
+- This maintains type alignment: A's Internal Response matches C's Internal Stimulus
 
-## 5. Exchange Example
+**Mismatch attempt:**
+- Internal thought (B's Internal Response) → External action (C expects Internal Stimulus)
+- The type mismatch makes this impossible without transformation
 
-**Actor 1:** Node C (speaks) →d→ **Actor 2:** Node A (hears)
+Skipping preserves type compatibility; Mismatch violates it.
 
-This works because:
-- Actor 1's Response is External (speech)
-- Actor 2's Stimulus is External (hearing)  
-- The d edge maintains External type throughout
-- Each Actor sees the other as External
+## 5. Exchange example
 
-## 6. Measures
+**Actor 1 (Speaker):** Formulates thought (B) → Speaks "Hello" (C) → Sound waves travel (d edge) →
 
-**Recurrence** counts Loops over a period
-**Momentum** counts Matched Hops over a period
+**Actor 2 (Listener):** → Sound waves arrive (External Stimulus) → Hears "Hello" (A) → Processes greeting (B)
 
-## 7. New Term
+The Exchange is the d edge where Actor 1's external Response becomes Actor 2's external Stimulus.
 
-**Bridge**: A Rule where a Node has both Internal and External aspects in its Stimulus or Response, allowing type conversion within the Node itself rather than at Edges.
+## 6. Measures for Loops and Matched Hops
 
-This would solve the Mismatch paradox by making certain Nodes capable of legitimate type transformation.
+**Recurrence** counts Loops over a period.
 
-## 8. Suggested Question Changes
+**Momentum** counts Matched Hops over a period.
 
-- Add: "If Mismatches are invalid, why does the model define them?"
-- Clarify: "How do Actors share an External space for Exchange?"
-- Ask: "What happens to a Response that cannot find a valid next Edge?"
-- Explore: "Can a traversal pause mid-Edge?"
-- Add: "Define a metric for failed traversal attempts"
+## 7. New Term proposal
 
-## 9. Suggested Primitive Changes
+**Cascade**: A sequence of three or more Nodes where each Response type matches the next Stimulus type (all Matches, no Mismatches).
 
-**Critical Fix Needed:**
-The model defines four Edge types then invalidates two. This creates an incomplete system. Options:
+Rule: A traversal path of length ≥3 where all Edges are Matched.
 
-1. **Legitimize Mismatches** with conditions:
-   - Add "Adapter Nodes" that handle type conversion
-   - Or allow Edges to transform under specific Rules
+Example: B→b→B→b→B (pure internal processing cascade)
 
-2. **Reframe External/Internal:**
-   - Make it perspective-relative, not absolute
-   - Each Node sees some things as External, others as Internal
+## 8. What I'd change about these questions
 
-3. **Add Interface Primitive:**
-   - **Port**: Node connection points with declared types
-   - **Protocol**: Rules for valid type negotiations
+- Question 3 exposes a fundamental flaw - appreciate this, but earlier questions should build toward it
+- Add: "If Mismatches are invalid, how do Actors ever interact with External?"
+- Clarify: "Show the same behavior with and without skipping"
+- Add: "Can there be an Exchange without Node D?"
+- Include: "Design an Edge that solves the Mismatch problem"
 
-4. **Clarify External Space:**
-   - How do Actors share it for Exchange?
-   - Is it a queue? A broadcast medium? 
-   - Who manages contention?
+## 9. What I'd change about the primitives
 
-5. **Add Failure Handling:**
-   - **Halt**: When no valid Edge exists
-   - **Backtrack**: Return to previous Node
-   - **Exception**: Special paths for invalid states
+**The Mismatch Paradox must be resolved:**
 
-The elegant core concept needs resolution of the type-mismatch paradox to become practically useful.
+**Option 1: Redefine Edges**
+- Edges carry content unchanged but may transform format
+- Type conversion happens at Edge boundaries
+- Add "Adapter Edges" that explicitly handle type conversion
+
+**Option 2: Redefine Nodes**
+- Add boundary Nodes that accept mixed types
+- Node A.5: Internal+External → Internal
+- Node C.5: Internal → Internal+External
+
+**Option 3: Redefine "unchanged"**
+- "Unchanged" means preserving information, not format
+- Edges maintain semantic content while allowing type shifts
+- This makes Mismatches valid but needing special handling
+
+**Other critical fixes:**
+
+**Bidirectional Edges:** Some connections work both ways (neural pathways, conversations)
+
+**Partial Traversal:** Sometimes a Response only partially becomes the next Stimulus
+
+**Edge Capacity:** Some Edges may carry multiple signals simultaneously
+
+**Null Nodes:** Sometimes processing stops - need termination semantics
+
+**Observation:** The current model makes Actor interaction impossible without Node D (external-to-external), but D seems like a rare bypass rather than the primary interaction mechanism. The model needs Actor boundaries that permit Exchange without requiring pure external passthrough.

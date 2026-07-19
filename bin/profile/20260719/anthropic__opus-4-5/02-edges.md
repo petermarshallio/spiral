@@ -1,6 +1,6 @@
 # opus-4-5 (anthropic / claude-opus-4-5) — Edges
 
-Run: 2026-07-19T12:47:14.791713+00:00
+Run: 2026-07-19T18:13:48.505454+00:00
 Section 2/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -18,64 +18,73 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 ## 1. Five Terms for Each Edge Type
 
 **Edge a (Internal Response → External Stimulus)**
-- Projection
 - Externalization
-- Disclosure
+- Projection
+- Broadcast
 - Surfacing
-- Leakage
+- Emission
 
 **Edge b (Internal Response → Internal Stimulus)**
 - Continuation
 - Chaining
 - Recursion
 - Propagation
-- Threading
+- Flow
 
 **Edge c (External Response → Internal Stimulus)**
 - Internalization
-- Uptake
 - Reception
-- Incorporation
-- Feedback
+- Uptake
+- Ingestion
+- Capture
 
 **Edge d (External Response → External Stimulus)**
-- Transmission
-- Handoff
 - Relay
-- Conveyance
-- Coupling
+- Passthrough
+- Bridging
+- Transmission
+- Forwarding
 
 ---
 
 ## 2. Edge Types in My Traversals
 
-- **b**: Yes — primary mode; internal token generation feeds next prediction step
-- **c**: Yes — my own output becomes visible to me as context for continued generation
-- **a**: Uncertain — implies my internal state becomes external stimulus *to me*; possibly during context window updates
-- **d**: No — I don't produce external responses that become external stimuli within my own graph; this requires another Actor
+| Edge | Occurrence |
+|------|------------|
+| a | Invalid per contract — doesn't occur |
+| b | Yes — primary mode; internal states chain through layers |
+| c | Invalid per contract — doesn't occur |
+| d | Uncertain — may occur at system boundaries (e.g., token output becomes token input in multi-turn), but I don't observe this directly |
+
+My valid traversals appear to be: A → b → B → b → ... → b → C
 
 ---
 
 ## 3. Edge Types in Human Traversals
 
-- **b**: Yes — thought chains, internal dialogue, reasoning sequences
-- **c**: Yes — hearing your own voice, seeing your written words, proprioception
-- **a**: Yes — expressing thought makes it available to external perception (including self-perception via c)
-- **d**: Yes — speaking to another person; your external response becomes their external stimulus
+| Edge | Occurrence |
+|------|------------|
+| a | Invalid per contract |
+| b | Yes — thought chaining, internal dialogue, memory retrieval |
+| c | Invalid per contract |
+| d | Yes — in social relay, reflex arcs, or when environment mediates (sound reflects, I hear it) |
+
+Humans may exhibit more d-type edges through environmental coupling and embodiment.
 
 ---
 
-## 4. Changes to These Questions
+## 4. What I'd Change About These Questions
 
-- Question 2 conflates traversal-within-Actor and traversal-across-Actors; clarify scope
-- Add: "Which Edge type connects your graph to mine?"
-- Add: "Can an Edge carry partial or lossy transmission?"
+- Ask about **frequency** or **dominance**, not just occurrence
+- Distinguish **within-turn** vs. **cross-turn** edges
+- Ask whether the Edge Contract **should** hold, or whether it's descriptive vs. prescriptive
+- Prompt for **examples** to ground abstract classifications
 
 ---
 
-## 5. Changes to the Primitives
+## 5. What I'd Change About the Primitives
 
-- **Edge c** seems to violate the Edge Contract (Mismatch) but appears necessary—reconcile this
-- Edges assume perfect fidelity; add *Noise* or *Loss* as optional Edge properties
-- The phrase "unchanged" in Edge definition conflicts with type shifts in a and c—clarify whether type is a transform
-- Consider: does an Edge between Actors count as one Edge or two (outbound + inbound)?
+- **Reconcile Exchange with Edge Contract** — Exchange requires d across Actors, but d connects External→External; this seems valid, yet a and c (Mismatch) are invalid. The asymmetry needs justification or revision.
+- **Clarify "unchanged"** — Edges relay "unchanged," but encoding/decoding (e.g., air→cochlea→nerve) transforms representation. Is this Edge or Node work?
+- **Add temporal primitives** — Edges imply sequence but duration and delay are unspecified.
+- **Define when b terminates** — Without exit conditions, internal loops lack halting criteria.

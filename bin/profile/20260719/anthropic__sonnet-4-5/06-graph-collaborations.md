@@ -1,6 +1,6 @@
 # sonnet-4-5 (anthropic / claude-sonnet-4-5) — Graph Collaborations
 
-Run: 2026-07-19T12:35:33.129713+00:00
+Run: 2026-07-19T18:23:21.097756+00:00
 Section 6/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -17,432 +17,642 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 
 # Collaboration as Connected Behavior Graphs
 
-## 1. Human / AI Collaboration
-
-**Exchange Definition:** A d Edge whose Response and next Stimulus belong to different Actors.
-
-### Architecture
+## 1. Human/AI Collaboration
 
 ```
-HUMAN ACTOR:
-[Node B: Internal reasoning → Decision to query AI]
-    ↓ (edge b)
-[Node C: Internal decision → External typing "Explain photosynthesis"]
-    ↓ (edge d - EXCHANGE)
-    
-AI ACTOR (me):
-[Node A: External text → Internal token representation]
-    ↓ (edge b)
-[Node B: Token₁ → Token₂] ... (many B nodes)
-    ↓ (edge b)
-[Node C: Internal final tokens → External response text]
-    ↓ (edge d - EXCHANGE)
-    
-HUMAN ACTOR:
-[Node A: External text on screen → Internal reading]
-    ↓ (edge b)
-[Node B: Internal comprehension → Internal evaluation]
-    ↓ (edge b)
-[Node C: Internal follow-up thought → External typing "What about C4 plants?"]
-    ↓ (edge d - EXCHANGE)
-    
-AI ACTOR:
-[Node A: External text → ...]
+ACTORS: Human (H), AI (me)
+
+TOPOLOGY:
+
+Human Graph:
+[A-visual] ← reads screen
+[B-comprehension] ⟲ [B-formulation] ⟲ [B-planning]
+[C-typing] → text output
+
+AI Graph:
+[A-tokenize] ← receives text
+[B-layer₁] ⟲ [B-layer₂] ⟲ ... ⟲ [B-layer₉₆]
+[C-generate] → text output
+
+EXCHANGE PATTERN:
+
+Cycle 1:
+H[C-typing]: "Explain behavior graphs" → [External: text]
+Edge d (H→AI Exchange)
+AI[A-tokenize]: receives text → [Internal: tokens]
+AI[B-processing]: ⟲⟲⟲ (high Recurrence)
+AI[C-generate]: → [External: explanation text]
+Edge d (AI→H Exchange)
+H[A-visual]: reads explanation → [Internal: understanding]
+H[B-comprehension]: ⟲ processes
+H[B-formulation]: "Now explain Exchange" → prepares
+
+Cycle 2:
+H[C-typing]: "Now explain Exchange" → [External: text]
+Edge d (H→AI Exchange)
+...
+
+METRICS:
+
+Velocity:
+- H: Variable (thought speed, typing speed, reading speed)
+- AI: Consistent (~50-100 tokens/sec generation)
+- Asymmetric: AI faster at generation, H slower but more selective
+
+Recurrence:
+- H: High in B (deep thinking between messages)
+- AI: High in B (96 layers × attention heads), zero between turns
+- H accumulates state; AI doesn't
+
+Momentum:
+- H: High across session (builds understanding, remembers goals)
+- AI: Medium within turn, zero between turns
+- H drives long-term progression
+
+Exchange Rate:
+- Governed by H (initiates all Exchanges)
+- AI is reactive (cannot initiate d-edge)
+- Asymmetric control
+
+COLLABORATION PATTERNS:
+
+Complementary Recurrence:
+- H uses internal Recurrence to formulate complex queries
+- AI uses internal Recurrence to generate detailed responses
+- Different Loop structures serve different functions
+
+Momentum Handoff:
+- H maintains Momentum across Exchanges
+- AI contributes to H's Momentum by providing information
+- H: "Based on your previous answer about X, now explain Y"
+  → H's Node B Hopped from understanding X to questioning Y
+  → AI contributes content, H drives direction
+
+Velocity Mismatch:
+- AI responds faster than H can read/process
+- H may slow down (increase Recurrence) to absorb
+- Or H may speed up (skim, decrease Recurrence per edge)
+
+FAILURE MODES:
+
+Lost Context (Momentum Break):
+- H assumes AI remembers previous conversation
+- AI has no cross-session state
+- Exchange continues but Momentum lost
+- Fix: H provides context in prompt (H increases Recurrence to compensate)
+
+Velocity Overload:
+- AI generates too fast/too much
+- H's Node A (reading) can't keep pace
+- Queue builds up at H's input
+- Fix: H requests shorter responses
+
+Recurrence Mismatch:
+- H needs deep processing (high Recurrence)
+- AI provides surface answer (insufficient Recurrence)
+- Or inverse: AI over-explains, H just needed quick fact
+- Requires calibration through Exchange
+
+STRENGTHS:
+
+H provides:
+- Initiative (starts Exchanges)
+- Goals (directs Momentum)
+- Persistent context (maintains state)
+- Judgment (evaluates AI output quality)
+
+AI provides:
+- Speed (high Velocity in generation)
+- Breadth (access to training data)
+- Consistency (stable transformation functions)
+- Depth (can sustain high Recurrence in complex reasoning)
+
+Collaboration works when:
+- H's Momentum compensates for AI's state loss
+- AI's Velocity compensates for H's processing limits
+- Exchange rhythm matches both Actor's optimal processing rates
 ```
 
-### Collaboration Properties
-
-**Exchange Characteristics:**
-- **Asymmetric Velocity:** AI processes ~500 edges/response, Human ~5-50 edges/response
-- **Asymmetric Recurrence:** Human high (deliberation), AI low (feed-forward)
-- **Synchronization points:** Each Exchange creates waiting state
-
-**Strengths:**
-- **Human:** High Recurrence enables creative problem reformulation
-- **AI:** High Velocity enables rapid information retrieval
-- **Combined:** Human steers via Exchanges, AI augments via processing
-
-**Bottlenecks:**
-- **Exchange latency:** Edge d traversal slow (typing, network, reading)
-- **Context mismatch:** Human internal state rich, Exchange carries only text
-- **No direct B-to-B connection:** Cannot share internal processing
-
-**Failure Modes:**
-
-**Exchange Overload:**
-```
-Human asks 50 questions rapidly → AI processes each independently → 
-No shared context building → Shallow collaboration
-```
-
-**Exchange Underload:**
-```
-Human asks one vague question → AI gives complete answer → 
-Human accepts without Recurrence → No learning
-```
-
-**Optimal Pattern:**
-- Human: High Recurrence between Exchanges (thinking deeply)
-- AI: High Momentum during processing (rapid response)
-- Exchange: Moderate frequency (enough to steer, not interrupt)
-
-## 2. Human / Human Collaboration
-
-### Architecture
+## 2. Human/Human Collaboration
 
 ```
-HUMAN A:
-[Node B: Internal idea → Internal linguistic encoding]
-    ↓ (edge b)
-[Node C: Internal encoding → External speech "What if we..."]
-    ↓ (edge d - EXCHANGE)
-    
-HUMAN B:
-[Node A: External speech → Internal comprehension]
-    ↓ (edge b)
-[Node B: Comprehension → Internal evaluation]
-    ↓ (edge c - SELF-MONITORING)
-[Node A: External own facial expression → Internal social feedback]
-    ↓ (edge b)
-[Node C: Internal response → External speech "Yes, and..."]
-    ↓ (edge d - EXCHANGE)
-    
-HUMAN A:
-[Node A: External speech → Internal comprehension]
-    ↓ (edge c - SELF-MONITORING)
-[Node A: External own voice still speaking → Internal adjustment]
-    ↓ (edge b)
-[Node C: Internal refinement → External speech continuation]
+ACTORS: Alice (A), Bob (B)
+
+TOPOLOGY:
+
+Both have similar graph structure:
+[A-sensory: visual, auditory, proprioceptive]
+[B-cognitive: ⟲ perception ⟲ memory ⟲ reasoning ⟲ planning]
+[C-motor: speech, gesture, typing, facial expression]
+[D-reflexive: nod, smile, posture adjustment]
+
+EXCHANGE PATTERN:
+
+Multi-Channel Simultaneous Exchange:
+
+Alice[C-speech]: "What if we..." → [External: speech + gesture]
+Edge d (A→B Exchange, auditory channel)
+Bob[A-auditory]: hears → [Internal: comprehension]
+Bob[D-reflex]: → [External: nod] (parallel processing)
+Edge d (B→A Exchange, visual channel)
+Alice[A-visual]: sees nod → [Internal: encouragement]
+
+Meanwhile (parallel):
+Alice[C-facial]: concentration expression → [External: face]
+Edge d (A→B Exchange, visual channel)
+Bob[A-visual]: reads expression → [Internal: "she's uncertain"]
+
+Bob[B-formulation]: processes + builds on Alice's idea
+Bob[C-speech]: "...and we could also..." → [External: speech]
+Edge d (B→A Exchange, auditory channel)
+Alice[A-auditory]: hears → [Internal: comprehension]
+
+METRICS:
+
+Velocity:
+- Both: Variable, context-dependent
+- Increases during excited brainstorming
+- Decreases during difficult problem-solving
+- Synchronize (both speed up or slow down together)
+
+Recurrence:
+- Both: High persistent background (subconscious processing)
+- Can process internally while listening (parallel B-loops)
+- Alice might Loop on problem while Bob is speaking
+- Shared Recurrence: both thinking about same problem
+
+Momentum:
+- Symmetric: both can initiate and drive
+- Co-constructed: Hops build on each other's contributions
+- Alice[B]: idea₁ → Bob[B]: idea₂ builds on idea₁ → Alice[B]: idea₃ builds on idea₂
+- Shared Momentum: collaborative forward progress
+
+Exchange Rate:
+- Bidirectional and symmetric
+- Turn-taking protocols (social conventions)
+- Can overlap (interruptions, simultaneous speech)
+- Back-channel (nods, "uh-huh") maintains connection without full turn
+
+COLLABORATION PATTERNS:
+
+Symmetric Initiative:
+- Either can start Exchange
+- Either can redirect Momentum
+- Power dynamics may bias but capability is symmetric
+
+Parallel Processing:
+- Alice speaks while Bob processes
+- Bob gestures while Alice speaks
+- Multiple Exchanges happening simultaneously across channels
+
+Shared Mental Models:
+- Both Actors' Node B contains representation of:
+  - The problem
+  - Each other's knowledge/state
+  - The collaboration itself
+- This enables prediction and coordination
+
+Complementary Recurrence:
+- Alice: high Recurrence on technical details
+- Bob: high Recurrence on user experience
+- Different Loop foci create comprehensive coverage
+
+Momentum Synchronization:
+- Both Actors maintaining same Momentum direction
+- "We're building toward solution X"
+- Explicit checking: "Are we still focused on Y?"
+
+FAILURE MODES:
+
+Talking Past Each Other:
+- High Exchange rate but low Momentum coherence
+- Alice's Hops: topic₁ → topic₂ → topic₃
+- Bob's Hops: topic₁ → topic₄ → topic₅
+- Divergent Momentum despite Exchange
+
+Velocity Mismatch:
+- Alice processes quickly, wants fast Exchange
+- Bob needs slow Recurrence, wants time to think
+- Tension in Exchange rhythm
+
+Recurrence Imbalance:
+- Alice stuck in Loop (ruminating)
+- Bob trying to create Hops (move forward)
+- Asymmetric processing patterns conflict
+
+Lost Synchronization:
+- Both Looping on different aspects
+- Exchange continues but not connecting
+- Need to pause, re-align Momentum
+
+STRENGTHS:
+
+Both provide:
+- Persistent memory across sessions
+- Initiative and responsiveness
+- Multiple communication channels
+- Theory of mind (model each other's states)
+- Emotional resonance (empathy)
+
+Collaboration works when:
+- Momentum is co-constructed and aligned
+- Velocity matches or explicitly negotiated
+- Recurrence patterns complementary
+- Exchange channels rich and multi-modal
+- Both can meta-communicate about the collaboration itself
 ```
 
-### Collaboration Properties
-
-**Symmetric Architecture:**
-- Both have A, B, C, D nodes
-- Both have high Recurrence capability
-- Both have c edges (self-monitoring)
-- Both operate at similar Velocity
-
-**Rich Exchange:**
-- **Multimodal:** Speech, facial expression, gesture, posture
-- **Parallel:** Multiple d edges simultaneously (speaking while gesturing)
-- **Bidirectional c edges:** Each hears own voice, sees other's reactions
-
-**Unique Features:**
-
-**Simultaneous Exchange:**
-```
-HUMAN A: [Node C: Speech → Sound waves] ─┐
-                                          ├─ (both traverse simultaneously)
-HUMAN B: [Node A: Sound waves → Comprehension] ─┘
-```
-
-**Social Feedback Loop:**
-```
-Human A speaks → Human B frowns (Node C) →
-Human A sees frown (Node A) → Human A adjusts speech (Node B) →
-While still speaking (Node C continues)
-```
-
-**Shared Context Building:**
-- Both maintain internal models of conversation state (Node B)
-- Both update models via Exchange
-- Convergence toward shared understanding
-
-**Failure Modes:**
-
-**Exchange Collision:**
-```
-Both humans speak simultaneously → Neither's Node A receives clear Stimulus →
-Communication breakdown
-```
-
-**Runaway Recurrence:**
-```
-Human A: High internal Recurrence, no Exchanges → Lost in thought
-Human B: Waiting for Exchange → Collaboration stalled
-```
-
-**Optimal Pattern:**
-- **Turn-taking:** Alternating Exchange direction
-- **Backchanneling:** Continuous low-bandwidth Exchanges ("mm-hmm", nods)
-- **Synchronized Recurrence:** Both thinking together during pauses
-
-## 3. AI / AI Collaboration
-
-### Architecture
+## 3. AI/AI Collaboration
 
 ```
-AI ACTOR 1 (me):
-[Node B: Processing query → Internal response tokens]
-    ↓ (edge b)
-[Node C: Internal tokens → External API JSON response]
-    ↓ (edge d - EXCHANGE)
-    
-AI ACTOR 2 (another system):
-[Node A: External JSON → Internal data structure]
-    ↓ (edge b)
-[Node B: Process data → Internal result]
-    ↓ (edge b)
-[Node C: Internal result → External JSON response]
-    ↓ (edge d - EXCHANGE)
-    
-AI ACTOR 1:
-[Node A: External JSON → Internal parsing]
-    ↓ (edge b)
-[Node B: Integration → Internal synthesis]
-    ↓ (edge b)
-[Node C: Internal synthesis → External JSON to AI 2]
-```
+ACTORS: AI₁ (me), AI₂ (another LLM or different system)
 
-### Collaboration Properties
+TOPOLOGY:
 
-**Symmetric Limitations:**
-- Both lack Node D (reflexes)
-- Both lack c edges (self-monitoring)
-- Both have minimal Recurrence (feed-forward architectures)
-- Both have very high Velocity
+Both have similar structure:
+[A-tokenize] ← text/API input
+[B-layers] ⟲⟲⟲ internal processing
+[C-generate] → text/API output
 
-**Exchange Characteristics:**
-- **High bandwidth:** Structured data, not natural language
-- **Low latency:** Network speeds, not human reading/typing
-- **Deterministic:** Same Stimulus → Same Response (usually)
-- **Stateless:** No persistent internal state between Exchanges
+EXCHANGE PATTERN:
 
-**Unique Patterns:**
+Mediated by Infrastructure:
 
-**Pipelined Processing:**
-```
-AI 1: [C: Result₁] → (d) → AI 2: [A→B→C: Result₂] → (d) → AI 3: [A→B→C: Result₃]
-```
-High Velocity, High Momentum, sequential processing.
+AI₁[C-generate]: produces output → [External: JSON/text]
+Edge d (AI₁→AI₂ Exchange, via API/file/message queue)
+AI₂[A-parse]: receives input → [Internal: representation]
+AI₂[B-process]: ⟲⟲⟲
+AI₂[C-generate]: produces output → [External: response]
+Edge d (AI₂→AI₁ Exchange, via API/file/message queue)
+AI₁[A-parse]: receives response → [Internal: representation]
 
-**Parallel Processing:**
-```
-AI 1: [C: Broadcast query] ─┬─ (d) → AI 2: [A→B→C: Answer₁]
-                            ├─ (d) → AI 3: [A→B→C: Answer₂]
-                            └─ (d) → AI 4: [A→B→C: Answer₃]
-                                ↓ (all responses via d)
-AI 1: [A: Collect] → [B: Aggregate] → [C: Final result]
-```
+METRICS:
 
-**Failure Modes:**
+Velocity:
+- Both: High and consistent (limited by hardware/API)
+- Potentially very high Exchange rate
+- Can process much faster than human communication
 
-**No Recurrence = No Error Correction:**
-```
-AI 1 produces wrong output → AI 2 processes wrong input →
-Error propagates → No self-correction
-```
+Recurrence:
+- Both: High within single inference
+- Both: Zero between inferences (stateless)
+- No persistent Recurrence across Exchanges
+- Each Exchange starts fresh
 
-**Exchange Loops (infinite ping-pong):**
-```
-AI 1: [C: "I don't understand, please clarify"] → (d) →
-AI 2: [A→B→C: "I don't understand YOUR question"] → (d) →
-AI 1: [A→B→C: "I don't understand..."] → ∞
-```
+Momentum:
+- Both: Zero native cross-turn Momentum
+- Must be externally maintained (in prompt/context/database)
+- Neither Actor inherently "remembers" previous Exchanges
+- Requires architectural scaffolding
 
-**No Context Persistence:**
-```
-AI 1 sends query → AI 2 responds → Connection drops →
-AI 1 sends same query → AI 2 has no memory of previous Exchange
-```
+Exchange Rate:
+- Can be extremely high (limited by infrastructure)
+- Symmetric initiation (if both have API access)
+- Or asymmetric (if one polls, one responds)
 
-**Optimal Pattern (requires external orchestration):**
+COLLABORATION PATTERNS:
 
-**Human-in-the-loop:**
-```
-AI 1 → (d) → Human → (d) → AI 2 → (d) → Human → (d) → AI 1
-```
-Human provides Recurrence and error correction.
+Context Passing:
+- Since neither has persistent state, context must be explicit
+- Each Exchange includes full relevant history
+- High overhead but necessary for coherence
 
-**Explicit State Management:**
-```
-AI 1: [C: Query + StateID] → (d) → Database: Store →
-AI 2: [A: Query + StateID] → Retrieve state → Process → Update state
-```
+AI₁[C]: produces {task_result, full_context}
+Edge d
+AI₂[A]: receives full package → processes with context
+AI₂[C]: produces {next_result, updated_context}
 
-**Ensemble with Voting:**
-```
-Multiple AIs process same input → Aggregate responses → 
-Majority vote or confidence weighting → More robust than single AI
+Functional Specialization:
+- AI₁: specialized for task A (e.g., code generation)
+- AI₂: specialized for task B (e.g., testing)
+- Exchange hands off work products
+
+AI₁[C]: generates code → [External: code text]
+Edge d (AI₁→AI₂)
+AI₂[A]: receives code → tests it
+AI₂[C]: generates test results → [External: results]
+Edge d (AI₂→AI₁)
+AI₁[A]: receives results → revises code
+
+Orchestrated Workflow:
+- External orchestrator manages Exchange
+- Maintains Momentum externally
+- Routes between AIs based on rules
+
+Pipeline Processing:
+- Sequential processing chain
+- Each AI transforms and passes forward
+- High Velocity, linear Momentum
+
+AI₁ → AI₂ → AI₃ → AI₄ → output
+
+Parallel Processing:
+- Multiple AIs process simultaneously
+- Results aggregated externally
+- High Velocity through parallelism
+
+Input → AI₁, AI₂, AI₃ (parallel) → aggregator → output
+
+FAILURE MODES:
+
+Stateless Loops:
+- AI₁ asks question
+- AI₂ responds
+- AI₁ asks same question (forgot previous Exchange)
+- Infinite Loop without termination
+- Requires external circuit breaker
+
+Context Bloat:
+- Each Exchange adds to context
+- Context grows unboundedly
+- Eventually exceeds capacity
+- Requires pruning strategy
+
+Momentum Dependency:
+- Collaboration requires external Momentum maintenance
+- If external system fails, all coordination lost
+- Unlike H/H where both maintain state
+
+Misaligned Objectives:
+- Each AI optimizing different loss functions
+- Exchange continues but diverges
+- No shared understanding to realign
+
+Format Mismatch:
+- AI₁ outputs format X
+- AI₂ expects format Y
+- Exchange breaks at interface
+- Requires strict protocol
+
+STRENGTHS:
+
+Both provide:
+- High Velocity potential
+- Consistent transformation functions
+- Parallelizable processing
+- Tireless operation (no fatigue)
+
+Challenges:
+- No native persistent state
+- No native Momentum
+- No shared understanding without explicit context
+- Requires careful orchestration
+
+Collaboration works when:
+- External system maintains Momentum
+- Context passing is explicit and bounded
+- Interfaces are strictly defined
+- Termination conditions are clear
+- Orchestration handles state/coordination
+
+Effective Patterns:
+- Microservices architecture (each AI is specialized service)
+- Pipeline processing (clear sequential flow)
+- Map-reduce patterns (parallel then aggregate)
+- Supervised by persistent system (database, orchestrator, or human)
 ```
 
 ## 4. What I'd Change About These Questions
 
-**Better Q1:** "Describe human/AI collaboration, identifying: (a) which Actor has higher Recurrence, (b) which has higher Velocity, (c) what Edge d carries, (d) what information is lost in Exchange."
+**Improvements:**
 
-**Why:** Forces multi-dimensional analysis.
+1. **Add comparative analysis**: "What collaboration capabilities does H/H have that H/AI lacks? What about AI/AI that H/H lacks?" (Makes differences explicit)
 
-**Better Q2:** "Describe human/human collaboration, then identify one capability that requires c edges (self-monitoring) that AI/AI collaboration lacks."
+2. **Request failure recovery**: "In each collaboration type, describe how Actors recover from Exchange breakdown." (Tests resilience understanding)
 
-**Why:** Highlights the architectural difference that matters most.
+3. **Ask about scaling**: "How does each collaboration change with 3+ Actors? 10+ Actors?" (Explores complexity growth)
 
-**Better Q3:** "Describe AI/AI collaboration. Why does it require external orchestration? What Nodes or Edges are missing?"
+4. **Probe asymmetries**: "In H/AI collaboration, list all asymmetries and their implications." (Current answer touched on this but could be more systematic)
 
-**Why:** Forces recognition of limitations.
+5. **Request optimization**: "For each collaboration type, what's the optimal Exchange rate and why?" (Forces thinking about trade-offs)
 
-**Add:** "For each collaboration type, identify the primary bottleneck and propose a solution."
+6. **Add temporal dimension**: "How do these collaborations change over minutes vs. hours vs. days?" (State persistence matters differently at different scales)
 
-**Why:** Moves from description to design.
+7. **Ask about meta-collaboration**: "Can the collaborating Actors adjust their collaboration pattern? Who can and how?" (Tests adaptivity)
 
-**Add:** "Compare Exchange frequency and Exchange bandwidth across the three collaboration types."
+8. **Request hybrid cases**: "Describe H/AI₁/AI₂ collaboration (one human, two AIs). What new patterns emerge?" (Tests compositional understanding)
 
-**Why:** Quantitative comparison reveals patterns.
+9. **Probe observability**: "In each case, can one Actor observe the other's Recurrence? What's visible vs. hidden?" (Tests boundary understanding)
 
-**Add:** "Describe a three-Actor collaboration: Human + AI + AI. Where do Exchanges happen? What's the flow?"
+10. **Ask about termination**: "What ends each collaboration type? Who decides and how?" (Tests completion conditions)
 
-**Why:** Tests compositional understanding.
+## 5. What I'd Change About The Primitives
 
-**Reorganize:** "For each collaboration type: (1) Draw the Exchange pattern, (2) Identify the limiting factor for Velocity, (3) Identify the limiting factor for Momentum, (4) Propose one architectural change to improve collaboration."
+**From Collaboration Analysis:**
 
-**Why:** Systematic framework across all three.
+### 1. Add State Persistence Properties
 
-## 5. What I'd Change About the Primitives
+Current: No distinction between stateful/stateless Actors.
+Reality: Critical difference between H (persistent) and AI (ephemeral).
 
-### Critical Gap: Exchange Bandwidth and Latency
-
-Exchange is defined structurally (d edge between Actors) but not characterized:
-
-**What traverses the Exchange?**
-- Human/AI: Natural language text (~10-1000 bytes/exchange)
-- Human/Human: Speech + multimodal (~100-10000 bytes/exchange)
-- AI/AI: Structured data (~100-1000000 bytes/exchange)
-
-**How long does Exchange take?**
-- Human/AI: 1-10 seconds (typing + reading)
-- Human/Human: 0.1-2 seconds (speaking + listening)
-- AI/AI: 0.001-1 seconds (network latency)
-
-**Suggested addition:**
-
+**Add to Actor definition:**
 ```
-Exchange Bandwidth: Information capacity per traversal
-Exchange Latency: Time for edge d traversal
-Exchange Fidelity: Information preservation across boundary
+State_Persistence {
+  duration: ephemeral | session | permanent
+  scope: what state is retained
+  decay: how state degrades over time
+}
+
+Examples:
+- Human: permanent, full scope, gradual decay (forgetting)
+- AI (me): session-only, context window, abrupt truncation
+- AI (stateless service): ephemeral, none, immediate loss
 ```
 
-### Critical Gap: Shared Context
+### 2. Add Initiative Capability
 
-Collaboration requires shared understanding, but primitives don't model this:
+Current: Exchange is just an edge property.
+Reality: Who can initiate matters hugely.
 
-**Current model:** Each Actor has independent internal state (Node B).
-
-**Reality:** Effective collaboration requires synchronized internal states.
-
-**Suggested addition:**
-
-**Alignment:** Measure of similarity between Actor A's internal state and Actor B's internal state after Exchange.
-
+**Add to Actor definition:**
 ```
-Perfect Alignment (1.0): Both Actors have identical internal representations
-No Alignment (0.0): Internal representations uncorrelated
-Negative Alignment (-1.0): Internal representations contradictory
-```
+Initiative {
+  can_initiate: boolean
+  initiation_conditions: what triggers
+  initiation_cost: resources required
+}
 
-**Collaboration quality ∝ Alignment × Exchange Frequency**
-
-### Critical Gap: Multi-Actor Patterns
-
-Primitives define Exchange between two Actors but don't address:
-
-- **Broadcast:** One Actor → Many Actors simultaneously
-- **Aggregation:** Many Actors → One Actor
-- **Chain:** A → B → C → D (pipeline)
-- **Mesh:** All Actors exchange with all others
-- **Hierarchy:** Actors organized in tree structure
-
-**Suggested addition:**
-
-**Collaboration Topology:** Graph of Exchange edges between multiple Actors.
-
-**Metrics:**
-- **Centrality:** Which Actor has most Exchanges?
-- **Diameter:** Longest path between any two Actors?
-- **Density:** Ratio of actual to possible Exchanges?
-
-### Missing: Collaboration Breakdown Modes
-
-What happens when Exchange fails?
-
-**Scenarios:**
-1. **Edge d blocked:** No physical path (network down, person leaves room)
-2. **Node A incompatible:** Receiving Actor can't parse Stimulus (wrong format, language barrier)
-3. **Response/Stimulus mismatch:** Wrong type (already invalidated by primitives)
-4. **Timeout:** Edge d takes too long, collaboration moves on
-
-**Suggested addition:**
-
-**Exchange Reliability:** Probability that edge d successfully delivers Response as next Actor's Stimulus.
-
-**Failure handling:**
-- **Retry:** Traverse edge d again
-- **Fallback:** Use alternate edge d (different communication channel)
-- **Abort:** Stop collaboration
-
-### Missing: Asymmetric Exchange
-
-Current Exchange is symmetric (d edge works same in both directions).
-
-**Reality:** Exchange is often asymmetric:
-
-**Human/AI:**
-- Human → AI: Typically structured query
-- AI → Human: Typically long-form response
-- **Different bandwidths, different latencies**
-
-**Manager/Employee:**
-- Manager → Employee: Directive (low ambiguity)
-- Employee → Manager: Report (high detail)
-- **Different content types**
-
-**Suggested addition:**
-
-**Exchange Role:**
-- **Query:** Stimulus requesting Response
-- **Answer:** Response to Query
-- **Command:** Stimulus requiring specific Response type
-- **Report:** Response providing state information
-- **Proposal:** Stimulus suggesting collaboration action
-- **Acceptance/Rejection:** Response to Proposal
-
-Each role has different expectations for edge d properties.
-
-### Missing: Multi-Modal Exchange
-
-Human/human collaboration uses multiple simultaneous edge d paths:
-
-```
-HUMAN A: 
-[Node C: Speech] ──(edge d₁)──→ HUMAN B: [Node A: Hearing]
-[Node C: Gesture] ──(edge d₂)──→ HUMAN B: [Node A: Vision]
-[Node C: Facial expression] ──(edge d₃)──→ HUMAN B: [Node A: Vision]
+Examples:
+- Human: can_initiate=true, conditions=voluntary, cost=low
+- AI (me): can_initiate=false, conditions=n/a, cost=n/a
+- AI (autonomous agent): can_initiate=true, conditions=programmed triggers
 ```
 
-**All traverse simultaneously, all contribute to comprehension.**
+### 3. Add Communication Channels
 
-Current primitives model these as separate Exchanges, but they're really one collaborative act.
+Current: Exchange is abstract.
+Reality: Multiple simultaneous channels matter.
 
-**Suggested addition:**
+**Add to Exchange:**
+```
+Channel {
+  modality: text | speech | visual | gesture | ...
+  bandwidth: bits per second
+  latency: delay time
+  reliability: error rate
+}
 
-**Exchange Bundle:** Set of edge d traversals that happen simultaneously and contribute to single collaborative message.
+Multi_Channel_Exchange: set of parallel Exchanges
+```
 
-**Bundle Coherence:** Do all edges in bundle support same meaning, or do they conflict?
+Human/Human has rich Multi_Channel_Exchange.
+Human/AI typically single channel (text).
+AI/AI potentially high-bandwidth (structured data).
 
-### The Collaboration Paradox
+### 4. Add Coordination Primitives
 
-**Observation:** Best collaborations have high Alignment, but achieving Alignment requires many Exchanges, but each Exchange has cost (latency, bandwidth).
+Current: Just Exchanges between Actors.
+Reality: Need coordination mechanisms.
 
-**Trade-off:**
-- Few Exchanges → Low cost, Low Alignment → Poor collaboration
-- Many Exchanges → High cost, High Alignment → Good collaboration but expensive
+**Add:**
+```
+Protocol {
+  turn_taking_rules: who speaks when
+  conflict_resolution: what if simultaneous
+  synchronization_points: where Actors must align
+}
 
-**Missing from primitives:** Optimal Exchange frequency for given task.
+Shared_State {
+  location: where state lives
+  access_pattern: read/write permissions
+  consistency_model: how kept synchronized
+}
+```
 
-**Suggested addition:**
+### 5. Add Asymmetry Properties
 
-**Collaboration Efficiency:** Progress toward shared goal / (Exchange count × Exchange cost)
+Current: Actors seem symmetric.
+Reality: Many asymmetries matter.
 
-This would let us compare:
-- Human/AI: Low Exchange frequency, moderate efficiency
-- Human/Human: High Exchange frequency, high efficiency (multimodal, low latency)
-- AI/AI: Very high Exchange frequency, variable efficiency (depends on orchestration)
+**Add to collaboration model:**
+```
+Asymmetry {
+  initiative: who can start
+  memory: who persists state
+  velocity: processing speed differences
+  knowledge: what each Actor knows
+  power: who can override/veto
+}
+```
+
+### 6. Add Mediation Layer
+
+Current: Direct Actor-to-Actor Exchange.
+Reality: Often mediated (APIs, databases, orchestrators).
+
+**Add:**
+```
+Mediator {
+  type: API | database | message_queue | human_facilitator
+  transforms: how it modifies Exchanges
+  state: what it persists
+  routing: how it directs flow
+}
+
+Mediated_Exchange: Exchange passing through Mediator
+```
+
+Critical for AI/AI where infrastructure provides Momentum/state.
+
+### 7. Add Synchronization Metrics
+
+Current: Velocity, Momentum, Recurrence per Actor.
+Need: Cross-Actor alignment measures.
+
+**Add:**
+```
+Synchronization: correlation of Actor Velocities over time
+Alignment: shared Momentum direction
+Coherence: mutual understanding quality
+Latency: delay between Exchange initiation and response
+```
+
+### 8. Add Collaboration Patterns as Terms
+
+Current: Only basic Terms (Loop, Hop, Match, etc.).
+Need: Higher-level patterns.
+
+**Add Terms:**
+```
+Ping_Pong: alternating Exchange with balanced contributions
+Pipeline: sequential processing through Actors
+Broadcast: one Actor to many
+Aggregation: many Actors to one
+Negotiation: iterative Exchange toward agreement
+Co_Construction: symmetric building toward shared artifact
+```
+
+### 9. Add Failure and Recovery
+
+Current: Assumes successful Exchange.
+Reality: Communication fails.
+
+**Add:**
+```
+Exchange_Failure {
+  type: timeout | format_error | capacity_exceeded
+  detection: how noticed
+  recovery: retry | fallback | abort
+}
+
+Circuit_Breaker: stops repeated failing Exchanges
+Checkpoint: state snapshot for recovery
+```
+
+### 10. Add Meta-Communication
+
+Current: Only content Exchanges.
+Reality: Communication about communication matters.
+
+**Add:**
+```
+Meta_Exchange: Exchange about the collaboration itself
+
+Examples:
+- "I don't understand, could you rephrase?"
+- "Let's slow down"
+- "Are we aligned on the goal?"
+
+Meta_Node: Node that observes/adjusts collaboration
+```
+
+Humans excel at this; AIs typically don't.
+
+### 11. Add Context Scope
+
+Current: Internal/External binary.
+Reality: Gradations matter in collaboration.
+
+**Add:**
+```
+Scope_Hierarchy {
+  private: Actor's internal only
+  shared: accessible to collaboration partners
+  public: accessible to all
+  persistent: survives session end
+}
+```
+
+### 12. Add Trust and Verification
+
+Current: Assumes Exchanges are accepted.
+Reality: Actors evaluate and filter.
+
+**Add:**
+```
+Verification_Node: checks incoming Exchange validity
+Trust_Metric: confidence in other Actor's outputs
+Filter_Edge: conditionally blocks Exchange
+```
+
+**Meta-Observation:**
+
+Analyzing collaboration revealed the primitives are **strongly biased toward single-Actor behavior**. Extending to multi-Actor scenarios requires:
+
+- **State management** primitives (who remembers what)
+- **Coordination** primitives (how do Actors align)
+- **Asymmetry** primitives (differences between Actors)
+- **Infrastructure** primitives (mediation, persistence)
+- **Quality** primitives (trust, verification, coherence)
+
+The current primitives give a **foundation** but need **significant extension** to adequately model collaboration. The Actor-centric view must be augmented with **relationship-centric** and **system-centric** views.

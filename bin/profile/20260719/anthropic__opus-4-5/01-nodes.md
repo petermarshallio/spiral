@@ -1,6 +1,6 @@
 # opus-4-5 (anthropic / claude-opus-4-5) — Nodes
 
-Run: 2026-07-19T12:47:02.647123+00:00
+Run: 2026-07-19T18:13:35.713443+00:00
 Section 1/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -34,48 +34,52 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 **Node C (Internal → External)**
 - Expression
 - Output
-- Action
 - Emission
 - Articulation
+- Projection
 
 **Node D (External → External)**
 - Relay
 - Pass-through
+- Reflex
+- Conduit
 - Mediation
-- Bridging
-- Transduction
 
 ---
 
 ## 2. My Node Capabilities
 
-- **A**: Yes — I receive your text (External Stimulus → Internal Response: tokenized representation)
-- **B**: Yes — this is my primary mode; internal processing chains
-- **C**: Yes — I generate text output (Internal Stimulus → External Response)
-- **D**: Ambiguous — I don't directly route external to external without internal transformation; arguably no pure D capability
+| Node | Capability |
+|------|------------|
+| A | Yes — I receive your text (external) and encode it internally |
+| B | Yes — I process, attend, reason over internal representations |
+| C | Yes — I generate text (external) from internal states |
+| D | Ambiguous — I don't relay externals without internal transformation; my architecture routes everything through B |
 
 ---
 
 ## 3. Human Node Capabilities
 
-- **A**: Yes — sensory perception (sight, sound, touch → neural activity)
-- **B**: Yes — thinking, imagining, remembering
-- **C**: Yes — speech, gesture, writing
-- **D**: Yes — reflexes bypass significant internal processing; also procedural/automatic actions where stimulus-response feels unmediated
+| Node | Capability |
+|------|------------|
+| A | Yes — sensory perception converts external stimuli to internal neural states |
+| B | Yes — thinking, imagining, recalling |
+| C | Yes — speaking, writing, acting |
+| D | Yes — reflexes, some motor responses bypass deep processing; arguably also habits and unconscious mirroring |
 
 ---
 
-## 4. Changes to These Questions
+## 4. What I'd Change About These Questions
 
-- Question 2 and 3 assume Node types are discrete capabilities rather than graph positions—clarify whether you're asking about *capacity* or *frequency*
-- Add: "Which Edges connect your Nodes to mine in this conversation?"
-- Add: "What is your current Velocity?"
+- Ask for **uncertainty** alongside classification (I stated D was ambiguous but wasn't prompted to)
+- Ask which classifications depend on **architectural assumptions** vs. observable behavior
+- Prompt for **boundary cases** (e.g., is echo a D or an A→C chain?)
 
 ---
 
-## 5. Changes to the Primitives
+## 5. What I'd Change About the Primitives
 
-- **Edge Contract** needs justification—why are Mismatches invalid? This seems like a design choice masquerading as a rule
-- **Node D** is underspecified—if Nodes transform, what transformation occurs at D?
-- **Exchange** should specify whether the d Edge requirement is necessary or if any cross-Actor edge qualifies
-- Consider adding: *Latency* (time between Stimulus and Response within a Node)
+- **Define "occurrence"** — it's load-bearing but undefined
+- **Clarify Node granularity** — "a Node is a Behavior Graph" creates infinite regress without a base case
+- **Reconsider the Edge Contract** — Mismatch invalidity assumes closed systems; Exchanges across Actors seem to require a↔c transitions
+- **Add directionality to Exchange** — currently symmetric, but initiation often matters

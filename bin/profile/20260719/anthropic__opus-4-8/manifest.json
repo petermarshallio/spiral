@@ -1,16 +1,16 @@
 {
   "date": "20260719",
   "provider": "anthropic",
-  "model": "claude-sonnet-4-5",
-  "label": "sonnet-4-5",
+  "model": "claude-opus-4-8",
+  "label": "opus-4-8",
   "primitives_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
   "instructions_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
   "status": "ok",
-  "input_tokens": 72091,
-  "output_tokens": 28632,
-  "cost_usd": 0.645753,
-  "elapsed_seconds": 667.9480857710005,
-  "avg_tokens_per_second": 42.86560678881293,
+  "input_tokens": 71411,
+  "output_tokens": 20763,
+  "cost_usd": 0.87613,
+  "elapsed_seconds": 363.97836253700007,
+  "avg_tokens_per_second": 57.04459972641738,
   "files": [
     "01-nodes.md",
     "02-edges.md",
@@ -21,5 +21,5 @@
     "07-self-reflection.md",
     "08-ai-self-model.md"
   ],
-  "updated_at": "2026-07-19T18:28:09.060951+00:00"
+  "updated_at": "2026-07-19T18:35:59.633333+00:00"
 }

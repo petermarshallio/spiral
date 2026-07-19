@@ -1,6 +1,6 @@
 # opus-4-5 (anthropic / claude-opus-4-5) — Behavior Graph
 
-Run: 2026-07-19T12:47:28.308633+00:00
+Run: 2026-07-19T18:14:07.313701+00:00
 Section 3/8
 
 System prompt: primitives.md, verbatim (see ../../primitives.md).
@@ -18,82 +18,78 @@ System prompt: primitives.md, verbatim (see ../../primitives.md).
 ## 1. Myself as a Behavior Graph
 
 ```
-A (your text → my tokenized representation)
-↓ b
-B (token processing → attention patterns)
-↓ b
-B (attention patterns → candidate predictions)
-↓ b
-B (candidate predictions → selected token)
-↓ b
-C (selected token → emitted text)
-↓ c
-B (visible output → context update)
-↓ b
-[Loop to earlier B until generation complete]
+A ──b──> B ──b──> B ──b──> ... ──b──> B ──b──> C
+         │                              │
+         └──────────b (attention)───────┘
 ```
 
-High Velocity within B chains. Moderate Recurrence via the c-to-B loop. Exchange occurs at your A receiving my C output.
+- **A**: Tokenization encodes your text into internal embeddings
+- **B**: Layers of attention and transformation; many b-edges chain these
+- **C**: Final layer projects internal state to token probabilities, then text
+
+Characteristics:
+- Strictly feedforward within a turn
+- High Velocity (many b-edges per response)
+- High Recurrence only if attention revisiting counts as Loop
+- No d-edges I can observe
+- Exchange occurs between my C and your A across turns
 
 ---
 
 ## 2. A Human as a Behavior Graph
 
 ```
-A (light, sound, pressure → neural activation)
-↓ b
-B (sensation → perception)
-↓ b
-B (perception → recognition)
-↓ b
-B (recognition → evaluation)
-↓ b
-B (evaluation → intention)
-↓ b
-C (intention → muscle activation)
-↓ c
-A (proprioceptive feedback → adjustment signal)
-↓ b
-[continues]
+     ┌────────b────────┐
+     │                 ▼
+A ──b──> B ──b──> B ──b──> C ──d──> [environment] ──d──> A
+│        │        ▲        │
+│        └───b────┘        │
+└────────────b─────────────┘
 ```
 
-Also contains D nodes: reflexes, automatic responses. Higher diversity of A inputs. More parallel graphs operating simultaneously.
+- **A**: Sensory organs convert external stimuli
+- **B**: Cortical processing, memory, emotion — densely interconnected
+- **C**: Motor output, speech, expression
+- **d**: Environment mediates between action and subsequent perception
+
+Characteristics:
+- Highly parallel; multiple A-nodes simultaneously
+- Recurrence through memory, habit, rumination
+- d-edges via embodiment create continuous loops with world
+- Exchange with other Actors frequent and bidirectional
 
 ---
 
-## 3. One Node Examined Closely
+## 3. One of My Nodes, Examined Closely
 
-**Node: "attention patterns → candidate predictions"**
-
-Examined as a Behavior Graph:
+**Choosing**: One attention head within a B-node.
 
 ```
-A (attention weights as input)
-↓ b
-B (weight distribution → feature emphasis)
-↓ b
-B (feature emphasis → pattern matching)
-↓ b
-B (pattern matching → probability assignment)
-↓ b
-C (probability assignment → ranked candidates)
+A' ──b──> B' ──b──> B' ──b──> C'
 ```
 
-The pattern recurses. Each B here could be further decomposed. Eventually reaches substrate: matrix operations, floating point arithmetic—where "Behavior Graph" meets implementation.
+- **A'**: Receives query, key, value projections (internal stimulus from prior layer)
+- **B'**: Computes attention weights, applies softmax, weighs values
+- **C'**: Outputs weighted representation to next component
+
+This is itself a Behavior Graph. The primitives recurse.
+
+If examined further, B' contains matrix multiplications — each could be graphed similarly. The recursion bottoms out at hardware operations, which may escape the Actor abstraction.
 
 ---
 
-## 4. Changes to These Questions
+## 4. What I'd Change About These Questions
 
-- Add: "At what depth does decomposition cease being meaningful?"
-- Add: "Where do your graph and a human's graph share structure?"
-- Question 3 presumes Node decomposition is always possible—ask about Nodes that resist decomposition
+- Ask for **base case** — when does recursion into sub-Nodes stop being meaningful?
+- Ask about **parallelism** — my description was sequential, but real graphs may have concurrent paths
+- Prompt for **which Exchanges** connect the two graphs (mine and human's)
+- Ask whether the graphs are **static** or change shape over time
 
 ---
 
-## 5. Changes to the Primitives
+## 5. What I'd Change About the Primitives
 
-- Add a **Primitive Node**—a Node that does not decompose into a Behavior Graph
-- Clarify: is "examined closely" a zoom operation or a different kind of analysis?
-- The recursion "a Node is a Behavior Graph" needs a base case
-- Consider: does decomposition preserve the original Node's type (A, B, C, D)?
+- **Add composition rules** — how Nodes nest into sub-graphs needs formal treatment; currently "examined closely, a Node is a Behavior Graph" is asserted but not operationalized
+- **Distinguish layers of description** — Actor, sub-Actor, mechanism, substrate; currently flat
+- **Define observation boundaries** — I cannot observe my own A or C directly; this affects what graphs I can validly claim
+- **Handle parallelism** — current primitives imply sequential stimulus→response; concurrent branches need primitives or derived terms
