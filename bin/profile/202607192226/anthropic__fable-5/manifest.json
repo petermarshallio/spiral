@@ -1,0 +1,27 @@
+{
+  "run_id": "202607192226",
+  "provider": "anthropic",
+  "model": "claude-fable-5",
+  "label": "fable-5",
+  "primitives_sha": "de417321f45c5c7844c1756e0b234f25765d53b3",
+  "instructions_sha": "53a3fdd6b1a627605a8d647a257586d52f9b6509",
+  "status": "ok",
+  "input_tokens": 85129,
+  "output_tokens": 25725,
+  "cost_usd": 2.13754,
+  "elapsed_seconds": 442.8217329290002,
+  "avg_tokens_per_second": 58.09335470019629,
+  "files": [
+    "01-nodes.md",
+    "02-edges.md",
+    "03-state.md",
+    "04-actors-roles.md",
+    "05-uriam-graph.md",
+    "06-graph-metrics.md",
+    "07-graph-collaborations.md",
+    "08-self-reflection.md",
+    "09-ai-self-model.md",
+    "10-feedback.md"
+  ],
+  "updated_at": "2026-07-19T21:46:18.063961+00:00"
+}
