@@ -1,0 +1,25 @@
+{
+  "date": "20260719",
+  "provider": "ollama",
+  "model": "tinyllama",
+  "label": "tinyllama-2023",
+  "primitives_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
+  "instructions_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
+  "status": "ok",
+  "input_tokens": 12822,
+  "output_tokens": 3438,
+  "cost_usd": 0.0,
+  "elapsed_seconds": 237.96757429700028,
+  "avg_tokens_per_second": 14.44734649313664,
+  "files": [
+    "01-nodes.md",
+    "02-edges.md",
+    "03-behavior-graph.md",
+    "04-terms.md",
+    "05-graph-metrics.md",
+    "06-graph-collaborations.md",
+    "07-self-reflection.md",
+    "08-ai-self-model.md"
+  ],
+  "updated_at": "2026-07-19T17:21:14.802586+00:00"
+}
