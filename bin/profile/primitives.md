@@ -66,3 +66,5 @@ Examined closely, a Node is a URIAm Graph.
 Measures include:
 
 * **Momentum**: the number of Adjacent Hops.
+
+Uriam's measures do not concern quality of Information or Node behavior.
