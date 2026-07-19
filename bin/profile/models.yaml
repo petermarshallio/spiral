@@ -1,0 +1,66 @@
+# Models to profile against primitives.md / instructions.md.
+# Add or remove entries freely -- run.py just iterates this list.
+#
+# price_in / price_out are USD per 1M tokens, verified live against
+# platform.claude.com/docs/en/about-claude/models/overview on 2026-07-19.
+# Claude Sonnet 5's rate below is its INTRODUCTORY price and expires
+# 2026-08-31 -- after that, update it to 3.00 / 15.00 (its standard rate).
+# Ollama entries carry no pricing fields -- local models are always free.
+
+synthesis:
+  provider: anthropic
+  model: claude-opus-4-8
+
+models:
+  - provider: anthropic
+    model: claude-opus-4-8
+    label: opus-4-8
+    price_in: 5.00
+    price_out: 25.00
+  - provider: anthropic
+    model: claude-sonnet-5
+    label: sonnet-5
+    price_in: 2.00   # introductory through 2026-08-31 -- standard rate is 3.00
+    price_out: 10.00 # introductory through 2026-08-31 -- standard rate is 15.00
+  - provider: anthropic
+    model: claude-haiku-4-5
+    label: haiku-4-5
+    price_in: 1.00
+    price_out: 5.00
+  - provider: anthropic
+    model: claude-opus-4-5
+    label: opus-4-5
+    price_in: 5.00
+    price_out: 25.00
+  - provider: anthropic
+    model: claude-sonnet-4-5
+    label: sonnet-4-5
+    price_in: 3.00
+    price_out: 15.00
+  - provider: anthropic
+    model: claude-opus-4-1
+    label: opus-4-1 # oldest Claude the API still serves (Aug 2025) -- everything
+                     # older (Claude 3.x, 2.x, 1) is fully retired and 404s.
+    price_in: 15.00
+    price_out: 75.00
+
+  # Ollama spread, oldest -> newest, so the metastudy can talk about
+  # progression over time rather than just across vendors. Free -- no
+  # pricing fields.
+  - provider: ollama
+    model: "tinyllama"
+    label: tinyllama-2023 # Sep 2023, 1.1B -- deliberately weak floor, not
+                           # expected to handle the framework at all.
+  - provider: ollama
+    model: "llama2:7b"
+    label: llama2-7b-2023 # Jul 2023
+  - provider: ollama
+    model: "mistral:7b"
+    label: mistral-7b-2023 # Sep 2023
+  - provider: ollama
+    model: "llama3.1:8b"
+    label: llama3.1-8b-2024 # Jul 2024
+  - provider: ollama
+    model: "qwen2.5:7b"
+    label: qwen2.5-7b-2024 # Sep 2024, the newest tag I'm confident is real --
+                            # see run note below for anything more recent.

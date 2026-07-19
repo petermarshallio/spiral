@@ -1,2 +1,10 @@
 # Macness
 .DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets
+.env
