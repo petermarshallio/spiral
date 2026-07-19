@@ -252,14 +252,15 @@ def run_metastudy_step(run_dir: Path, synthesis_model: str, synthesis_price: tup
     log.info(f"[green]Metastudy written[/] -> {run_dir / 'metastudy.md'} ({format_usd(cost)})")
 
 
-def build_menu_table(config: dict) -> Table:
+def build_menu_table(model_specs: list[dict]) -> Table:
     table = Table(title="Uriam Model Profiler")
     table.add_column("#", justify="right", style="bold")
+    table.add_column("Released")
     table.add_column("Label")
     table.add_column("Provider")
     table.add_column("Model")
-    for i, spec in enumerate(config["models"], start=1):
-        table.add_row(str(i), spec["label"], spec["provider"], spec["model"])
+    for i, spec in enumerate(model_specs, start=1):
+        table.add_row(str(i), spec.get("released", "—"), spec["label"], spec["provider"], spec["model"])
     return table
 
 
@@ -273,10 +274,10 @@ def interactive_menu(
     synthesis_price: tuple[float | None, float | None],
     ollama_service: OllamaService,
 ) -> None:
-    model_specs = config["models"]
+    model_specs = sorted(config["models"], key=lambda m: m.get("released", ""), reverse=True)
     choices = [str(i) for i in range(1, len(model_specs) + 1)] + ["a", "m", "x"]
     while True:
-        console.print(build_menu_table(config))
+        console.print(build_menu_table(model_specs))
         console.print("[bold]a[/] run ALL   [bold]m[/] metastudy only   [bold]x[/] quit")
         choice = Prompt.ask("Pick a model number, a, m, or x", choices=choices, show_choices=False)
 

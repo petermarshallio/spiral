@@ -6,6 +6,11 @@
 # Claude Sonnet 5's rate below is its INTRODUCTORY price and expires
 # 2026-08-31 -- after that, update it to 3.00 / 15.00 (its standard rate).
 # Ollama entries carry no pricing fields -- local models are always free.
+#
+# released is YYYY-MM, used to sort the interactive menu by age. Anthropic
+# dates are exact (via the Models API); the newest Ollama entries (2026-*)
+# are approximate -- derived from "N weeks/months ago" on ollama.com/search
+# at the time they were added, not an exact release date.
 
 synthesis:
   provider: anthropic
@@ -15,32 +20,38 @@ models:
   - provider: anthropic
     model: claude-opus-4-8
     label: opus-4-8
+    released: "2026-05"
     price_in: 5.00
     price_out: 25.00
   - provider: anthropic
     model: claude-sonnet-5
     label: sonnet-5
+    released: "2026-06"
     price_in: 2.00   # introductory through 2026-08-31 -- standard rate is 3.00
     price_out: 10.00 # introductory through 2026-08-31 -- standard rate is 15.00
   - provider: anthropic
     model: claude-haiku-4-5
     label: haiku-4-5
+    released: "2025-10"
     price_in: 1.00
     price_out: 5.00
   - provider: anthropic
     model: claude-opus-4-5
     label: opus-4-5
+    released: "2025-11"
     price_in: 5.00
     price_out: 25.00
   - provider: anthropic
     model: claude-sonnet-4-5
     label: sonnet-4-5
+    released: "2025-09"
     price_in: 3.00
     price_out: 15.00
   - provider: anthropic
     model: claude-opus-4-1
-    label: opus-4-1 # oldest Claude the API still serves (Aug 2025) -- everything
-                     # older (Claude 3.x, 2.x, 1) is fully retired and 404s.
+    label: opus-4-1 # oldest Claude the API still serves -- everything older
+                     # (Claude 3.x, 2.x, 1) is fully retired and 404s.
+    released: "2025-08"
     price_in: 15.00
     price_out: 75.00
 
@@ -49,18 +60,40 @@ models:
   # pricing fields.
   - provider: ollama
     model: "tinyllama"
-    label: tinyllama-2023 # Sep 2023, 1.1B -- deliberately weak floor, not
-                           # expected to handle the framework at all.
+    label: tinyllama-2023 # deliberately weak floor, 1.1B -- not expected to
+                           # handle the framework at all.
+    released: "2023-09"
   - provider: ollama
     model: "llama2:7b"
-    label: llama2-7b-2023 # Jul 2023
+    label: llama2-7b-2023
+    released: "2023-07"
   - provider: ollama
     model: "mistral:7b"
-    label: mistral-7b-2023 # Sep 2023
+    label: mistral-7b-2023
+    released: "2023-09"
   - provider: ollama
     model: "llama3.1:8b"
-    label: llama3.1-8b-2024 # Jul 2024
+    label: llama3.1-8b-2024
+    released: "2024-07"
   - provider: ollama
     model: "qwen2.5:7b"
-    label: qwen2.5-7b-2024 # Sep 2024, the newest tag I'm confident is real --
-                            # see run note below for anything more recent.
+    label: qwen2.5-7b-2024
+    released: "2024-09"
+  - provider: ollama
+    model: "deepseek-r1:7b"
+    label: deepseek-r1-7b-2025 # reasoning-tuned architecture rather than
+                                # plain instruction-tuned
+    released: "2025-01"
+  - provider: ollama
+    model: "granite4.1:8b"
+    label: granite4.1-8b-2026 # IBM, enterprise lineage
+    released: "2026-05"
+  - provider: ollama
+    model: "qwen3.5:9b"
+    label: qwen3.5-9b-2026 # same family as qwen2.5-7b-2024 -- within-vendor
+                            # progression comparison
+    released: "2026-06"
+  - provider: ollama
+    model: "gemma4:12b"
+    label: gemma4-12b-2026 # Google -- the "now" bookend
+    released: "2026-07"
