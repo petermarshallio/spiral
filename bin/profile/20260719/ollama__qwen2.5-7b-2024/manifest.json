@@ -1,0 +1,23 @@
+{
+  "date": "20260719",
+  "provider": "ollama",
+  "model": "qwen2.5:7b",
+  "label": "qwen2.5-7b-2024",
+  "primitives_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
+  "instructions_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
+  "status": "ok",
+  "input_tokens": 22806,
+  "output_tokens": 7478,
+  "cost_usd": 0.0,
+  "files": [
+    "01-nodes.md",
+    "02-edges.md",
+    "03-behavior-graph.md",
+    "04-terms.md",
+    "05-graph-metrics.md",
+    "06-graph-collaborations.md",
+    "07-self-reflection.md",
+    "08-ai-self-model.md"
+  ],
+  "updated_at": "2026-07-19T13:34:25.119968+00:00"
+}
