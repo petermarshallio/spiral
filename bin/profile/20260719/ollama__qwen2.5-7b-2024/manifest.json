@@ -6,9 +6,11 @@
   "primitives_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
   "instructions_sha": "3ce715da1b4f21bd44b96909e8e0c9f6761e67b1",
   "status": "ok",
-  "input_tokens": 22806,
-  "output_tokens": 7478,
+  "input_tokens": 33248,
+  "output_tokens": 7543,
   "cost_usd": 0.0,
+  "elapsed_seconds": 2647.550566281,
+  "avg_tokens_per_second": 2.849048511506094,
   "files": [
     "01-nodes.md",
     "02-edges.md",
@@ -19,5 +21,5 @@
     "07-self-reflection.md",
     "08-ai-self-model.md"
   ],
-  "updated_at": "2026-07-19T13:34:25.119968+00:00"
+  "updated_at": "2026-07-19T18:06:20.516194+00:00"
 }
